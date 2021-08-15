@@ -15,7 +15,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'v9ulx0SeOPM2_xj3jKmsesXHyksJIhsS',
+            'cookieValidationKey' => 'w9ulx0SeOPM2_xj3jKmsesXHyksJIhsS',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -92,7 +92,7 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest', 'user'],
+            //'defaultRoles' => ['guest', 'user', 'admin'],
         ],
     ],
     'modules' => [
@@ -104,7 +104,7 @@ $config = [
                     'controllerMap' => [
                         'manage' => [
                             'class' => 'app\modules\cms\controllers\ManageController',
-                            'layout' => '@app/modules/admin/views/layouts/column2',
+                            'layout' => '@app/modules/admin/views/layouts/main',
                         ],
                     ],
                 ],
@@ -130,7 +130,7 @@ $config = [
             'controllerMap' => [
                 'manage' => [
                     'class' => 'yii2mod\comments\controllers\ManageController',
-                    'layout' => '@app/modules/admin/views/layouts/column2',
+                    'layout' => '@app/modules/admin/views/layouts/main',
                 ],
             ],
         ],

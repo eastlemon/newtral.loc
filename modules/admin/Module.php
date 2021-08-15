@@ -7,7 +7,7 @@ class Module extends \yii\base\Module
 {
     public $defaultRoute = 'user';
 
-    public $layout = 'column2';
+    public $layout = 'main';
 
     public $controllerNamespace = 'app\modules\admin\controllers';
 

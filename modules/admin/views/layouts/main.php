@@ -53,21 +53,34 @@ AdminAsset::register($this);
                 ],
                 [
                     'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
-                    'url' => ['/cms/manage/index'],
+                    'url' => ['/admin/cms/manage/index'],
                 ],
                 [
                     'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
-                    'url' => ['/admin/rbac/assignment/index'],
                     'active' => $this->context->module->id == 'rbac',
+                    'items' => [
+                        [
+                            'label' => 'route',
+                            'url' => ['/admin/rbac/route'],
+                        ],
+                        [
+                            'label' => 'permission',
+                            'url' => ['/admin/rbac/permission'],
+                        ],
+                        [
+                            'label' => 'role',
+                            'url' => ['/admin/rbac/role'],
+                        ],
+                        [
+                            'label' => 'assignment',
+                            'url' => ['/admin/rbac/assignment'],
+                        ],
+                    ],
                 ],
                 [
                     'label' => '<i class="glyphicon glyphicon-wrench"></i> Settings Storage',
                     'url' => ['/admin/settings-storage'],
                     'active' => $this->context->module->id == 'settings-storage',
-                ],
-                [
-                    'label' => '<i class="glyphicon glyphicon-cog"></i> Cron Schedule Log',
-                    'url' => ['/admin/settings/cron'],
                 ],
             ],
         ]);

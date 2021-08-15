@@ -7,6 +7,12 @@ use yii\db\Migration;
  */
 class m210709_150616_init_cms extends Migration
 {
+    //php yii migrate/up --migrationPath=@vendor/yii2mod/yii2-user/migrations
+    //php yii migrate/up --migrationPath=@yii/rbac/migrations
+    //php yii migrate --migrationPath=@vendor/yii2mod/yii2-settings/migrations
+    //php yii migrate --migrationPath=@vendor/yii2mod/yii2-comments/migrations
+    //php yii rbac/migrate
+
     /**
      * {@inheritdoc}
      */

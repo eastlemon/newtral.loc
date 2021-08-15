@@ -21,14 +21,15 @@
         "yiisoft/yii2-redis": "~2.0.0",
         "yii2mod/yii2-user": "*",
         "yii2mod/yii2-rbac": "*",
-        "yii2mod/yii2-cron-log": "*",
         "yii2mod/yii2-settings": "*",
         "yii2mod/yii2-bootstrap-notify": "*",
         "yii2mod/yii2-editable": "*",
         "yii2mod/yii2-comments": "*",
         "yii2tech/sitemap": "*",
         "yii2tech/admin": "*",
-        "2amigos/yii2-ckeditor-widget" : "~2.1"
+        "2amigos/yii2-ckeditor-widget" : "~2.1",
+        "rmrevin/yii2-fontawesome": "~3.5",
+        "yiisoft/yii2-httpclient": "~2.0.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

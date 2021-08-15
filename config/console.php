@@ -28,7 +28,27 @@ $config = [
         'db' => $db,
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest', 'user'],
+            //'defaultRoles' => ['guest', 'user', 'admin'],
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii2mod.user' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/user/messages',
+                ],
+                'yii2mod.rbac' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => 'app/modules/rbac/message',
+                ],
+            ],
+        ],
+    ],
+    'modules' => [
+        'user' => [
+            'class' => 'yii2mod\user\ConsoleModule',
+        ],
+        'rbac' => [
+            'class' => 'yii2mod\rbac\ConsoleModule',
         ],
     ],
     'params' => $params,
