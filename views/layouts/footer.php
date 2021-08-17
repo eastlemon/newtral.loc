@@ -1,33 +1,23 @@
-<div class="footer">
+<div class="jumbotron">
 	<div class="container">
-		<div class="footer-logo">
-			<a href="/"></a>
-		</div>
-		<div class="footer-menu">
-			<div class="footer-menu-item">
-				<a href="/">Каталог запчастей</a>
+		<div class="row">
+			<div class="col-md-auto"><a href="/"><img src="/images/header-logo.png"></a></div>
+			<div class="col-md-auto">
+				<ul class="list-inline">
+					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/"><?= Yii::t('app', 'Parts Catalog') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/about"><?= Yii::t('app', 'About') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/contacts"><?= Yii::t('app', 'Contacts') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/news"><?= Yii::t('app', 'News') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/delivery"><?= Yii::t('app', 'Delivery') ?></a></li>
+				</ul>
+				<p>&copy; <?= Yii::$app->settings->get('mainPage', 'startYear') ?> - <?= date('Y', time()) ?> <?= Yii::$app->settings->get('mainPage', 'copyrightText') ?></p>
 			</div>
-			<div class="footer-menu-item">
-				<a href="/about">О компании</a>
+			<div class="col" style="text-align:right;">
+				<div class="float-right">
+					<p><b><i class="fas fa-phone-square"></i>&nbsp;<?= Yii::$app->settings->get('mainPage', 'phone') ?></b></p>
+					<p><i class="far fa-envelope"></i>&nbsp;<a href="mailto:<?= Yii::$app->settings->get('mainPage', 'email') ?>"><?= Yii::$app->settings->get('mainPage', 'email') ?></a></p>
+				</div>
 			</div>
-			<div class="footer-menu-item">
-				<a href="/contacts">Контакты</a>
-			</div>
-			<div class="footer-menu-item">
-				<a href="/news">Новости</a>
-			</div>
-			<div class="footer-menu-item">
-				<a href="/delivery">Доставка</a>
-			</div>
-		</div>			
-		<div class="footer-contacts">
-			<div class="footer-contacts-phone">8 (800) 777-55-44</div>
-			<div class="footer-contacts-email">
-				Эл.почта: <a href="mailto:sales@tralrf.ru">sales@tralrf.ru</a>
-			</div>
-		</div>
-		<div class="footer-copyright">
-			© 2004 - 2021 Все права защищены
 		</div>
 	</div>
-</div>
+<div>

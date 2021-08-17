@@ -10,7 +10,7 @@ use yii\web\UnprocessableEntityHttpException;
 use yii\web\UploadedFile;
 use app\modules\cms\models\AttachmentModel;
 use app\modules\cms\models\CmsModel;
-use app\modules\editable\EditableAction;
+use yii2mod\editable\EditableAction;
 
 class ManageController extends Controller
 {

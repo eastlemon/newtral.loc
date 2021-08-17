@@ -33,14 +33,14 @@ $(document).ready(function(){
 		pb_models_modal.style.display = "block";
 		menu.style.display = "none";
 	}
-	pb_manufacturers_btn.onclick = function() {
+	/*pb_manufacturers_btn.onclick = function() {
 		pb_manufacturers_modal.style.display = "block";
 		menu.style.display = "none";
-	}
-	pb_groups_btn.onclick = function() {
+	}*/
+	/*pb_groups_btn.onclick = function() {
 		pb_groups_modal.style.display = "block";
 		menu.style.display = "none";
-	}
+	}*/
 	// mobile version
 	pb_models_btn_m.onclick = function() {
 		pb_models_modal.style.display = "block";

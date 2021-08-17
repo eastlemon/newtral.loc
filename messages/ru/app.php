@@ -1,5 +1,14 @@
 <?php
 return [
+    'Parts By Groups' => 'Запчасти по группам',
+    'Parts By Manufacturers' => 'Запчасти по производителям',
+    'Parts By Models' => 'Запчасти по моделям',
+    'Contacts' => 'Контакты',
+    'Delivery' => 'Доставка',
+    'News' => 'Новости',
+    'About' => 'О нас',
+    'Parts Catalog' => 'Каталог запчастей',
+    'Search' => 'Поиск',
     'Create User' => 'Создать пользователя',
     'Login' => 'Логин',
     'Featured' => 'Рекомендуемые',

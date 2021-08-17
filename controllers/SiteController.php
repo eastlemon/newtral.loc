@@ -8,6 +8,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii2mod\rbac\filters\AccessControl;
+use app\modules\cms\models\CmsModel;
 
 /**
  * Class SiteController
@@ -127,6 +128,7 @@ class SiteController extends Controller
 
         return $this->render('contact', [
             'model' => $model,
+            'cmsModel' => (new CmsModel)->findPage('site/contact'),
         ]);
     }
 

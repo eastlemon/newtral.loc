@@ -13,20 +13,19 @@ $this->registerMetaTag(['name' => 'description', 'content' => $model->meta_descr
 ?>
 <div class="page-wrapper">
     <h1 class="page-title">
-        <?php echo $model->title; ?>
+        <?= $model->title ?>
     </h1>
     <div class="page-content">
-        <?php echo $model->getContent(); ?>
+        <?= $model->getContent() ?>
     </div>
     <?php if ($model->comment_available): ?>
         <div class="page-comments">
-            <?php echo Comment::widget(ArrayHelper::merge(
-                [
+            <?= Comment::widget(ArrayHelper::merge([
                     'model' => $model,
                     'relatedTo' => 'cms page: ' . $model->url,
                 ],
                 $commentWidgetParams
-            )); ?>
+            )) ?>
         </div>
     <?php endif; ?>
 </div>
