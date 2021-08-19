@@ -1,4 +1,9 @@
 body {
   font-family: 'Noto Sans', sans-serif !important;
   color: #000 !important;
+  padding-bottom: 0;
+}
+
+.jumbotron {
+  margin-bottom: 0;
 }

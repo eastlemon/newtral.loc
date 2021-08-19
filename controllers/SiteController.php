@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii2mod\rbac\filters\AccessControl;
 use app\modules\cms\models\CmsModel;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class SiteController
@@ -17,6 +18,11 @@ use app\modules\cms\models\CmsModel;
  */
 class SiteController extends Controller
 {
+    /**
+     * @var array
+     */
+    public $commentWidgetParams = [];
+
     /**
      * @inheritdoc
      */
@@ -126,9 +132,14 @@ class SiteController extends Controller
             return $this->refresh();
         }
 
+        if (!$cmsModel = (new CmsModel)->findPage('site/contact')) {
+            throw new NotFoundHttpException(Yii::t('yii2mod.cms', 'The requested page does not exist.'));
+        }
+
         return $this->render('contact', [
             'model' => $model,
-            'cmsModel' => (new CmsModel)->findPage('site/contact'),
+            'cmsModel' => $cmsModel,
+            'commentWidgetParams' => $this->commentWidgetParams,
         ]);
     }
 

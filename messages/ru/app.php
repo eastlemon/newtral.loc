@@ -1,5 +1,6 @@
 <?php
 return [
+    'Front Page' => 'Главная страница',
     'Parts By Groups' => 'Запчасти по группам',
     'Parts By Manufacturers' => 'Запчасти по производителям',
     'Parts By Models' => 'Запчасти по моделям',

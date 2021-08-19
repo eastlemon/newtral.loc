@@ -21,7 +21,7 @@ AppAsset::register($this);
             <?php $this->beginBody(); ?>
                 <?= Yii::$app->view->renderFile('@app/views/layouts/header.php') ?>
                 <?= BootstrapNotify::widget() ?>
-                <div class="container">
+                <div class="container" style="padding-top:15px;">
                     <?= Breadcrumbs::widget([
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ]) ?>
