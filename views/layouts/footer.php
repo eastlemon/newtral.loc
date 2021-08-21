@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<footer class="mt-auto jumbotron">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-auto"><a href="/"><img src="/images/header-logo.png"></a></div>
@@ -20,4 +20,4 @@
 			</div>
 		</div>
 	</div>
-<div>
+</footer>

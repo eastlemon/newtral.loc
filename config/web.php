@@ -93,7 +93,6 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            //'defaultRoles' => ['guest', 'user', 'admin'],
         ],
     ],
     'modules' => [

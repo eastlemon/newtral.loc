@@ -17,7 +17,7 @@ AppAsset::register($this);
             <title><?= implode(' | ', array_filter([Html::encode($this->title), Yii::$app->name])) ?></title>
             <?php $this->head(); ?>
         </head>
-        <body>
+        <body class="d-flex flex-column min-vh-100">
             <?php $this->beginBody(); ?>
                 <?= Yii::$app->view->renderFile('@app/views/layouts/header.php') ?>
                 <?= BootstrapNotify::widget() ?>

@@ -4,12 +4,25 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\api\ApiDjango;
+use app\api\ApiQwep;
 use yii\data\ActiveDataProvider;
 use app\models\DictionaryPartmanufacturer;
 use app\models\CatalogPart;
 
 class TestController extends Controller
 {
+    public function actionQwep()
+    {
+        $api = new ApiQwep();
+        var_dump($api->authorization());
+    }
+
+    public function actionQwepSearch()
+    {
+        $api = new ApiQwep();
+        var_dump($api->search());
+    }
+
     public function actionGetSemitrailerTypes()
     {
         //$api = new ApiDjango();

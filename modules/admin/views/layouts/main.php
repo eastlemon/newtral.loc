@@ -39,48 +39,60 @@ AdminAsset::register($this);
             'encodeLabels' => false,
             'items' => [
                 [
-                    'label' => '<i class="glyphicon glyphicon-user"></i> Users',
-                    'items' => [
-                        [
-                            'label' => '<i class="glyphicon glyphicon-th-list"></i> User List',
-                            'url' => ['/admin/user/index'],
-                        ],
-                        [
-                            'label' => '<i class="glyphicon glyphicon-plus"></i> Create User',
-                            'url' => ['/admin/user/create'],
-                        ],
-                    ],
-                ],
-                [
                     'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
                     'url' => ['/admin/cms/manage/index'],
                 ],
                 [
-                    'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
-                    'active' => $this->context->module->id == 'rbac',
+                    'label' => '<i class="glyphicon glyphicon-user"></i>',
                     'items' => [
                         [
-                            'label' => 'route',
-                            'url' => ['/admin/rbac/route'],
+                            'label' => '<i class="glyphicon glyphicon-th-list"></i> Users',
+                            'url' => ['/admin/user/index'],
                         ],
                         [
-                            'label' => 'permission',
-                            'url' => ['/admin/rbac/permission'],
-                        ],
-                        [
-                            'label' => 'role',
-                            'url' => ['/admin/rbac/role'],
-                        ],
-                        [
-                            'label' => 'assignment',
-                            'url' => ['/admin/rbac/assignment'],
+                            'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
+                            'active' => $this->context->module->id == 'rbac',
+                            'items' => [
+                                [
+                                    'label' => 'route',
+                                    'url' => ['/admin/rbac/route'],
+                                ],
+                                [
+                                    'label' => 'permission',
+                                    'url' => ['/admin/rbac/permission'],
+                                ],
+                                [
+                                    'label' => 'role',
+                                    'url' => ['/admin/rbac/role'],
+                                ],
+                                [
+                                    'label' => 'assignment',
+                                    'url' => ['/admin/rbac/assignment'],
+                                ],
+                            ],
                         ],
                     ],
+                    //'active' => $this->context->module->id == 'user',
                 ],
                 [
-                    'label' => '<i class="glyphicon glyphicon-wrench"></i> Settings Storage',
+                    'label' => '<i class="glyphicon glyphicon-wrench"></i>',
                     'url' => ['/admin/settings-storage'],
                     'active' => $this->context->module->id == 'settings-storage',
+                ],
+                [
+                    'label' => '<i class="fas fa-industry"></i>',
+                    'url' => ['/admin/producer'],
+                    'active' => $this->context->id == 'producer',
+                ],
+                [
+                    'label' => '<i class="fas fa-object-group"></i>',
+                    'url' => ['/admin/category'],
+                    'active' => $this->context->id == 'category',
+                ],
+                [
+                    'label' => '<i class="fas fa-ring"></i>',
+                    'url' => ['/admin/product'],
+                    'active' => $this->context->id == 'product',
                 ],
             ],
         ]);

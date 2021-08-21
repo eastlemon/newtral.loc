@@ -40,6 +40,10 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => 'app/modules/rbac/message',
                 ],
+                'yii2mod.settings' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => 'app/modules/settings/message',
+                ],
             ],
         ],
     ],
@@ -49,6 +53,9 @@ $config = [
         ],
         'rbac' => [
             'class' => 'yii2mod\rbac\ConsoleModule',
+        ],
+        'settings-storage' => [
+            'class' => 'yii2mod\settings\Module',
         ],
     ],
     'params' => $params,

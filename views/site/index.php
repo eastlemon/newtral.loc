@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 $this->title = Yii::t('app', 'Front Page');
 ?>
 <!-- Three columns of text below the carousel -->

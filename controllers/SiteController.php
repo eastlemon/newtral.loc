@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii2mod\rbac\filters\AccessControl;
 use app\modules\cms\models\CmsModel;
 use yii\web\NotFoundHttpException;
+use yii2mod\user\traits\EventTrait;
+use yii\base\DynamicModel;
 
 /**
  * Class SiteController
@@ -18,6 +20,13 @@ use yii\web\NotFoundHttpException;
  */
 class SiteController extends Controller
 {
+    use EventTrait;
+    const EVENT_BEFORE_SIGNUP = 'beforeSignup';
+    const EVENT_AFTER_SIGNUP = 'afterSignup';
+
+    public $loginModelClass = 'yii2mod\user\models\LoginForm';
+    public $signupModelClass = 'yii2mod\user\models\SignupForm';
+
     /**
      * @var array
      */
@@ -82,15 +91,15 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
-            'login' => [
+            /*'login' => [
                 'class' => 'yii2mod\user\actions\LoginAction',
-            ],
+            ],*/
             'logout' => [
                 'class' => 'yii2mod\user\actions\LogoutAction',
             ],
-            'signup' => [
+            /*'signup' => [
                 'class' => 'yii2mod\user\actions\SignupAction',
-            ],
+            ],*/
             'request-password-reset' => [
                 'class' => 'yii2mod\user\actions\RequestPasswordResetAction',
             ],
@@ -101,6 +110,57 @@ class SiteController extends Controller
                 'class' => 'app\modules\cms\actions\PageAction',
             ],
         ];
+    }
+
+    public function actionSignup()
+    {
+        $model = Yii::createObject($this->signupModelClass);
+        $event = $this->getFormEvent($model);
+
+        $this->trigger(self::EVENT_BEFORE_SIGNUP, $event);
+
+        $load = $model->load(Yii::$app->request->post());
+
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return ActiveForm::validate($model);
+        }
+
+        if ($load && ($user = $model->signup()) !== null) {
+            $this->trigger(self::EVENT_AFTER_SIGNUP, $event);
+            if (Yii::$app->getUser()->login($user)) {
+                return $this->redirect(Yii::$app->getUser()->getReturnUrl());
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionLogin()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect(Yii::$app->getHomeUrl());
+        }
+
+        $model = Yii::createObject($this->loginModelClass);
+        $load = $model->load(Yii::$app->request->post());
+
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return ActiveForm::validate($model);
+        }
+
+        if ($load && $model->login()) {
+            return $this->redirect(Yii::$app->getUser()->getReturnUrl());
+        }
+
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**

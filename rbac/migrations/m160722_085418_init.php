@@ -7,16 +7,12 @@ class m160722_085418_init extends Migration
 {
     public function safeUp()
     {
-        $this->createRule('user', UserRule::class);
-
-        $this->createRole('admin', 'Admin has all available permissions.');
-        $this->createRole('user', 'Authenticated user.', 'user');
+        $this->createRole('admin', 'Admin has all available permissions');
+        $this->createRole('user', 'Authenticated user');
     }
 
     public function safeDown()
     {
-        $this->removeRule('user');
-
         $this->removeRole('admin');
         $this->removeRole('user');
     }

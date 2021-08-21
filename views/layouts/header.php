@@ -2,6 +2,9 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Nav;
+use yii\bootstrap4\ActiveForm;
+use app\models\Search;
+use yii\helpers\Url;
 ?>
 <div class="container">
    <div class="row">
@@ -27,8 +30,18 @@ use yii\bootstrap4\Nav;
       </div>
       <div class="col" style="text-align:right;">
          <div class="float-right">
-            <p><i class="fas fa-key"></i>&nbsp;<a href="#">Вход</a>&nbsp;|&nbsp;<a href="#">Регистрация</a></p>
-            <small class="text-muted"><i class="fas fa-shopping-cart"></i>&nbsp;<a href="#">В корзине ничего нет</a></small>
+            <p>
+               <?php if (!Yii::$app->user->isGuest): ?>
+                  <?php if (Yii::$app->user->can('admin')): ?>
+                     <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>
+                  <?php else: ?>
+                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/cabinet"><?= Yii::t('app', 'Cabinet') ?></a>&nbsp;|&nbsp;<?= Html::a(Yii::t('app', 'Logout'), Url::to(['site/logout']), ['data-method' => 'POST']) ?>
+                  <?php endif; ?>
+               <?php else: ?>
+                  <i class="fas fa-key"></i>&nbsp;<a href="/site/login"><?= Yii::t('app', 'Enter') ?></a>&nbsp;|&nbsp;<a href="/site/signup"><?= Yii::t('app', 'Signup') ?></a>
+               <?php endif; ?>
+            </p>
+            <small class="text-muted"><i class="fas fa-shopping-cart"></i>&nbsp;<a href="/cart">В корзине ничего нет</a></small>
          </div>
       </div>
    </div>
@@ -55,22 +68,25 @@ use yii\bootstrap4\Nav;
          ['label' => Yii::t('app', 'Contacts'), 'url' => ['/site/contact']],
       ],
    ]) ?>
-   <?= Nav::widget([
-      'options' => ['class' => 'navbar-nav ml-auto'],
-      'items' => [
-         [
-            'label' => '<div class="input-group">
-               <input type="text" class="form-control" placeholder="' . Yii::t('app', 'Search') . '">
-               <div class="input-group-append">
-                  <button class="btn btn-warning" type="button"><i class="fas fa-search"></i></button>
-               </div>
-            </div>',
-            'linkOptions' => ['style' => 'padding:0px;'],
-            'encode' => false,
-            'url' => false,
+   <?php $model = new Search(); ?>
+   <?php $form = ActiveForm::begin([
+      'method' => 'get',
+      'action' => ['/search'],
+   ]); ?>
+      <?= Nav::widget([
+         'options' => ['class' => 'navbar-nav ml-auto'],
+         'items' => [
+            [
+               'label' => $form->field($model, 'search', [
+                  'template' => '<div class="input-group">{input}<div class="input-group-append">' . Html::button('<i class="fas fa-search"></i>', ['class' => 'btn btn-warning', 'type' => 'submit']) . '</div></div>'
+               ])->textInput(['placeholder' => Yii::t('app', 'Search by article')])->label(false),
+               'linkOptions' => ['style' => 'padding:0px;'],
+               'encode' => false,
+               'url' => false,
+            ],
          ],
-      ],
-   ]) ?>
+      ]) ?>
+   <?php ActiveForm::end(); ?>
 <?php NavBar::end(); ?>
 
 <?php

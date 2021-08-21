@@ -1,5 +1,12 @@
 <?php
 return [
+    'Logout' => 'Выход',
+    'Search by article' => 'Поиск по артикулу',
+    'Search results' => 'Результаты поиска',
+    'Enter' => 'Вход',
+    'Control' => 'Контроль',
+    'Cabinet' => 'Кабинет',
+    'Signup' => 'Регистрация',
     'Front Page' => 'Главная страница',
     'Parts By Groups' => 'Запчасти по группам',
     'Parts By Manufacturers' => 'Запчасти по производителям',

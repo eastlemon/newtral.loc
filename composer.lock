@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab88efb05c1f583c61511615ec5b981a",
+    "content-hash": "2e55b6e4e7b4614fb41f607840d19737",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -2131,6 +2131,56 @@
                 "source": "https://github.com/yii2mod/yii2-enum/tree/master"
             },
             "time": "2017-04-19T22:06:46+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-ftp",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-ftp.git",
+                "reference": "c5986065fdfba8c86e08e1f4ebe204e03adb6a20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-ftp/zipball/c5986065fdfba8c86e08e1f4ebe204e03adb6a20",
+                "reference": "c5986065fdfba8c86e08e1f4ebe204e03adb6a20",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ftp": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\ftp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A flexible FTP and SSL-FTP client for PHP. This lib provides helpers easy to use to manage the remote files.",
+            "keywords": [
+                "extension",
+                "file",
+                "ftp",
+                "helper",
+                "lib",
+                "server",
+                "sftp",
+                "ssl",
+                "ssl-ftp",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/yii2mod/yii2-ftp/issues",
+                "source": "https://github.com/yii2mod/yii2-ftp/tree/master"
+            },
+            "time": "2017-04-26T20:45:18+00:00"
         },
         {
             "name": "yii2mod/yii2-moderation",

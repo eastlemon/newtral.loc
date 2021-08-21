@@ -81,17 +81,6 @@ class CatalogPart extends \yii\db\ActiveRecord
             'synonyms' => 'Synonyms',
         ];
     }
-    
-    public static function findModel($id)
-    {
-        if (($model = static::findOne($id)) !== null) {
-            return $model;
-        }
-    
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page {name} does not exist.', [
-            'name' => 'DicPrtManf'
-        ]));
-    }
 
     /**
      * Gets query for [[CatalogNodeParts]].

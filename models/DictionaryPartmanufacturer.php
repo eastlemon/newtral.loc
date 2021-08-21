@@ -56,15 +56,4 @@ class DictionaryPartmanufacturer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CatalogPart::className(), ['manufacturer_id' => 'id']);
     }
-    
-    public static function findModel($id)
-    {
-        if (($model = static::findOne($id)) !== null) {
-            return $model;
-        }
-    
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page {name} does not exist.', [
-            'name' => 'DicPrtManf'
-        ]));
-    }
 }

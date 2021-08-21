@@ -5,7 +5,7 @@ use yii2mod\rbac\filters\AccessControl;
 
 class Module extends \yii\base\Module
 {
-    public $defaultRoute = 'user';
+    public $defaultRoute = 'cms';
 
     public $layout = 'main';
 
