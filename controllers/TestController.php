@@ -8,9 +8,28 @@ use app\api\ApiQwep;
 use yii\data\ActiveDataProvider;
 use app\models\DictionaryPartmanufacturer;
 use app\models\CatalogPart;
+use app\models\Product;
+use app\traits\FindModelTrait;
 
 class TestController extends Controller
 {
+    use FindModelTrait;
+    
+    public function actionProduct($name)
+    {
+        //$model = $this->findModel(Product::class, $id);
+        $model = Product::find()->andFilterWhere(['like', 'name', $name])->one();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Product::find()->andFilterWhere(['like', 'name', $name]),
+        ]);
+
+        return $this->render('product', [
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionQwep()
     {
         $api = new ApiQwep();

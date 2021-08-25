@@ -1,10 +1,11 @@
 <?php
+use yii\helpers\Url;
 use yii\bootstrap4\Html;
-use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
 use yii\bootstrap4\ActiveForm;
 use app\models\Search;
-use yii\helpers\Url;
+use app\models\Category;
 ?>
 <div class="container">
    <div class="row">
@@ -33,7 +34,7 @@ use yii\helpers\Url;
             <p>
                <?php if (!Yii::$app->user->isGuest): ?>
                   <?php if (Yii::$app->user->can('admin')): ?>
-                     <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>
+                     <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php else: ?>
                      <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/cabinet"><?= Yii::t('app', 'Cabinet') ?></a>&nbsp;|&nbsp;<?= Html::a(Yii::t('app', 'Logout'), Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php endif; ?>
@@ -47,20 +48,50 @@ use yii\helpers\Url;
    </div>
 </div>
 
+<?php
+$categories = '';
+$categoryModel = new Category();
+$categoryRoots = $categoryModel->getRoots();
+if (Yii::$app->user->isGuest) foreach ($categoryRoots as $item) $categories .= '<li class="list-group-item list-group-item-action">' . $item->name . '</li>';
+elseif (Yii::$app->user->can('user')) foreach ($categoryRoots as $item) $categories .= '<p>' . $item->name . '</p>';
+?>
+
 <?php NavBar::begin(['options' => [
-   'brandLabel' => false,
+   'id' => 'mainNav',
    'class' => 'navbar navbar-expand-lg navbar-dark bg-primary',
+   'brandLabel' => false,
 ]]); ?>
    <?= Nav::widget([
       'options' => ['class' => 'navbar-nav mr-auto'],
       'items' => [
-         [
+         (!Yii::$app->user->isGuest) ? [
             'label' => Yii::t('app', 'Parts Catalog'),
             'items' => [
-               ['label' => Yii::t('app', 'Parts By Models'), 'url' => '/', 'linkOptions' => ['class' => 'bg-warning']],
-               ['label' => Yii::t('app', 'Parts By Manufacturers'), 'url' => '/'],
-               ['label' => Yii::t('app', 'Parts By Groups'), 'url' => '/'],
+               '<div class="container">
+                  <div class="row w-100">
+                     <div class="col-4 sidebar">
+                        <div class="list-group flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                           <a class="list-group-item list-group-item-action active" id="v-pills-groups-tab" data-toggle="pill" href="#v-pills-groups" role="tab" aria-controls="v-pills-groups" aria-selected="true">' . Yii::t('app', 'Groups') . '</a>
+                           <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Manufacturers') . '</a>
+                        </div>
+                     </div>
+                     <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-groups" role="tabpanel" aria-labelledby="v-pills-groups-tab">' . $categories . '</div>
+                        <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab">producers</div>
+                     </div>
+                  </div>
+               </div>',
             ],
+            'options' => ['class' => 'nav-item dropdown megamenu'],
+         ] : [
+            'label' => Yii::t('app', 'Parts Catalog'),
+            'items' => [
+               '<div class="container">
+                  <div class="col-md-8"><div class="demo-trailer"></div></div>
+                  <div class="col-md-4"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
+               </div>',
+            ],
+            'options' => ['class' => 'nav-item dropdown megamenu'],
          ],
          ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
          ['label' => Yii::t('app', 'News'), 'url' => ['/site/news']],
@@ -68,7 +99,7 @@ use yii\helpers\Url;
          ['label' => Yii::t('app', 'Contacts'), 'url' => ['/site/contact']],
       ],
    ]) ?>
-   <?php $model = new Search(); ?>
+   <?php $searchModel = new Search(); ?>
    <?php $form = ActiveForm::begin([
       'method' => 'get',
       'action' => ['/search'],
@@ -77,7 +108,7 @@ use yii\helpers\Url;
          'options' => ['class' => 'navbar-nav ml-auto'],
          'items' => [
             [
-               'label' => $form->field($model, 'search', [
+               'label' => $form->field($searchModel, 'search', [
                   'template' => '<div class="input-group">{input}<div class="input-group-append">' . Html::button('<i class="fas fa-search"></i>', ['class' => 'btn btn-warning', 'type' => 'submit']) . '</div></div>'
                ])->textInput(['placeholder' => Yii::t('app', 'Search by article')])->label(false),
                'linkOptions' => ['style' => 'padding:0px;'],

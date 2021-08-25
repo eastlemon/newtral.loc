@@ -27,101 +27,135 @@ AdminAsset::register($this);
     <?php $this->beginBody(); ?>
     <?php echo BootstrapNotify::widget(); ?>
     <div class="wrap">
-        <?php NavBar::begin([
-            'brandLabel' => 'Admin Panel',
-            'brandUrl' => '/admin',
-            'options' => [
-                'class' => 'navbar-inverse navbar-fixed-top',
-            ],
-        ]);
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav'],
-            'encodeLabels' => false,
-            'items' => [
-                [
-                    'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
-                    'url' => ['/admin/cms/manage/index'],
-                ],
-                [
-                    'label' => '<i class="glyphicon glyphicon-user"></i>',
-                    'items' => [
-                        [
-                            'label' => '<i class="glyphicon glyphicon-th-list"></i> Users',
-                            'url' => ['/admin/user/index'],
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-lg-2">
+                    <!-- normal collapsible navbar markup -->
+                    <?php NavBar::begin([
+                        'brandLabel' => 'Admin Panel',
+                        'brandUrl' => '/admin',
+                        'options' => [
+                            'class' => 'navbar-inverse navbar-fixed-side',
                         ],
-                        [
-                            'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
-                            'active' => $this->context->module->id == 'rbac',
-                            'items' => [
-                                [
-                                    'label' => 'route',
-                                    'url' => ['/admin/rbac/route'],
-                                ],
-                                [
-                                    'label' => 'permission',
-                                    'url' => ['/admin/rbac/permission'],
-                                ],
-                                [
-                                    'label' => 'role',
-                                    'url' => ['/admin/rbac/role'],
-                                ],
-                                [
-                                    'label' => 'assignment',
-                                    'url' => ['/admin/rbac/assignment'],
-                                ],
+                    ]); ?>
+                    <?= Nav::widget([
+                        'options' => ['class' => 'navbar-nav'],
+                        'encodeLabels' => false,
+                        'items' => [
+                            [
+                                'label' => '<i class="fas fa-industry"></i>&nbsp;&nbsp;' . Yii::t('app', 'Producers'),
+                                'url' => ['/admin/producer'],
+                                'active' => $this->context->id == 'producer',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-object-group"></i>&nbsp;&nbsp;' . Yii::t('app', 'Categories'),
+                                'url' => ['/admin/category'],
+                                'active' => $this->context->id == 'category',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Products'),
+                                'url' => ['/admin/product'],
+                                'active' => $this->context->id == 'product',
                             ],
                         ],
-                    ],
-                    //'active' => $this->context->module->id == 'user',
-                ],
-                [
-                    'label' => '<i class="glyphicon glyphicon-wrench"></i>',
-                    'url' => ['/admin/settings-storage'],
-                    'active' => $this->context->module->id == 'settings-storage',
-                ],
-                [
-                    'label' => '<i class="fas fa-industry"></i>',
-                    'url' => ['/admin/producer'],
-                    'active' => $this->context->id == 'producer',
-                ],
-                [
-                    'label' => '<i class="fas fa-object-group"></i>',
-                    'url' => ['/admin/category'],
-                    'active' => $this->context->id == 'category',
-                ],
-                [
-                    'label' => '<i class="fas fa-ring"></i>',
-                    'url' => ['/admin/product'],
-                    'active' => $this->context->id == 'product',
-                ],
-            ],
-        ]);
+                    ]) ?>
+                    <?php NavBar::end(); ?>
+                </div>
+                <div class="col-sm-9 col-lg-10">
+                    <!-- your page content -->
+                    <?php NavBar::begin([
+                        //'brandLabel' => 'Admin Panel',
+                        'brandUrl' => '/admin',
+                        'innerContainerOptions' => ['class' => 'container-fluid'],
+                    ]);
+                    echo Nav::widget([
+                        'options' => ['class' => 'navbar-nav'],
+                        'encodeLabels' => false,
+                        'items' => [
+                            [
+                                'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
+                                'url' => ['/admin/cms/manage/index'],
+                            ],
+                            [
+                                'label' => '<i class="glyphicon glyphicon-user"></i>',
+                                'items' => [
+                                    [
+                                        'label' => '<i class="glyphicon glyphicon-th-list"></i> Users',
+                                        'url' => ['/admin/user/index'],
+                                    ],
+                                    [
+                                        'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
+                                        'active' => $this->context->module->id == 'rbac',
+                                        'items' => [
+                                            [
+                                                'label' => 'route',
+                                                'url' => ['/admin/rbac/route'],
+                                            ],
+                                            [
+                                                'label' => 'permission',
+                                                'url' => ['/admin/rbac/permission'],
+                                            ],
+                                            [
+                                                'label' => 'role',
+                                                'url' => ['/admin/rbac/role'],
+                                            ],
+                                            [
+                                                'label' => 'assignment',
+                                                'url' => ['/admin/rbac/assignment'],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                //'active' => $this->context->module->id == 'user',
+                            ],
+                            [
+                                'label' => '<i class="glyphicon glyphicon-wrench"></i>',
+                                'url' => ['/admin/settings-storage'],
+                                'active' => $this->context->module->id == 'settings-storage',
+                            ],
+                            /*[
+                                'label' => '<i class="fas fa-industry"></i>',
+                                'url' => ['/admin/producer'],
+                                'active' => $this->context->id == 'producer',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-object-group"></i>',
+                                'url' => ['/admin/category'],
+                                'active' => $this->context->id == 'category',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-ring"></i>',
+                                'url' => ['/admin/product'],
+                                'active' => $this->context->id == 'product',
+                            ],*/
+                        ],
+                    ]);
 
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => [
-                ['label' => '<i class="glyphicon glyphicon-globe"></i> Public Area', 'url' => ['/']],
-                ['label' => '<i class="glyphicon glyphicon-off"></i> Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post'],
-                ],
-            ],
-            'encodeLabels' => false,
-        ]);
-        NavBar::end();
-        ?>
-        <div class="container">
-            <?php echo Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]); ?>
-            <div class="row">
-                <div class="col-lg-12">
-                    <?php echo $content; ?>
+                    echo Nav::widget([
+                        'options' => ['class' => 'navbar-nav navbar-right'],
+                        'items' => [
+                            ['label' => '<i class="glyphicon glyphicon-globe"></i> Public Area', 'url' => ['/']],
+                            ['label' => '<i class="glyphicon glyphicon-off"></i> Logout (' . Yii::$app->user->identity->username . ')',
+                                'url' => ['/site/logout'],
+                                'linkOptions' => ['data-method' => 'post'],
+                            ],
+                        ],
+                        'encodeLabels' => false,
+                    ]);
+                    NavBar::end();
+                    ?>
+                    <?php echo Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]); ?>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <?php echo $content; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <?php $this->endBody(); ?>
     </body>
     </html>

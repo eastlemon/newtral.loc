@@ -69,4 +69,9 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Category::className(), ['parent_id' => 'id']);
     }
+
+    public function getRoots()
+    {
+        return $this->find()->where(['parent_id' => null])->all();
+    }
 }

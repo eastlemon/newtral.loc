@@ -32,8 +32,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'articule',
-            'description:ntext',
-            'producer_id',
+            [
+                'attribute' => 'description',
+                'value' => function ($data) {
+                    return $data->description ?: null;
+                },
+            ],
+            [
+                'attribute' => 'picture',
+                'format' => 'html',    
+                'value' => function ($data) {
+                    if (!empty($pictures = $data->productpictures)) {
+                        foreach ($pictures as $picture) {
+                            $_return .= Html::img('/uploads/1c/img/' . $picture->picture, ['width' => '140px']);
+                        }
+                    } else $_return .= Html::img('/images/noImage100x100.png', ['width' => '140px']);
+                    return $_return;
+                },
+            ],
+            [
+                'attribute' => 'producer_id',
+                'label' => Yii::t('app', 'Producer'),
+                'value' => function ($data) {
+                    return Html::encode($data->producer->name);
+                },
+                'format' => 'raw',
+            ],
         ],
     ]) ?>
 

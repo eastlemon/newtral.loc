@@ -35,12 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     $picture = $data['picture'];
                     if (!$picture) $picture = '/images/noImage100x100.png';
-                    return Html::img(Yii::getAlias('@web') . $picture, ['width' => '70px']);
+                    return Html::img($picture, ['width' => '70px']);
                 },
             ],
             [
                 'attribute' => 'parent_id',
-                'value' => 'parent.name',
+                'value' => function ($data) {
+                    return $data->parent->name ?: Yii::t('app', 'Root');
+                },
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

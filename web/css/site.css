@@ -12,3 +12,59 @@ footer.jumbotron {
 .field-search-search {
   margin-bottom: 0;
 }
+
+.list-group-item {
+  cursor: pointer;
+}
+
+/*---------------------megamenu---------------------*/
+.megamenu > .dropdown-menu {
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+}
+
+@media screen and (min-width: 992px) {
+  .megamenu > .dropdown-menu {
+    min-width: 930px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .megamenu > .dropdown-menu {
+    min-width: 1110px;
+  }
+}
+
+/*---------------------demo-trailer---------------------*/
+
+.demo-trailer {
+  background: url("/images/demo-trailer.png") no-repeat;
+  background-size: 688px 268px;
+  display: block;
+  width: 688px;
+  height: 268px;
+}
+
+/*---------------------btn-circle---------------------*/
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+
+/*---------------------carousel-item---------------------*/
+#carouselProductControls .carousel-item {
+  height: 300px;
+}

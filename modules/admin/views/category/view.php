@@ -37,16 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     $picture = $data['picture'];
                     if (!$picture) $picture = '/images/noImage.png';
-                    return Html::img(Yii::getAlias('@web') . $picture, ['width' => '140px']);
+                    return Html::img($picture, ['width' => '140px']);
                 },
             ],
             [
                 'attribute' => 'parent_id',
                 'label' => Yii::t('app', 'Parent'),
+                'format' => 'html',
                 'value' => function ($data) {
-                    return Html::encode($data->parent->name);
+                    return $data->parent ? '<a href="/admin/category/view?id=' . $data->parent->id . '">' . $data->parent->name . '</a>' : Yii::t('app', 'Root');
                 },
-                'format' => 'raw',
             ],
         ],
     ]) ?>

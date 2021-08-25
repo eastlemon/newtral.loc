@@ -26,6 +26,10 @@ class AdminAsset extends AssetBundle
      */
     public $css = [
         'css/admin.css',
+        'css/navbar-fixed-side.css',
+    ];
+    public $js = [
+        'js/admin.js'
     ];
 
     /**

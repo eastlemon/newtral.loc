@@ -1,5 +1,8 @@
 <?php
 return [
+    'Root' => 'Корень',
+    'Groups' => 'Группы',
+    'Manufacturers' => 'Производители',
     'Logout' => 'Выход',
     'Search by article' => 'Поиск по артикулу',
     'Search results' => 'Результаты поиска',
