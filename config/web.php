@@ -52,7 +52,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'product/<name:\w+>' => 'test/product',
+                'product/<name:\w+>' => 'product/index',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 ['class' => 'app\modules\cms\components\PageUrlRule'],
@@ -78,21 +78,13 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@yii2mod/comments/messages',
                 ],
-                'yii2mod.user' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@yii2mod/user/messages',
-                ],
-                'yii2mod.cms' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'app/modules/cms/message',
-                ],
                 'yii2mod.rbac' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'app/modules/rbac/message',
+                    'basePath' => '@yii2mod/rbac/messages',
                 ],
                 'yii2mod.settings' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'app/modules/settings/message',
+                    'basePath' => '@yii2mod/settings/messages',
                 ],
             ],
         ],

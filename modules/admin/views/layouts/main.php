@@ -1,5 +1,4 @@
 <?php
-
 use app\assets\AdminAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -7,9 +6,6 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\Menu;
 use yii2mod\notify\BootstrapNotify;
-
-/* @var $this \yii\web\View */
-/* @var $content string */
 
 AdminAsset::register($this);
 ?>
@@ -30,9 +26,8 @@ AdminAsset::register($this);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-lg-2">
-                    <!-- normal collapsible navbar markup -->
                     <?php NavBar::begin([
-                        'brandLabel' => 'Admin Panel',
+                        'brandLabel' => Yii::t('app', 'Control'),
                         'brandUrl' => '/admin',
                         'options' => [
                             'class' => 'navbar-inverse navbar-fixed-side',
@@ -53,19 +48,31 @@ AdminAsset::register($this);
                                 'active' => $this->context->id == 'category',
                             ],
                             [
-                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Products'),
-                                'url' => ['/admin/product'],
-                                'active' => $this->context->id == 'product',
+                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Parts'),
+                                'url' => ['/admin/part'],
+                                'active' => $this->context->id == 'part',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Nodes'),
+                                'url' => ['/admin/node'],
+                                'active' => $this->context->id == 'node',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Units'),
+                                'url' => ['/admin/unit'],
+                                'active' => $this->context->id == 'unit',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Certificates'),
+                                'url' => ['/admin/certificate'],
+                                'active' => $this->context->id == 'certificate',
                             ],
                         ],
                     ]) ?>
                     <?php NavBar::end(); ?>
                 </div>
                 <div class="col-sm-9 col-lg-10">
-                    <!-- your page content -->
                     <?php NavBar::begin([
-                        //'brandLabel' => 'Admin Panel',
-                        'brandUrl' => '/admin',
                         'innerContainerOptions' => ['class' => 'container-fluid'],
                     ]);
                     echo Nav::widget([
@@ -73,69 +80,53 @@ AdminAsset::register($this);
                         'encodeLabels' => false,
                         'items' => [
                             [
-                                'label' => '<i class="glyphicon glyphicon-file"></i> CMS',
+                                'label' => '<i class="glyphicon glyphicon-file"></i>&nbsp;' . Yii::t('app', 'Pages'),
                                 'url' => ['/admin/cms/manage/index'],
                             ],
                             [
                                 'label' => '<i class="glyphicon glyphicon-user"></i>',
                                 'items' => [
                                     [
-                                        'label' => '<i class="glyphicon glyphicon-th-list"></i> Users',
+                                        'label' => '<i class="glyphicon glyphicon-th-list"></i>&nbsp;' . Yii::t('app', 'Users'),
                                         'url' => ['/admin/user/index'],
                                     ],
                                     [
-                                        'label' => '<i class="glyphicon glyphicon-user"></i> RBAC',
+                                        'label' => '<i class="glyphicon glyphicon-user"></i>&nbsp;' . Yii::t('app', 'RBAC'),
                                         'active' => $this->context->module->id == 'rbac',
                                         'items' => [
                                             [
-                                                'label' => 'route',
+                                                'label' => Yii::t('app', 'Route'),
                                                 'url' => ['/admin/rbac/route'],
                                             ],
                                             [
-                                                'label' => 'permission',
+                                                'label' => Yii::t('app', 'Permission'),
                                                 'url' => ['/admin/rbac/permission'],
                                             ],
                                             [
-                                                'label' => 'role',
+                                                'label' => Yii::t('app', 'Role'),
                                                 'url' => ['/admin/rbac/role'],
                                             ],
                                             [
-                                                'label' => 'assignment',
+                                                'label' => Yii::t('app', 'Assignment'),
                                                 'url' => ['/admin/rbac/assignment'],
                                             ],
                                         ],
                                     ],
                                 ],
-                                //'active' => $this->context->module->id == 'user',
                             ],
                             [
                                 'label' => '<i class="glyphicon glyphicon-wrench"></i>',
                                 'url' => ['/admin/settings-storage'],
                                 'active' => $this->context->module->id == 'settings-storage',
                             ],
-                            /*[
-                                'label' => '<i class="fas fa-industry"></i>',
-                                'url' => ['/admin/producer'],
-                                'active' => $this->context->id == 'producer',
-                            ],
-                            [
-                                'label' => '<i class="fas fa-object-group"></i>',
-                                'url' => ['/admin/category'],
-                                'active' => $this->context->id == 'category',
-                            ],
-                            [
-                                'label' => '<i class="fas fa-ring"></i>',
-                                'url' => ['/admin/product'],
-                                'active' => $this->context->id == 'product',
-                            ],*/
                         ],
                     ]);
 
                     echo Nav::widget([
                         'options' => ['class' => 'navbar-nav navbar-right'],
                         'items' => [
-                            ['label' => '<i class="glyphicon glyphicon-globe"></i> Public Area', 'url' => ['/']],
-                            ['label' => '<i class="glyphicon glyphicon-off"></i> Logout (' . Yii::$app->user->identity->username . ')',
+                            ['label' => '<i class="glyphicon glyphicon-globe"></i>&nbsp;' . Yii::t('app', 'Go to the site'), 'url' => ['/']],
+                            ['label' => '<i class="glyphicon glyphicon-off"></i>&nbsp;' . Yii::t('app', 'Logout') . '&nbsp;(' . Yii::$app->user->identity->username . ')',
                                 'url' => ['/site/logout'],
                                 'linkOptions' => ['data-method' => 'post'],
                             ],

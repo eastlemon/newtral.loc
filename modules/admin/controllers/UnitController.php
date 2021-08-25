@@ -1,18 +1,18 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\PartPicture;
+use app\models\Unit;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PartPictureController implements the CRUD actions for PartPicture model.
+ * UnitController implements the CRUD actions for Unit model.
  */
-class PartPictureController extends Controller
+class UnitController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,13 +30,13 @@ class PartPictureController extends Controller
     }
 
     /**
-     * Lists all PartPicture models.
+     * Lists all Unit models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => PartPicture::find(),
+            'query' => Unit::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PartPictureController extends Controller
     }
 
     /**
-     * Displays a single PartPicture model.
+     * Displays a single Unit model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class PartPictureController extends Controller
     }
 
     /**
-     * Creates a new PartPicture model.
+     * Creates a new Unit model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PartPicture();
+        $model = new Unit();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class PartPictureController extends Controller
     }
 
     /**
-     * Updates an existing PartPicture model.
+     * Updates an existing Unit model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class PartPictureController extends Controller
     }
 
     /**
-     * Deletes an existing PartPicture model.
+     * Deletes an existing Unit model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class PartPictureController extends Controller
     }
 
     /**
-     * Finds the PartPicture model based on its primary key value.
+     * Finds the Unit model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PartPicture the loaded model
+     * @return Unit the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PartPicture::findOne($id)) !== null) {
+        if (($model = Unit::findOne($id)) !== null) {
             return $model;
         }
 

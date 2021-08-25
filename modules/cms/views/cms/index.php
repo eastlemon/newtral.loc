@@ -8,7 +8,7 @@ use app\modules\cms\models\enumerables\CmsStatus;
 use yii2mod\editable\EditableColumn;
 use yii2mod\enum\helpers\BooleanEnum;
 
-$this->title = Yii::t('yii2mod.cms', 'Cms Pages');
+$this->title = Yii::t('app', 'Pages');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cms-model-index">

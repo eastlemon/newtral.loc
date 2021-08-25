@@ -1,18 +1,18 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Part;
+use app\models\Node;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PartController implements the CRUD actions for Part model.
+ * NodeController implements the CRUD actions for Node model.
  */
-class PartController extends Controller
+class NodeController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,13 +30,13 @@ class PartController extends Controller
     }
 
     /**
-     * Lists all Part models.
+     * Lists all Node models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Part::find(),
+            'query' => Node::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PartController extends Controller
     }
 
     /**
-     * Displays a single Part model.
+     * Displays a single Node model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class PartController extends Controller
     }
 
     /**
-     * Creates a new Part model.
+     * Creates a new Node model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Part();
+        $model = new Node();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class PartController extends Controller
     }
 
     /**
-     * Updates an existing Part model.
+     * Updates an existing Node model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class PartController extends Controller
     }
 
     /**
-     * Deletes an existing Part model.
+     * Deletes an existing Node model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class PartController extends Controller
     }
 
     /**
-     * Finds the Part model based on its primary key value.
+     * Finds the Node model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Part the loaded model
+     * @return Node the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Part::findOne($id)) !== null) {
+        if (($model = Node::findOne($id)) !== null) {
             return $model;
         }
 

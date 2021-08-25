@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model yii2mod\cms\models\CmsModel */
 
 $this->title = Yii::t('yii2mod.cms', 'Create Page');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yii2mod.cms', 'Cms Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pages'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cms-model-create">

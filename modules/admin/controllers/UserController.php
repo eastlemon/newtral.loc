@@ -11,6 +11,11 @@ use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii2mod\editable\EditableAction;
 
+/**
+ * Class UserController
+ *
+ * @package app\modules\admin\controllers
+ */
 class UserController extends Controller
 {
     use FindModelTrait;
