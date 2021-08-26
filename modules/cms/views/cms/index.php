@@ -24,7 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'contentOptions' => ['style' => 'width:1px;'],
+            ],
+
+            //'id',
             [
                 'class' => EditableColumn::class,
                 'attribute' => 'url',
@@ -73,6 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'created_at',
                 'format' => ['date', 'full'],
             ],
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}&nbsp;{update}&nbsp;{delete}',
@@ -89,6 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         );
                     },
                 ],
+                'contentOptions' => ['style' => 'width:67px; text-align:center;'],
             ],
         ],
     ]);

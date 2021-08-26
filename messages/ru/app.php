@@ -1,5 +1,6 @@
 <?php
 return [
+    'Select...' => 'Выбор...',
     'Assignment' => 'Назначения',
     'Role' => 'Роли',
     'Permission' => 'Разрешения',

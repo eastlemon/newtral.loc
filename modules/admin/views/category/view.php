@@ -35,8 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'picture',
                 'format' => 'html',    
                 'value' => function ($data) {
-                    $picture = $data['picture'];
-                    if (!$picture) $picture = '/images/noImage.png';
+                    $data['picture'] ? $picture = '/uploads/' . $data['picture'] : $picture = '/images/noImage.png';
                     return Html::img($picture, ['width' => '140px']);
                 },
             ],

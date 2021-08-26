@@ -29,8 +29,9 @@ class Certificate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'file'], 'required'],
-            [['name', 'file'], 'string'],
+            [['name'], 'required'],
+            [['name'], 'string'],
+            [['file'], 'file'],
         ];
     }
 

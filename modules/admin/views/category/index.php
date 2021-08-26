@@ -25,16 +25,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'contentOptions' => ['style' => 'width:1px;'],
+            ],
 
-            'id',
+            //'id',
             'name',
             [
                 'attribute' => 'picture',
                 'format' => 'html',    
                 'value' => function ($data) {
-                    $picture = $data['picture'];
-                    if (!$picture) $picture = '/images/noImage100x100.png';
+                    $data['picture'] ? $picture = '/uploads/' . $data['picture'] : $picture = '/images/noImage.png';
                     return Html::img($picture, ['width' => '70px']);
                 },
             ],
@@ -45,7 +47,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width:67px; text-align:center;'],
+            ],
         ],
     ]); ?>
 

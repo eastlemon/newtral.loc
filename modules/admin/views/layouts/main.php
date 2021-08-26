@@ -48,6 +48,11 @@ AdminAsset::register($this);
                                 'active' => $this->context->id == 'category',
                             ],
                             [
+                                'label' => '<i class="fas fa-certificate"></i>&nbsp;&nbsp;' . Yii::t('app', 'Certificates'),
+                                'url' => ['/admin/certificate'],
+                                'active' => $this->context->id == 'certificate',
+                            ],
+                            [
                                 'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Parts'),
                                 'url' => ['/admin/part'],
                                 'active' => $this->context->id == 'part',
@@ -61,11 +66,6 @@ AdminAsset::register($this);
                                 'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Units'),
                                 'url' => ['/admin/unit'],
                                 'active' => $this->context->id == 'unit',
-                            ],
-                            [
-                                'label' => '<i class="fas fa-ring"></i>&nbsp;&nbsp;' . Yii::t('app', 'Certificates'),
-                                'url' => ['/admin/certificate'],
-                                'active' => $this->context->id == 'certificate',
                             ],
                         ],
                     ]) ?>

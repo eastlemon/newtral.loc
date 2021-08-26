@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
 
 /**
  * CertificateController implements the CRUD actions for Certificate model.
@@ -66,8 +68,11 @@ class CertificateController extends Controller
     {
         $model = new Certificate();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadModel = new UploadForm();
+            $uploadModel->uploadFile = UploadedFile::getInstance($model, 'file');
+            $model->file = $uploadModel->upload();
+            if ($model->save()) return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [

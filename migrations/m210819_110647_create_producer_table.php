@@ -14,7 +14,7 @@ class m210819_110647_create_producer_table extends Migration
     {
         $this->createTable('{{%producer}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(),
+            'name' => $this->string()->notNull(),
         ]);
     }
 

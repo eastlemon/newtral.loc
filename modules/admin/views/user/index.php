@@ -25,7 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'contentOptions' => ['style' => 'width:1px;'],
+            ],
+
+            //'id',
             [
                 'class' => EditableColumn::class,
                 'attribute' => 'username',
@@ -54,8 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'date',
                 'filter' => false,
             ],
+
             [
-                'header' => Yii::t('app', 'Action'),
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{switch} {update} {delete}',
                 'buttons' => [
@@ -74,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a($icon, $url, $options);
                     },
                 ],
+                'contentOptions' => ['style' => 'width:67px; text-align:center;'],
             ],
         ],
     ]);

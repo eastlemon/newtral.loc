@@ -21,13 +21,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'contentOptions' => ['style' => 'width:1px;'],
+            ],
 
-            'id',
+            //'id',
             'name:ntext',
             'file:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{download} {view} {update} {delete}',
+                'buttons' => [
+                    'download' => function ($url, $model) {
+                        $options = [
+                            'title' => Yii::t('app', 'Become this user'),
+                            'aria-label' => Yii::t('app', 'Become this user'),
+                            'data-pjax' => '0',
+                            'data-confirm' => Yii::t('app', 'Are you sure?'),
+                            'data-method' => 'POST',
+                        ];
+
+                        $url = ['download', 'id' => $model->id];
+                        $icon = '<i class="fas fa-file-pdf"></i>';
+
+                        return Html::a($icon, $url, $options);
+                    },
+                ],
+                'contentOptions' => ['style' => 'width:87px; text-align:center;'],
+            ],
         ],
     ]); ?>
 
