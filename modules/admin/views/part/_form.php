@@ -33,7 +33,20 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'picture')->fileInput() ?>
 
-    <?= $form->field($model, 'offer')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-6"><?= $form->field($modelOffer, 'amount')->textInput() ?></div>
+        <div class="col-md-6"><?= $form->field($modelOffer, 'price')->textInput() ?></div>
+    </div>
+    
+    <?= $form->field($modelOffer, 'store_id')->widget(Select2::classname(), [
+        'data' => $dataSrores,
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select...'),
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

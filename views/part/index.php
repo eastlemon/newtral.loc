@@ -4,6 +4,7 @@ use yii\bootstrap4\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\widgets\ListView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
@@ -42,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm">
             <h4 class="text-primary">Артикул <?= $model->articul ?></h4>
             <p>Цена для заказа</p>
-            <h3 class="text-success"><?= Yii::$app->formatter->asCurrency(end($model->partOffers)->price) ?></h3>
+            <h3 class="text-success"><?= Yii::$app->formatter->asCurrency(end($model->offers)->price) ?></h3>
             <a href="#">Нашли дешевле?</a>
             <br>
             <br>
@@ -122,9 +123,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= GridView::widget([
                                     'dataProvider' => $offerProvider,
                                     'columns' => [
-                                        ['class' => 'yii\grid\SerialColumn'],
-
                                         [
+                                            'class' => 'yii\grid\SerialColumn',
+                                            'contentOptions' => ['style' => 'width:1px;'],
+                                        ],
+                                        /*[
                                             'attribute' => 'picture',
                                             'format' => 'html',    
                                             'value' => function ($data) {
@@ -135,15 +138,31 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 } else $_return .= Html::img('/images/noImage100x100.png', ['width' => '70px']);
                                                 return $_return;
                                             },
-                                        ],
+                                        ],*/
                                         'name',
                                         'articul',
                                         [
                                             'attribute' => 'producer_id',
                                             'value' => 'producer.name',
                                         ],
-
-                                        ['class' => 'yii\grid\ActionColumn'],
+                                        [
+                                            'class' => 'yii\grid\ActionColumn',
+                                            'template' => '{cart}',
+                                            'buttons' => [
+                                                'cart' => function ($url, $model) {
+                                                    return Html::a(
+                                                        '<i class="fas fa-cart-plus"></i>',
+                                                        Url::to('/', true),
+                                                        [
+                                                            'title' => Yii::t('yii2mod.cms', 'Cart'),
+                                                            'data-pjax' => 0,
+                                                            'target' => '_blank',
+                                                        ]
+                                                    );
+                                                },
+                                            ],
+                                            'contentOptions' => ['style' => 'width:1px;'],
+                                        ],
                                     ],
                                 ]) ?>
                                 <?/*= DetailView::widget([
@@ -160,8 +179,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= GridView::widget([
                                     'dataProvider' => $analogueProvider,
                                     'columns' => [
-                                        ['class' => 'yii\grid\SerialColumn'],
-
+                                        [
+                                            'class' => 'yii\grid\SerialColumn',
+                                            'contentOptions' => ['style' => 'width:1px;'],
+                                        ],
                                         [
                                             'attribute' => 'picture',
                                             'format' => 'html',    
@@ -186,8 +207,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'attribute' => 'producer_id',
                                             'value' => 'producer.name',
                                         ],
-
-                                        ['class' => 'yii\grid\ActionColumn'],
+                                        [
+                                            'class' => 'yii\grid\ActionColumn',
+                                            'template' => '{cart}',
+                                            'buttons' => [
+                                                'cart' => function ($url, $model) {
+                                                    return Html::a(
+                                                        '<i class="fas fa-cart-plus"></i>',
+                                                        Url::to('/', true),
+                                                        [
+                                                            'title' => Yii::t('yii2mod.cms', 'Cart'),
+                                                            'data-pjax' => 0,
+                                                            'target' => '_blank',
+                                                        ]
+                                                    );
+                                                },
+                                            ],
+                                            'contentOptions' => ['style' => 'width:1px;'],
+                                        ],
                                     ],
                                 ]) ?>
                             </div>

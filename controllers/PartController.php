@@ -5,7 +5,7 @@ namespace app\controllers;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use app\models\Part;
-use app\models\PartOffer;
+use app\models\Offer;
 use app\models\PartAnalogue;
 use app\models\PartCertificate;
 
@@ -16,7 +16,7 @@ class PartController extends Controller
         $model = Part::find()->andFilterWhere(['=', 'slug', $name])->one();
 
         $offerProvider = new ActiveDataProvider([
-            'query' => PartOffer::find()->andFilterWhere(['=', 'part_id', $model->id]),
+            'query' => Offer::find()->andFilterWhere(['=', 'part_id', $model->id]),
         ]);
 
         $analogueProvider = new ActiveDataProvider([

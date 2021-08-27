@@ -13,13 +13,17 @@ use yii\web\UploadedFile;
 use app\models\UploadForm;
 use app\models\Producer;
 use app\models\PartPicture;
-use app\models\PartOffer;
+use app\models\Offer;
+use app\models\Store;
+use app\traits\FindModelTrait;
 
 /**
  * PartController implements the CRUD actions for Part model.
  */
 class PartController extends Controller
 {
+    use FindModelTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -59,7 +63,7 @@ class PartController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel(Part::class, $id),
         ]);
     }
 
@@ -71,6 +75,8 @@ class PartController extends Controller
     public function actionCreate()
     {
         $model = new Part();
+        $modelOffer = new Offer();
+        $modelOffer->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post())) {
             $uploadModel = new UploadForm();
@@ -82,18 +88,18 @@ class PartController extends Controller
                 $partPicture->part_id = $model->id;
                 $partPicture->save();
 
-                $partOffer = new PartOffer();
-                $partOffer->price = $model->offer;
-                $partOffer->part_id = $model->id;
-                $partOffer->save();
-
-                return $this->redirect(['view', 'id' => $model->id]);
+                if ($modelOffer->load(Yii::$app->request->post())) {
+                    $modelOffer->part_id = $model->id;
+                    if ($modelOffer->save()) return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelOffer' => $modelOffer,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
+            'dataSrores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 
@@ -106,7 +112,8 @@ class PartController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Part::class, $id);
+        $modelOffer = new Offer();
 
         if ($model->load(Yii::$app->request->post())) {
             $uploadModel = new UploadForm();
@@ -118,18 +125,19 @@ class PartController extends Controller
                 $partPicture->part_id = $model->id;
                 $partPicture->save();
 
-                $partOffer = new PartOffer();
-                $partOffer->price = $model->offer;
-                $partOffer->part_id = $model->id;
-                $partOffer->save();
-
+                if ($modelOffer->load(Yii::$app->request->post())) {
+                    $modelOffer->part_id = $model->id;
+                    if ($modelOffer->price && $modelOffer->store_id) $modelOffer->save();
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'modelOffer' => $modelOffer,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
+            'dataSrores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 
@@ -142,24 +150,8 @@ class PartController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel(Part::class, $id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Part model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Part the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Part::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

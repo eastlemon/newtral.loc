@@ -93,7 +93,7 @@ $config = [
             'class' => 'yii\rbac\DbManager',
         ],
         'formatter' => [
-            'thousandSeparator' => ' ',
+            'thousandSeparator' => '&nbsp;',
             'currencyCode' => '₽',
         ],
     ],

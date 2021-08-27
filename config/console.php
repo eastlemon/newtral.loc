@@ -28,7 +28,6 @@ $config = [
         'db' => $db,
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            //'defaultRoles' => ['guest', 'user', 'admin'],
         ],
         'i18n' => [
             'translations' => [

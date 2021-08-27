@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'offers',
                 'format' => 'html',
                 'value' => function ($data) {
-                    if (!empty($offers = $data->partOffers)) {
+                    if (!empty($offers = $data->offers)) {
                         foreach ($offers as $offer) {
                             $_return .= '<p>' . $offer->price . '</p>';
                         }

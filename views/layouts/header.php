@@ -6,32 +6,27 @@ use yii\bootstrap4\NavBar;
 use yii\bootstrap4\ActiveForm;
 use app\models\Search;
 use app\models\Category;
+use app\models\Office;
 ?>
 <div class="container">
-   <div class="row">
-      <div class="col-md-auto" style="padding-top:15px;"><a href="/"><img src="/images/header-logo.png"></a></div>
-      <div class="col-md-auto">
-         <p style="font-size: 18px;"><b><i class="fas fa-phone-square"></i>&nbsp;<?= Yii::$app->settings->get('mainPage', 'phone') ?></b></p>
-         <select class="form-control" id="filialFormControlSelect" placeholder="<?= Yii::t('app', 'Select Office') ?>">
-            <option>Челябинск</option>
-            <option>Усинск</option>
-         </select>
-      </div>
-      <div class="col-md-auto">
-         <p><i class="far fa-clock"></i>&nbsp;<?= Yii::$app->settings->get('mainPage', 'workTime') ?></p>
-         <p><i class="far fa-envelope"></i>&nbsp;<a href="mailto:<?= Yii::$app->settings->get('mainPage', 'email') ?>"><?= Yii::$app->settings->get('mainPage', 'email') ?></a></p>
-      </div>
-      <div class="col-md-auto">
-         <div style="text-align: center;">
-            <a style="color:green; font-size:28px;" href="<?= Yii::$app->settings->get('mainPage', 'whatsapp_link') ?>" target="_blank"><i class="fab fa-whatsapp"></i></a>&nbsp;
-            <a style="color:blue; font-size:28px;" href="<?= Yii::$app->settings->get('mainPage', 'telegram-link') ?>" target="_blank"><i class="fab fa-telegram-plane"></i></a>&nbsp;
-            <a style="color:purple; font-size:28px;" href="<?= Yii::$app->settings->get('mainPage', 'viber-link') ?>" target="_blank"><i class="fab fa-viber"></i></a>
-         </div>
-         <p style="text-align: center;"><?= Html::a('<i class="fas fa-phone"></i> Заказать звонок', ['#'], ['class' => 'btn btn-primary', 'title' => 'Заказать звонок']) ?></p>
-      </div>
-      <div class="col" style="text-align:right;">
-         <div class="float-right">
-            <p>
+   <div class="row mb-4">
+      <div class="col-4 mx-auto my-auto"><a href="/"><img src="/images/header-logo.png"></a></div>
+      <div class="col-8">
+         <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+               <b><i class="fas fa-phone-square"></i>&nbsp;<?= Yii::$app->settings->get('mainPage', 'phone') ?></b>
+            </div>
+            <div class="col-3">
+               <i class="far fa-clock"></i>&nbsp;<?= Yii::$app->settings->get('mainPage', 'workTime') ?>
+            </div>
+            <div class="col-3">
+               <div style="text-align: center;">
+                  <a style="color:green; font-size:28px;" href="<?= Yii::$app->settings->get('mainPage', 'whatsapp_link') ?>" target="_blank"><i class="fab fa-whatsapp"></i></a>&nbsp;
+                  <a style="color:blue; font-size:28px;" href="<?= Yii::$app->settings->get('mainPage', 'telegram-link') ?>" target="_blank"><i class="fab fa-telegram-plane"></i></a>&nbsp;
+                  <a style="color:purple; font-size:28px;" href="<?= Yii::$app->settings->get('mainPage', 'viber-link') ?>" target="_blank"><i class="fab fa-viber"></i></a>
+               </div>
+            </div>
+            <div class="col-3 text-right">
                <?php if (!Yii::$app->user->isGuest): ?>
                   <?php if (Yii::$app->user->can('admin')): ?>
                      <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
@@ -41,8 +36,25 @@ use app\models\Category;
                <?php else: ?>
                   <i class="fas fa-key"></i>&nbsp;<a href="/site/login"><?= Yii::t('app', 'Enter') ?></a>&nbsp;|&nbsp;<a href="/site/signup"><?= Yii::t('app', 'Signup') ?></a>
                <?php endif; ?>
-            </p>
-            <small class="text-muted"><i class="fas fa-shopping-cart"></i>&nbsp;<a href="/cart">В корзине ничего нет</a></small>
+            </div>
+         </div>
+         <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+               <select class="form-control" id="filialFormControlSelect" placeholder="<?= Yii::t('app', 'Select Office') ?>">
+                  <?php foreach (Office::find()->all() as $item): ?>
+                     <option><?= $item->name ?></option>
+                  <?php endforeach; ?>
+               </select>
+            </div>
+            <div class="col-3">
+               <i class="far fa-envelope"></i>&nbsp;<a href="mailto:<?= Yii::$app->settings->get('mainPage', 'email') ?>"><?= Yii::$app->settings->get('mainPage', 'email') ?></a>
+            </div>
+            <div class="col-3">
+               <span style="text-align: center;"><?= Html::a('<small><i class="fas fa-phone"></i> Заказать звонок</small>', ['#'], ['class' => 'btn btn-block btn-primary', 'title' => 'Заказать звонок']) ?></span>
+            </div>
+            <div class="col-3 text-right">
+               <small class="text-muted"><i class="fas fa-shopping-cart"></i>&nbsp;<a href="/cart">В корзине ничего нет</a></small>
+            </div>
          </div>
       </div>
    </div>
