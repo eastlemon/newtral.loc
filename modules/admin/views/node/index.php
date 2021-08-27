@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'articul',
             'description:ntext',
-            'category_id',
+            [
+                'attribute' => 'category_id',
+                'value' => 'category.name',
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

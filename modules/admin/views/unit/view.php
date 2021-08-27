@@ -34,8 +34,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'articul',
             'description:ntext',
-            'category_id',
-            'producer_id',
+            [
+                'attribute' => 'category_id',
+                'label' => Yii::t('app', 'Category'),
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::a($data->category->name, ['/admin/category/view', 'id' => $data->category->id]);
+                },
+            ],
+            [
+                'attribute' => 'producer_id',
+                'label' => Yii::t('app', 'Producer'),
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::a($data->producer->name, ['/admin/producer/view', 'id' => $data->producer->id]);
+                },
+            ],
         ],
     ]) ?>
 

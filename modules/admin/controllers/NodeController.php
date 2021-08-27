@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use app\models\Category;
 
 /**
  * NodeController implements the CRUD actions for Node model.
@@ -72,6 +74,7 @@ class NodeController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'data' => ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 

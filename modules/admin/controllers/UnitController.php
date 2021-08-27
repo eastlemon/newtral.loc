@@ -8,6 +8,9 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use app\models\Category;
+use app\models\Producer;
 
 /**
  * UnitController implements the CRUD actions for Unit model.
@@ -72,6 +75,8 @@ class UnitController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'dataCategory' => ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'name'),
+            'dataProducer' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 

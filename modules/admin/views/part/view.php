@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?= Html::a(Yii::t('app', 'See'), ['/part/' . $model->slug], ['class' => 'btn btn-success', 'target'=>'_blank']) ?>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -34,7 +35,38 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'articul',
             'description:ntext',
-            'producer_id',
+            [
+                'attribute' => 'producer_id',
+                'label' => Yii::t('app', 'Producer'),
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::a($data->producer->name, ['/admin/producer/view', 'id' => $data->producer->id]);
+                },
+            ],
+            [
+                'attribute' => 'pictures',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if (!empty($pictures = $data->partPictures)) {
+                        foreach ($pictures as $picture) {
+                            $_return .= Html::img('/uploads/' . $picture->picture, ['width' => '140px']);
+                        }
+                    } else $_return .= Html::img('/images/noImage100x100.png', ['width' => '140px']);
+                    return $_return;
+                },
+            ],
+            [
+                'attribute' => 'offers',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if (!empty($offers = $data->partOffers)) {
+                        foreach ($offers as $offer) {
+                            $_return .= '<p>' . $offer->price . '</p>';
+                        }
+                    } else $_return .= '<p>' . Yii::t('app', 'No Offers') . '</p>';
+                    return $_return;
+                },
+            ],
         ],
     ]) ?>
 

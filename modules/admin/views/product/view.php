@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'picture',
-                'format' => 'html',    
+                'format' => 'html',
                 'value' => function ($data) {
                     if (!empty($pictures = $data->productpictures)) {
                         foreach ($pictures as $picture) {

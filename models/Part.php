@@ -23,6 +23,8 @@ use Yii;
  */
 class Part extends \yii\db\ActiveRecord
 {
+    public $picture, $offer;
+
     /**
      * {@inheritdoc}
      */
@@ -42,6 +44,8 @@ class Part extends \yii\db\ActiveRecord
             [['producer_id'], 'integer'],
             [['name', 'slug', 'articul'], 'string', 'max' => 255],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
+            [['picture'], 'file'],
+            [['offer'], 'number'],
         ];
     }
 

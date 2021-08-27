@@ -52,6 +52,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'part/<name:\w+>' => 'part/index',
                 'product/<name:\w+>' => 'product/index',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
@@ -90,6 +91,10 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+        ],
+        'formatter' => [
+            'thousandSeparator' => ' ',
+            'currencyCode' => '₽',
         ],
     ],
     'modules' => [

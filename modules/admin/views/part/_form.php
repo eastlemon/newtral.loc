@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Part */
@@ -20,7 +21,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'producer_id')->textInput() ?>
+    <?= $form->field($model, 'producer_id')->widget(Select2::classname(), [
+        'data' => $data,
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select...'),
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'picture')->fileInput() ?>
+
+    <?= $form->field($model, 'offer')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

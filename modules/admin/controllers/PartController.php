@@ -8,6 +8,12 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
+use app\models\Producer;
+use app\models\PartPicture;
+use app\models\PartOffer;
 
 /**
  * PartController implements the CRUD actions for Part model.
@@ -66,12 +72,28 @@ class PartController extends Controller
     {
         $model = new Part();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadModel = new UploadForm();
+            $uploadModel->uploadFile = UploadedFile::getInstance($model, 'picture');
+            
+            if ($model->save()) {
+                $partPicture = new PartPicture();
+                $partPicture->picture = $uploadModel->upload();
+                $partPicture->part_id = $model->id;
+                $partPicture->save();
+
+                $partOffer = new PartOffer();
+                $partOffer->price = $model->offer;
+                $partOffer->part_id = $model->id;
+                $partOffer->save();
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 
@@ -86,12 +108,28 @@ class PartController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadModel = new UploadForm();
+            $uploadModel->uploadFile = UploadedFile::getInstance($model, 'picture');
+            
+            if ($model->save()) {
+                $partPicture = new PartPicture();
+                $partPicture->picture = $uploadModel->upload();
+                $partPicture->part_id = $model->id;
+                $partPicture->save();
+
+                $partOffer = new PartOffer();
+                $partOffer->price = $model->offer;
+                $partOffer->part_id = $model->id;
+                $partOffer->save();
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 
