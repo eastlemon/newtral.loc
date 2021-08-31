@@ -40,7 +40,7 @@ use app\models\Office;
          </div>
          <div class="row justify-content-center align-items-center">
             <div class="col-3">
-               <select class="form-control" id="filialFormControlSelect" placeholder="<?= Yii::t('app', 'Select Office') ?>">
+               <select class="form-control" id="officeFormControlSelect" placeholder="<?= Yii::t('app', 'Select Office') ?>">
                   <?php foreach (Office::find()->all() as $item): ?>
                      <option><?= $item->name ?></option>
                   <?php endforeach; ?>

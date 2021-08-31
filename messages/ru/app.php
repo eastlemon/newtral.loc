@@ -1,5 +1,15 @@
 <?php
 return [
+    'Offices' => 'Филиалы',
+    'Stores' => 'Склады',
+    'More' => 'Ещё',
+    'Price with VAT' => 'Цена с НДС',
+    'Timing' => 'Сроки',
+    'Availability' => 'Наличие',
+    'Warehouse' => 'Склад',
+    'Name' => 'Название',
+    'Articul' => 'Артикул',
+    'Picture' => 'Фото',
     'Select...' => 'Выбор...',
     'Assignment' => 'Назначения',
     'Role' => 'Роли',

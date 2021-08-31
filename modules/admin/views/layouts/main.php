@@ -38,6 +38,16 @@ AdminAsset::register($this);
                         'encodeLabels' => false,
                         'items' => [
                             [
+                                'label' => '<i class="fas fa-industry"></i>&nbsp;&nbsp;' . Yii::t('app', 'Offices'),
+                                'url' => ['/admin/office'],
+                                'active' => $this->context->id == 'office',
+                            ],
+                            [
+                                'label' => '<i class="fas fa-industry"></i>&nbsp;&nbsp;' . Yii::t('app', 'Stores'),
+                                'url' => ['/admin/store'],
+                                'active' => $this->context->id == 'store',
+                            ],
+                            [
                                 'label' => '<i class="fas fa-industry"></i>&nbsp;&nbsp;' . Yii::t('app', 'Producers'),
                                 'url' => ['/admin/producer'],
                                 'active' => $this->context->id == 'producer',

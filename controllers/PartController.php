@@ -4,34 +4,34 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
+use app\traits\FindModelTrait;
 use app\models\Part;
-use app\models\Offer;
-use app\models\PartAnalogue;
-use app\models\PartCertificate;
 
 class PartController extends Controller
-{    
+{
+    use FindModelTrait;
+
     public function actionIndex($name)
     {
-        $model = Part::find()->andFilterWhere(['=', 'slug', $name])->one();
+        $model = $this->findModel(Part::class, ['slug' => $name]);
 
-        $offerProvider = new ActiveDataProvider([
-            'query' => Offer::find()->andFilterWhere(['=', 'part_id', $model->id]),
+        $stocksProvider = new ActiveDataProvider([
+            'query' => $model->getStocks(),
         ]);
 
-        $analogueProvider = new ActiveDataProvider([
-            'query' => PartAnalogue::find()->andFilterWhere(['=', 'part_id', $model->id]),
+        $analoguesProvider = new ActiveDataProvider([
+            'query' => $model->getAnalogues(),
         ]);
 
-        $certificateProvider = new ActiveDataProvider([
-            'query' => PartCertificate::find()->andFilterWhere(['=', 'part_id', $model->id]),
+        $certificatesProvider = new ActiveDataProvider([
+            'query' => $model->getCertificates(),
         ]);
 
         return $this->render('index', [
             'model' => $model,
-            'offerProvider' => $offerProvider,
-            'analogueProvider' => $analogueProvider,
-            'certificateProvider' => $certificateProvider,
+            'stocksProvider' => $stocksProvider,
+            'analoguesProvider' => $analoguesProvider,
+            'certificatesProvider' => $certificatesProvider,
         ]);
     }
 }

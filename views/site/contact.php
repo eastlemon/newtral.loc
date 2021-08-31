@@ -1,7 +1,7 @@
 <?php
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\helpers\ArrayHelper;
 use yii2mod\comments\widgets\Comment;
 

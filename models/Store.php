@@ -16,6 +16,8 @@ use Yii;
  */
 class Store extends \yii\db\ActiveRecord
 {
+    public $office, $delivery;
+
     /**
      * {@inheritdoc}
      */
@@ -30,7 +32,7 @@ class Store extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'office', 'delivery'], 'required'],
             [['address'], 'string'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -66,5 +68,10 @@ class Store extends \yii\db\ActiveRecord
     public function getOfficeStores()
     {
         return $this->hasMany(OfficeStore::className(), ['store_id' => 'id']);
+    }
+
+    public function getOffice()
+    {
+        return $this->hasMany(Office::className(), ['id' => 'office_id'])->viaTable('office_store', ['store_id' => 'id']);
     }
 }

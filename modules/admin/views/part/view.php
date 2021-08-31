@@ -67,6 +67,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $_return;
                 },
             ],
+            [
+                'attribute' => 'certificates',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if (!empty($certificates = $data->certificates)) {
+                        foreach ($certificates as $certificate) {
+                            $_return .= '<p>' . $certificate->name . '</p>';
+                        }
+                    } else $_return .= '<p>' . Yii::t('app', 'No Certificates') . '</p>';
+                    return $_return;
+                },
+            ],
         ],
     ]) ?>
 

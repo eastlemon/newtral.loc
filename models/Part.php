@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "part".
@@ -17,15 +18,13 @@ use Yii;
  * @property NodePart[] $nodeParts
  * @property Offer[] $offers
  * @property Producer $producer
- * @property PartAnalogue[] $partAnalogues
- * @property PartAnalogue[] $partAnalogues0
  * @property PartCertificate[] $partCertificates
  * @property PartPicture[] $partPictures
  * @property PartSpec[] $partSpecs
  */
 class Part extends \yii\db\ActiveRecord
 {
-    public $picture, $offer;
+    public $picture, $offer, $certificate_ids;
 
     /**
      * {@inheritdoc}
@@ -48,6 +47,8 @@ class Part extends \yii\db\ActiveRecord
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
             [['picture'], 'file'],
             [['offer'], 'number'],
+            [['certificate_ids'], 'safe'],
+            [['slug'], 'unique'],
         ];
     }
 
@@ -97,26 +98,6 @@ class Part extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[PartAnalogues]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPartAnalogues()
-    {
-        return $this->hasMany(PartAnalogue::className(), ['part_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[PartAnalogues0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPartAnalogues0()
-    {
-        return $this->hasMany(PartAnalogue::className(), ['part_id_analogue' => 'id']);
-    }
-
-    /**
      * Gets query for [[PartCertificates]].
      *
      * @return \yii\db\ActiveQuery
@@ -144,5 +125,24 @@ class Part extends \yii\db\ActiveRecord
     public function getPartSpecs()
     {
         return $this->hasMany(PartSpec::className(), ['part_id' => 'id']);
+    }
+
+    public function getCertificates()
+    {
+        return $this->hasMany(Certificate::className(), ['id' => 'certificate_id'])->viaTable('part_certificate', ['part_id' => 'id']);
+    }
+
+    public function getStocks()
+    {
+        return self::find()
+        ->andFilterWhere(['=', 'articul', $this->articul]);
+    }
+
+    public function getAnalogues()
+    {
+        return self::find()
+        ->orFilterWhere(['like', 'articul', $this->articul])
+        ->orFilterWhere(['like', 'name', $this->name])
+        ->andFilterWhere(['<>', 'id', $this->id]);
     }
 }

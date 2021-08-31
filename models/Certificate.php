@@ -56,4 +56,9 @@ class Certificate extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PartCertificate::className(), ['certificate_id' => 'id']);
     }
+
+    public function getParts()
+    {
+        return $this->hasMany(Part::className(), ['id' => 'part_id'])->viaTable('part_certificate', ['certificate_id' => 'id']);
+    }
 }

@@ -39,12 +39,25 @@ use kartik\select2\Select2;
     </div>
     
     <?= $form->field($modelOffer, 'store_id')->widget(Select2::classname(), [
-        'data' => $dataSrores,
+        'data' => $dataStores,
         'options' => [
             'placeholder' => Yii::t('app', 'Select...'),
         ],
         'pluginOptions' => [
             'allowClear' => true
+        ],
+    ]) ?>
+    
+    <?= $form->field($model, 'certificate_ids')->widget(Select2::classname(), [
+        'data' => $dataCertificates,
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select...'),
+            'multiple' => true,
+            'value' => $selectedCertificates,
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+            'tags' => true,
         ],
     ]) ?>
 

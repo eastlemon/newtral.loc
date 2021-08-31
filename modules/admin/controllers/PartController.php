@@ -3,19 +3,21 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Part;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
+use app\traits\FindModelTrait;
+use app\models\Part;
 use app\models\UploadForm;
 use app\models\Producer;
 use app\models\PartPicture;
 use app\models\Offer;
+use app\models\Certificate;
 use app\models\Store;
-use app\traits\FindModelTrait;
+use app\models\PartCertificate;
 
 /**
  * PartController implements the CRUD actions for Part model.
@@ -81,12 +83,21 @@ class PartController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $uploadModel = new UploadForm();
             $uploadModel->uploadFile = UploadedFile::getInstance($model, 'picture');
-            
+
             if ($model->save()) {
                 $partPicture = new PartPicture();
                 $partPicture->picture = $uploadModel->upload();
                 $partPicture->part_id = $model->id;
                 $partPicture->save();
+
+                if ($certs = $model->certificate_ids) {
+                    foreach ($certs as $item) {
+                        $partCertificate = new PartCertificate();
+                        $partCertificate->part_id = $model->id;
+                        $partCertificate->certificate_id = $item;
+                        $partCertificate->save();
+                    }
+                }
 
                 if ($modelOffer->load(Yii::$app->request->post())) {
                     $modelOffer->part_id = $model->id;
@@ -99,7 +110,8 @@ class PartController extends Controller
             'model' => $model,
             'modelOffer' => $modelOffer,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
-            'dataSrores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
+            'dataStores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
+            'dataCertificates' => ArrayHelper::map(Certificate::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
 
@@ -125,6 +137,16 @@ class PartController extends Controller
                 $partPicture->part_id = $model->id;
                 $partPicture->save();
 
+                if ($certs = $model->certificate_ids) {
+                    PartCertificate::deleteAll(['part_id' => $model->id]);
+                    foreach ($certs as $item) {
+                        $partCertificate = new PartCertificate();
+                        $partCertificate->part_id = $model->id;
+                        $partCertificate->certificate_id = $item;
+                        $partCertificate->save();
+                    }
+                }
+
                 if ($modelOffer->load(Yii::$app->request->post())) {
                     $modelOffer->part_id = $model->id;
                     if ($modelOffer->price && $modelOffer->store_id) $modelOffer->save();
@@ -137,7 +159,9 @@ class PartController extends Controller
             'model' => $model,
             'modelOffer' => $modelOffer,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
-            'dataSrores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
+            'dataStores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
+            'dataCertificates' => ArrayHelper::map(Certificate::find()->asArray()->all(), 'id', 'name'),
+            'selectedCertificates' => ArrayHelper::getColumn(PartCertificate::find()->where(['part_id' => $model->id])->asArray()->all(), 'certificate_id'),
         ]);
     }
 

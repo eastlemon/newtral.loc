@@ -1,13 +1,10 @@
 <?php
-
 use yii\bootstrap4\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\widgets\ListView;
 use yii\helpers\Url;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Product */
+use app\widgets\PartGrid;
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Parts'), 'url' => ['index']];
@@ -15,20 +12,23 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="product-view">
-
     <h3><?= Html::encode($this->title) ?></h3>
-
     <div class="row">
         <div class="col-sm">
             <div id="carouselProductControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <?php $k = 0; ?>
-                    <?php foreach ($model->partPictures as $item): ?>
-                        <div class="carousel-item <?= ($k == 0) ? "active" : "" ?>">
-                            <?= Html::img('/uploads/' . $item->picture, ['class' => 'd-block w-100', 'alt' => $item->picture]) ?>
+                    <?php if ($model->partPictures): ?>
+                        <?php foreach ($model->partPictures as $item): ?>
+                            <div class="carousel-item <?= ($k == 0) ? "active" : "" ?>">
+                                <?= Html::img(Url::to('@web/uploads/') . $item->picture, ['class' => 'd-block w-100 h-100', 'alt' => $item->picture]) ?>
+                            </div>
+                            <?php $k++; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="carousel-item active">
+                            <?= Html::img(Url::to('@web/images/') . 'noImage.png', ['class' => 'd-block w-100 h-100', 'alt' => $item->picture]) ?>
                         </div>
-                        <?php $k++; ?>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
                 <a class="carousel-control-prev" href="#carouselProductControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -92,15 +92,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             <button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-facebook-f"></i></button>
                             <button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-odnoklassniki"></i></button>
                             <button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-telegram-plane"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-instagram"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-linkedin-in"></i></button>
+                            <!--<button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-instagram"></i></button>-->
+                            <!--<button type="button" class="btn btn-outline-dark btn-circle"><i class="fab fa-linkedin-in"></i></button>-->
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
     <div class="row">
         <div class="col-12">
             <ul class="nav nav-tabs nav-justified" id="productTab">
@@ -118,145 +117,54 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="tab-pane fade show active" id="availability" role="tabpanel" aria-labelledby="availability-tab">
                     <div class="container-fluid p-0">
                         <div class="row mt-3">
-                        <div class="col-12"><h4 class="float-left text-secondary">Наличие на наших складах</h4></div>
-                            <div class="col-12">
-                                <?= GridView::widget([
-                                    'dataProvider' => $offerProvider,
-                                    'columns' => [
-                                        [
-                                            'class' => 'yii\grid\SerialColumn',
-                                            'contentOptions' => ['style' => 'width:1px;'],
-                                        ],
-                                        /*[
-                                            'attribute' => 'picture',
-                                            'format' => 'html',    
-                                            'value' => function ($data) {
-                                                if (!empty($pictures = $data->part->partPictures)) {
-                                                    foreach ($pictures as $picture) {
-                                                        $_return .= Html::img('/uploads/1c/img/' . $picture->picture, ['width' => '70px']);
-                                                    }
-                                                } else $_return .= Html::img('/images/noImage100x100.png', ['width' => '70px']);
-                                                return $_return;
-                                            },
-                                        ],*/
-                                        'name',
-                                        'articul',
-                                        [
-                                            'attribute' => 'producer_id',
-                                            'value' => 'producer.name',
-                                        ],
-                                        [
-                                            'class' => 'yii\grid\ActionColumn',
-                                            'template' => '{cart}',
-                                            'buttons' => [
-                                                'cart' => function ($url, $model) {
-                                                    return Html::a(
-                                                        '<i class="fas fa-cart-plus"></i>',
-                                                        Url::to('/', true),
-                                                        [
-                                                            'title' => Yii::t('yii2mod.cms', 'Cart'),
-                                                            'data-pjax' => 0,
-                                                            'target' => '_blank',
-                                                        ]
-                                                    );
-                                                },
-                                            ],
-                                            'contentOptions' => ['style' => 'width:1px;'],
-                                        ],
-                                    ],
-                                ]) ?>
-                                <?/*= DetailView::widget([
-                                    'model' => $offerProvider,
-                                    'attributes' => [
-                                        'price',
-                                        //'articul',
-                                        //'description',
-                                    ],
-                                ]) */?>
-                            </div>
+                            <div class="col-12"><h4 class="float-left text-secondary">Наличие на наших складах</h4></div>
+                            <div class="col-12"><?= PartGrid::widget(['dataProvider' => $stocksProvider]) ?></div>
                             <div class="col-12"><h4 class="float-left text-secondary">Аналоги</h4></div>
-                            <div class="col-12">
-                                <?= GridView::widget([
-                                    'dataProvider' => $analogueProvider,
-                                    'columns' => [
-                                        [
-                                            'class' => 'yii\grid\SerialColumn',
-                                            'contentOptions' => ['style' => 'width:1px;'],
-                                        ],
-                                        [
-                                            'attribute' => 'picture',
-                                            'format' => 'html',    
-                                            'value' => function ($data) {
-                                                if (!empty($pictures = $data->part->partPictures)) {
-                                                    foreach ($pictures as $picture) {
-                                                        $_return .= Html::img('/uploads/1c/img/' . $picture->picture, ['width' => '70px']);
-                                                    }
-                                                } else $_return .= Html::img('/images/noImage100x100.png', ['width' => '70px']);
-                                                return $_return;
-                                            },
-                                        ],
-                                        'name',
-                                        'articul',
-                                        /*[
-                                            'attribute' => 'description',
-                                            'value' => function ($data) {
-                                                return $data->description ?: null;
-                                            },
-                                        ],*/
-                                        [
-                                            'attribute' => 'producer_id',
-                                            'value' => 'producer.name',
-                                        ],
-                                        [
-                                            'class' => 'yii\grid\ActionColumn',
-                                            'template' => '{cart}',
-                                            'buttons' => [
-                                                'cart' => function ($url, $model) {
-                                                    return Html::a(
-                                                        '<i class="fas fa-cart-plus"></i>',
-                                                        Url::to('/', true),
-                                                        [
-                                                            'title' => Yii::t('yii2mod.cms', 'Cart'),
-                                                            'data-pjax' => 0,
-                                                            'target' => '_blank',
-                                                        ]
-                                                    );
-                                                },
-                                            ],
-                                            'contentOptions' => ['style' => 'width:1px;'],
-                                        ],
-                                    ],
-                                ]) ?>
-                            </div>
+                            <div class="col-12"><?= PartGrid::widget(['dataProvider' => $analoguesProvider]) ?></div>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="characteristics" role="tabpanel" aria-labelledby="characteristics-tab">
                     <div class="container-fluid p-0">
                         <div class="row mt-3">
-                            <?= DetailView::widget([
-                                'model' => $model,
-                                'attributes' => [
-                                    'name',
-                                    'articul',
-                                    'description',
-                                ],
-                            ]) ?>
+                            <div class="col-12">
+                                <?= DetailView::widget([
+                                    'model' => $model,
+                                    'attributes' => [
+                                        'name',
+                                        'articul',
+                                        'description',
+                                    ],
+                                ]) ?>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="сertificates" role="tabpanel" aria-labelledby="сertificates-tab">
                     <div class="container-fluid p-0">
                         <div class="row mt-3">
-                            <?= ListView::widget([
-                                'dataProvider' => $certificateProvider,
-                                'itemView' => '_product_certificates',
-                            ]) ?>
+                            <div class="col-12">
+                                <?= GridView::widget([
+                                    'dataProvider' => $certificatesProvider,
+                                    'columns' => [
+                                        'name',
+                                        [
+                                            'class' => 'yii\grid\ActionColumn',
+                                            'template' => '{download}',
+                                            'buttons' => [
+                                                'download' => function ($url, $model) {
+                                                    return Html::a('<i class="fas fa-download"></i>', Url::toRoute(['certificate-download', 'id' => $model->id]), ['title' => Yii::t('app', 'Download'), 'data-pjax' => 0, 'target' => '_blank']);
+                                                },
+                                            ],
+                                            'contentOptions' => ['style' => 'width:1px;'],
+                                        ],
+                                    ],
+                                ]) ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
