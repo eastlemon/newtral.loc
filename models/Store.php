@@ -70,8 +70,8 @@ class Store extends \yii\db\ActiveRecord
         return $this->hasMany(OfficeStore::className(), ['store_id' => 'id']);
     }
 
-    public function getOffice()
+    public function getOffices()
     {
-        return $this->hasMany(Office::className(), ['id' => 'office_id'])->viaTable('office_store', ['store_id' => 'id']);
+        return $this->hasMany(Office::className(), ['id' => 'office_id'])->via('officeStores');
     }
 }

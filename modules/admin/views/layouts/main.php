@@ -38,12 +38,12 @@ AdminAsset::register($this);
                         'encodeLabels' => false,
                         'items' => [
                             [
-                                'label' => '<i class="fas fa-industry"></i>&nbsp;&nbsp;' . Yii::t('app', 'Offices'),
+                                'label' => '<i class="fas fa-building"></i>&nbsp;&nbsp;' . Yii::t('app', 'Offices'),
                                 'url' => ['/admin/office'],
                                 'active' => $this->context->id == 'office',
                             ],
                             [
-                                'label' => '<i class="fas fa-industry"></i>&nbsp;&nbsp;' . Yii::t('app', 'Stores'),
+                                'label' => '<i class="fas fa-store"></i>&nbsp;&nbsp;' . Yii::t('app', 'Stores'),
                                 'url' => ['/admin/store'],
                                 'active' => $this->context->id == 'store',
                             ],

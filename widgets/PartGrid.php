@@ -57,7 +57,7 @@ class PartGrid extends Widget
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
-                            $_r .= '<p class="mb-1"><span class="border border-dark rounded-sm px-2">' . $offer->store->office[0]->name . '</span></p>';
+                            $_r .= '<p class="mb-1"><span class="border border-dark rounded-sm px-2">' . $offer->store->offices[0]->name . '</span></p>';
                             if (++$k >= 3) break;
                         }
                         return $_r;
