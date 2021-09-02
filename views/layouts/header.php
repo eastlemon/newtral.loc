@@ -5,9 +5,8 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\ActiveForm;
 use app\models\SearchModel;
-use app\models\Category;
-use app\models\Office;
 ?>
+
 <div class="container">
    <div class="row mb-4">
       <div class="col-4 mx-auto my-auto"><a href="/"><img src="/images/header-logo.png"></a></div>
@@ -41,7 +40,7 @@ use app\models\Office;
          <div class="row justify-content-center align-items-center">
             <div class="col-3">
                <select class="form-control" id="officeFormControlSelect" placeholder="<?= Yii::t('app', 'Select Office') ?>">
-                  <?php foreach (Office::find()->all() as $item): ?>
+                  <?php foreach (\app\models\Office::find()->all() as $item): ?>
                      <option><?= $item->name ?></option>
                   <?php endforeach; ?>
                </select>
@@ -61,11 +60,8 @@ use app\models\Office;
 </div>
 
 <?php
-$categories = '';
-$categoryModel = new Category();
-$categoryRoots = $categoryModel->getRoots();
-if (Yii::$app->user->isGuest) foreach ($categoryRoots as $item) $categories .= '<li class="list-group-item list-group-item-action">' . $item->name . '</li>';
-elseif (Yii::$app->user->can('user')) foreach ($categoryRoots as $item) $categories .= '<p>' . $item->name . '</p>';
+foreach (\app\models\Category::getRoots() as $item) $categories .= '<li class="list-group-item list-group-item-action"><a href="category/' . $item->slug . '">' . $item->name . '</a></li>';
+foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<li class="list-group-item list-group-item-action"><a href="producer/' . $item->slug . '">' . $item->name . '</a></li>';
 ?>
 
 <?php NavBar::begin(['options' => [
@@ -80,17 +76,15 @@ elseif (Yii::$app->user->can('user')) foreach ($categoryRoots as $item) $categor
             'label' => Yii::t('app', 'Parts Catalog'),
             'items' => [
                '<div class="container">
-                  <div class="row w-100">
-                     <div class="col-4 sidebar">
-                        <div class="list-group flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                           <a class="list-group-item list-group-item-action active" id="v-pills-groups-tab" data-toggle="pill" href="#v-pills-groups" role="tab" aria-controls="v-pills-groups" aria-selected="true">' . Yii::t('app', 'Groups') . '</a>
-                           <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Producers') . '</a>
-                        </div>
+                  <div class="col-4 sidebar">
+                     <div class="list-group flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="list-group-item list-group-item-action active" id="v-pills-groups-tab" data-toggle="pill" href="#v-pills-groups" role="tab" aria-controls="v-pills-groups" aria-selected="true">' . Yii::t('app', 'Groups') . '</a>
+                        <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Producers') . '</a>
                      </div>
-                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-groups" role="tabpanel" aria-labelledby="v-pills-groups-tab">' . $categories . '</div>
-                        <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab">producers</div>
-                     </div>
+                  </div>
+                  <div class="col tab-content" id="v-pills-tabContent">
+                     <div class="tab-pane fade show active" id="v-pills-groups" role="tabpanel" aria-labelledby="v-pills-groups-tab"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
+                     <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab"><ul class="list-group list-group-flush">' . $producers . '</ul></div>
                   </div>
                </div>',
             ],

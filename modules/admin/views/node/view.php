@@ -36,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'category_id',
                 'label' => Yii::t('app', 'Category'),
                 'format' => 'html',
-                'value' => function ($data) {
-                    return Html::a($data->category->name, ['/admin/category/view', 'id' => $data->category->id]);
+                'value' => function ($model) {
+                    return Html::a($model->category->name, ['/admin/category/view', 'id' => $model->category->id]);
                 },
             ],
         ],

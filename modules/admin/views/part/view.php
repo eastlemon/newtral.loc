@@ -37,15 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'producer_id',
                 'label' => Yii::t('app', 'Producer'),
                 'format' => 'html',
-                'value' => function ($data) {
-                    return Html::a($data->producer->name, ['/admin/producer/view', 'id' => $data->producer->id]);
+                'value' => function ($model) {
+                    return Html::a($model->producer->name, ['/admin/producer/view', 'id' => $model->producer->id]);
                 },
             ],
             [
                 'attribute' => 'pictures',
                 'format' => 'html',
-                'value' => function ($data) {
-                    if (!empty($pictures = $data->partPictures)) {
+                'value' => function ($model) {
+                    if (!empty($pictures = $model->partPictures)) {
                         foreach ($pictures as $picture) {
                             $_return .= Html::img('/uploads/' . $picture->picture, ['width' => '140px']);
                         }
@@ -56,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'offers',
                 'format' => 'html',
-                'value' => function ($data) {
-                    if (!empty($offers = $data->offers)) {
+                'value' => function ($model) {
+                    if (!empty($offers = $model->offers)) {
                         foreach ($offers as $offer) {
                             $_return .= '<p>' . $offer->price . '</p>';
                         }
@@ -68,8 +68,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'certificates',
                 'format' => 'html',
-                'value' => function ($data) {
-                    if (!empty($certificates = $data->certificates)) {
+                'value' => function ($model) {
+                    if (!empty($certificates = $model->certificates)) {
                         foreach ($certificates as $certificate) {
                             $_return .= '<p>' . $certificate->name . '</p>';
                         }

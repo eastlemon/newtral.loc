@@ -17,7 +17,7 @@ class ProducerSearch extends Producer
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id'/*, 'in_menu'*/], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class ProducerSearch extends Producer
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            //'in_menu' => $this->in_menu,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

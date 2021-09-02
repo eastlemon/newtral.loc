@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'picture',
                 'format' => 'html',    
-                'value' => function ($data) {
-                    $data['picture'] ? $picture = '/uploads/' . $data['picture'] : $picture = '/images/noImage.png';
+                'value' => function ($model) {
+                    $model['picture'] ? $picture = '/uploads/' . $model['picture'] : $picture = '/images/noImage.png';
                     return Html::img($picture, ['width' => '140px']);
                 },
             ],
@@ -41,8 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'parent_id',
                 'label' => Yii::t('app', 'Parent'),
                 'format' => 'html',
-                'value' => function ($data) {
-                    return $data->parent ? '<a href="/admin/category/view?id=' . $data->parent->id . '">' . $data->parent->name . '</a>' : Yii::t('app', 'Root');
+                'value' => function ($model) {
+                    return $model->parent ? '<a href="/admin/category/view?id=' . $model->parent->id . '">' . $model->parent->name . '</a>' : Yii::t('app', 'Root');
                 },
             ],
         ],

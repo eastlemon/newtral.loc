@@ -9,11 +9,14 @@ use Yii;
  *
  * @property int $id
  * @property string|null $name
+ * @property string $slug
  * @property string|null $picture
  * @property int|null $parent_id
  *
  * @property Category $parent
  * @property Category[] $categories
+ * @property Node[] $nodes
+ * @property Unit[] $units
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -31,10 +34,11 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['slug'], 'required'],
+            [['slug'], 'string'],
             [['parent_id'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'picture'], 'string', 'max' => 255],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parent_id' => 'id']],
-            [['picture'], 'file'],
         ];
     }
 
@@ -46,6 +50,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
             'picture' => Yii::t('app', 'Picture'),
             'parent_id' => Yii::t('app', 'Parent ID'),
         ];
@@ -71,8 +76,28 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(Category::className(), ['parent_id' => 'id']);
     }
 
-    public function getRoots()
+    /**
+     * Gets query for [[Nodes]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNodes()
     {
-        return $this->find()->where(['parent_id' => null])->all();
+        return $this->hasMany(Node::className(), ['category_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Units]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnits()
+    {
+        return $this->hasMany(Unit::className(), ['category_id' => 'id']);
+    }
+
+    public static function getRoots()
+    {
+        return self::find()->where(['parent_id' => null])->all();
     }
 }

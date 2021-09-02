@@ -17,7 +17,16 @@ footer.jumbotron {
   cursor: pointer;
 }
 
+.navbar .container {
+  align-items: baseline;
+}
+
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
 /*---------------------megamenu---------------------*/
+
 .megamenu > .dropdown-menu {
   box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
 }

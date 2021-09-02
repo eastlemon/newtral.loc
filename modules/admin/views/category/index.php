@@ -29,15 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'picture',
                 'format' => 'html',    
-                'value' => function ($data) {
-                    $data['picture'] ? $picture = '/uploads/' . $data['picture'] : $picture = '/images/noImage.png';
+                'value' => function ($model) {
+                    $model['picture'] ? $picture = '/uploads/' . $model['picture'] : $picture = '/images/noImage.png';
                     return Html::img($picture, ['width' => '70px']);
                 },
             ],
             [
                 'attribute' => 'parent_id',
-                'value' => function ($data) {
-                    return $data->parent->name ?: Yii::t('app', 'Root');
+                'value' => function ($model) {
+                    return $model->parent->name ?: Yii::t('app', 'Root');
                 },
             ],
 

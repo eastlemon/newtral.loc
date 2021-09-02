@@ -25,13 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'name',
+            [
+                'attribute' => 'in_menu',
+                'value' => function ($model) {
+                    return $model->in_menu ? 'Да' : 'Нет';
+                },
+                'contentOptions' => ['style' => 'width:1px;'],
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
                 'contentOptions' => ['style' => 'width:67px; text-align:center;'],
             ],
         ],
-    ]); ?>
-
+    ]) ?>
 
 </div>
