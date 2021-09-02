@@ -17,9 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?php echo Html::encode($this->title); ?></h1>
 
-    <p>
-        <?php echo Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']); ?>
-    </p>
+    <p><?php echo Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']); ?></p>
+    
     <?php Pjax::begin(['timeout' => 10000]); ?>
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,

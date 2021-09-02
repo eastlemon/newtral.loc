@@ -11,11 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="certificate-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Certificate'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <p><?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
 
 
     <?= GridView::widget([

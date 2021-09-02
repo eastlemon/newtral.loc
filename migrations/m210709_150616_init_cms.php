@@ -12,6 +12,8 @@ class m210709_150616_init_cms extends Migration
     //php yii migrate --migrationPath=@vendor/yii2mod/yii2-settings/migrations
     //php yii migrate --migrationPath=@vendor/yii2mod/yii2-comments/migrations
     //php yii rbac/migrate
+    //php yii settings/set-defaults
+    // after registration -- php yii role/asset admin 1
 
     /**
      * {@inheritdoc}

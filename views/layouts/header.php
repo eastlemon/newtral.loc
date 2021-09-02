@@ -4,7 +4,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\ActiveForm;
-use app\models\Search;
+use app\models\SearchModel;
 use app\models\Category;
 use app\models\Office;
 ?>
@@ -84,7 +84,7 @@ elseif (Yii::$app->user->can('user')) foreach ($categoryRoots as $item) $categor
                      <div class="col-4 sidebar">
                         <div class="list-group flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                            <a class="list-group-item list-group-item-action active" id="v-pills-groups-tab" data-toggle="pill" href="#v-pills-groups" role="tab" aria-controls="v-pills-groups" aria-selected="true">' . Yii::t('app', 'Groups') . '</a>
-                           <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Manufacturers') . '</a>
+                           <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Producers') . '</a>
                         </div>
                      </div>
                      <div class="tab-content" id="v-pills-tabContent">
@@ -111,7 +111,7 @@ elseif (Yii::$app->user->can('user')) foreach ($categoryRoots as $item) $categor
          ['label' => Yii::t('app', 'Contacts'), 'url' => ['/site/contact']],
       ],
    ]) ?>
-   <?php $searchModel = new Search(); ?>
+   <?php $searchModel = new SearchModel(); ?>
    <?php $form = ActiveForm::begin([
       'method' => 'get',
       'action' => ['/search'],

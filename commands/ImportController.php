@@ -4,8 +4,8 @@ namespace app\commands;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use app\models\Producer;
-use app\models\Product;
-use app\models\Productpicture;
+use app\models\Part;
+use app\models\PartPicture;
 
 class ImportController extends Controller
 {
@@ -24,7 +24,7 @@ class ImportController extends Controller
         foreach ($oxml->Каталог->Товары->Товар as $item) {
             $producer = $item->Изготовитель->Наименование;
             
-            $product = new Product();
+            $product = new Part();
             $product->name = $item->Наименование;
             $product->articule = $item->Артикул;
             $product->description = $item->Описание;
@@ -33,7 +33,7 @@ class ImportController extends Controller
 
             if ($_pp = $item->Картинка) {
                 foreach ($_pp as $p) {
-                    $pp = new Productpicture();
+                    $pp = new PartPicture();
                     $pp->picture = $item->Ид . '.jpg';
                     $pp->product_id = $product->id;
                     $pp->save(false);

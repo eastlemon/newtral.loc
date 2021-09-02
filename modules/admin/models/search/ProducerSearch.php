@@ -1,15 +1,15 @@
 <?php
 
-namespace app\models;
+namespace app\modules\admin\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Category;
+use app\models\Producer;
 
 /**
- * CategorySearch represents the model behind the search form of `app\models\Category`.
+ * ProducerSearch represents the model behind the search form of `app\models\Producer`.
  */
-class CategorySearch extends Category
+class ProducerSearch extends Producer
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id', 'parent_id'], 'integer'],
-            [['name', 'picture'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = Producer::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,9 @@ class CategorySearch extends Category
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'parent_id' => $this->parent_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'picture', $this->picture]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

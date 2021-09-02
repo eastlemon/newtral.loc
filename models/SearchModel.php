@@ -5,9 +5,9 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\model\Product;
+use app\models\Part;
 
-class Search extends Model
+class SearchModel extends Model
 {
     public $search;
 
@@ -27,7 +27,7 @@ class Search extends Model
 
     public function search($params)
     {
-        $query = Product::find();
+        $query = Part::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

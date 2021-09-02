@@ -45,6 +45,9 @@ $config = [
                 ],
             ],
         ],
+        'settings' => [
+            'class' => 'yii2mod\settings\components\Settings',
+        ],
     ],
     'modules' => [
         'user' => [
