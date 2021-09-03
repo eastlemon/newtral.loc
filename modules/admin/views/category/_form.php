@@ -15,6 +15,8 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'picture')->fileInput() ?>
 
     <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [

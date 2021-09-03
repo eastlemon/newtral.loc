@@ -24,8 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
 
-            //'id',
             'name',
+            'slug',
             [
                 'attribute' => 'picture',
                 'format' => 'html',    

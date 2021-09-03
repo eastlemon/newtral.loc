@@ -25,6 +25,14 @@ footer.jumbotron {
   position: absolute;
 }
 
+.field-searchmodel-search {
+  margin-bottom: 0px;
+}
+
+ul.auth-clients {
+  padding-left: 0px;
+}
+
 /*---------------------megamenu---------------------*/
 
 .megamenu > .dropdown-menu {

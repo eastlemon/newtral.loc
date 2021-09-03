@@ -30,10 +30,10 @@ use app\models\SearchModel;
                   <?php if (Yii::$app->user->can('admin')): ?>
                      <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php else: ?>
-                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/cabinet"><?= Yii::t('app', 'Cabinet') ?></a>&nbsp;|&nbsp;<?= Html::a(Yii::t('app', 'Logout'), Url::to(['site/logout']), ['data-method' => 'POST']) ?>
+                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/cabinet"><?= Yii::t('app', 'Cabinet') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php endif; ?>
                <?php else: ?>
-                  <i class="fas fa-key"></i>&nbsp;<a href="/site/login"><?= Yii::t('app', 'Enter') ?></a>&nbsp;|&nbsp;<a href="/site/signup"><?= Yii::t('app', 'Signup') ?></a>
+                  <i class="fas fa-key"></i>&nbsp;<a href="/site/login"><?= Yii::t('app', 'Enter') ?></a></a>
                <?php endif; ?>
             </div>
          </div>
@@ -52,7 +52,7 @@ use app\models\SearchModel;
                <span style="text-align: center;"><?= Html::a('<small><i class="fas fa-phone"></i> Заказать звонок</small>', ['#'], ['class' => 'btn btn-block btn-primary', 'title' => 'Заказать звонок']) ?></span>
             </div>
             <div class="col-3 text-right">
-               <small class="text-muted"><i class="fas fa-shopping-cart"></i>&nbsp;<a href="/cart">В корзине ничего нет</a></small>
+               <i class="fas fa-shopping-cart"></i>&nbsp;<a href="/cart"><?= Yii::t('app', 'Empty Cart') ?></a>
             </div>
          </div>
       </div>

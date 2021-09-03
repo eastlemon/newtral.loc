@@ -1,5 +1,8 @@
 <?php
 return [
+    'Parent ID' => 'Родительский ИД',
+    'Slug' => 'Слаг',
+    'Empty Cart' => 'Корзина пуста',
     'In Menu' => 'В меню',
     'Delete' => 'Удалить',
     'Update' => 'Обновить',

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "category".
  *
  * @property int $id
- * @property string|null $name
+ * @property string $name
  * @property string $slug
  * @property string|null $picture
  * @property int|null $parent_id
@@ -34,11 +34,11 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['slug'], 'required'],
-            [['slug'], 'string'],
+            [['name'], 'required'],
             [['parent_id'], 'integer'],
-            [['name', 'picture'], 'string', 'max' => 255],
+            [['name', 'slug'], 'string', 'max' => 255],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parent_id' => 'id']],
+            [['slug'], 'unique'],
         ];
     }
 
@@ -99,5 +99,17 @@ class Category extends \yii\db\ActiveRecord
     public static function getRoots()
     {
         return self::find()->where(['parent_id' => null])->all();
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->slug = \yii\helpers\Inflector::slug($this->name);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

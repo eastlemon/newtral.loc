@@ -87,6 +87,10 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@yii2mod/settings/messages',
                 ],
+                'yii2mod.user' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/user/messages',
+                ],
             ],
         ],
         'authManager' => [
@@ -95,6 +99,16 @@ $config = [
         'formatter' => [
             'thousandSeparator' => '&nbsp;',
             'currencyCode' => '₽',
+        ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'vk' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => '',
+                    'clientSecret' => '',
+                ],
+            ],
         ],
     ],
     'modules' => [
