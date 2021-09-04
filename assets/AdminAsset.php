@@ -12,8 +12,8 @@ class AdminAsset extends \yii\web\AssetBundle
         'js/admin.js'
     ];
     public $depends = [
-        //'yii\web\YiiAsset',
-        //'yii\bootstrap\BootstrapAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapAsset',
         'rmrevin\yii\fontawesome\CdnFreeAssetBundle',
     ];
 }

@@ -1,82 +1,40 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="<?=$assetDir?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="/admin" class="brand-link">
+        <img src="/images/admin-logo.png" class="brand-image img-circle elevation-3 bg-white" style="opacity: .8">
+        <span class="brand-text font-weight-light"><?= Yii::t('app', 'Control') ?></span>
     </a>
-
-    <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
+            <div class="image text-white bg-dark"><i class="fas fa-user-circle fa-2x"></i></div>
+            <div class="info"><a href="/site/cabinet" class="d-block"><?= Yii::$app->user->identity->username ?></a></div>
         </div>
-
-        <!-- SidebarSearch Form -->
-        <!-- href be escaped -->
-        <!-- <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <?php
-            echo \hail812\adminlte\widgets\Menu::widget([
+            <?= \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
+                    ['label' => Yii::t('app', 'Parts'), 'icon' => 'ring', 'url' => ['/admin/part'], 'active' => $this->context->id == 'part'],
+                    ['label' => Yii::t('app', 'Nodes'), 'icon' => 'cube', 'url' => ['/admin/node'], 'active' => $this->context->id == 'node'],
+                    ['label' => Yii::t('app', 'Units'), 'icon' => 'cubes', 'url' => ['/admin/unit'], 'active' => $this->context->id == 'unit'],
+
+                    ['label' => Yii::t('app', 'Administration'), 'header' => true],
+                    ['label' => Yii::t('app', 'Offices'), 'icon' => 'building', 'url' => ['/admin/office'], 'active' => $this->context->id == 'office'],
+                    ['label' => Yii::t('app', 'Stores'), 'icon' => 'store', 'url' => ['/admin/store'], 'active' => $this->context->id == 'store'],
+
+                    ['label' => Yii::t('app', 'Subdivisions'), 'header' => true],
+                    ['label' => Yii::t('app', 'Categories'), 'icon' => 'object-group', 'url' => ['/admin/category'], 'active' => $this->context->id == 'category'],
+                    ['label' => Yii::t('app', 'Producers'), 'icon' => 'industry', 'url' => ['/admin/producer'], 'active' => $this->context->id == 'producer'],
+                    
+                    ['label' => Yii::t('app', 'Other'), 'header' => true],
+                    ['label' => Yii::t('app', 'Certificates'), 'icon' => 'certificate', 'url' => ['/admin/certificate'], 'active' => $this->context->id == 'certificate'],
                     [
-                        'label' => 'Starter Pages',
-                        'icon' => 'tachometer-alt',
-                        'badge' => '<span class="right badge badge-info">2</span>',
+                        'label' => Yii::t('app', 'Settings'),
+                        'icon' => 'cogs',
                         'items' => [
-                            ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                            ['label' => Yii::t('app', 'List'), 'url' => ['/admin/settings-storage'], 'iconStyle' => 'far'],
+                            ['label' => Yii::t('app', 'Slides'), 'url' => ['/admin/slide'], 'iconStyle' => 'far'],
                         ]
                     ],
-                    ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                    ['label' => 'MULTI LEVEL EXAMPLE', 'header' => true],
-                    ['label' => 'Level1'],
-                    [
-                        'label' => 'Level1',
-                        'items' => [
-                            ['label' => 'Level2', 'iconStyle' => 'far'],
-                            [
-                                'label' => 'Level2',
-                                'iconStyle' => 'far',
-                                'items' => [
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                                ]
-                            ],
-                            ['label' => 'Level2', 'iconStyle' => 'far']
-                        ]
-                    ],
-                    ['label' => 'Level1'],
-                    ['label' => 'LABELS', 'header' => true],
-                    ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
                 ],
-            ]);
-            ?>
+            ]) ?>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>

@@ -8,7 +8,10 @@ $config = [
     'name' => 'Запчасти на трал',
     'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'app\config\bootstrap'
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -139,7 +142,13 @@ $config = [
                     ],
                 ],
                 'settings-storage' => [
-                    'class' => 'yii2mod\settings\Module',
+                    'class' => 'app\modules\settings\Module',
+                    'controllerMap' => [
+                        'default' => [
+                            'class' => 'app\modules\settings\controllers\DefaultController',
+                            'layout' => '@app/modules/admin/views/layouts/main',
+                        ],
+                    ],
                 ],
             ],
         ],
