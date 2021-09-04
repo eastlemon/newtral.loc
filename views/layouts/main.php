@@ -1,9 +1,9 @@
 <?php
-use app\assets\AppAsset;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Breadcrumbs;
 use yii2mod\notify\BootstrapNotify;
-AppAsset::register($this);
+
+\app\assets\AppAsset::register($this);
 ?>
 <?php $this->beginPage(); ?>
     <!DOCTYPE html>

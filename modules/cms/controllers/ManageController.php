@@ -10,7 +10,6 @@ use yii\web\UnprocessableEntityHttpException;
 use yii\web\UploadedFile;
 use app\modules\cms\models\AttachmentModel;
 use app\modules\cms\models\CmsModel;
-use yii2mod\editable\EditableAction;
 
 class ManageController extends Controller
 {
@@ -81,19 +80,6 @@ class ManageController extends Controller
         return [
             'verbs' => $this->verbFilterConfig,
             'access' => $this->accessControlConfig,
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function actions(): array
-    {
-        return [
-            'edit-page' => [
-                'class' => EditableAction::class,
-                'modelClass' => CmsModel::class,
-            ],
         ];
     }
 

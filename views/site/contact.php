@@ -4,7 +4,6 @@ use yii\captcha\Captcha;
 use yii\bootstrap4\Html;
 use yii\helpers\ArrayHelper;
 use yii2mod\comments\widgets\Comment;
-use vova07\imperavi\Widget;
 
 $this->title = $cmsModel->meta_title;
 $this->registerMetaTag(['name' => 'keywords', 'content' => $cmsModel->meta_keywords]);

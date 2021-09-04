@@ -1,13 +1,8 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
-use vova07\imperavi\Widget;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Node */
-/* @var $form yii\widgets\ActiveForm */
+use dosamigos\ckeditor\CKEditor;
 ?>
 
 <div class="node-form">
@@ -20,14 +15,7 @@ use vova07\imperavi\Widget;
 
     <?= $form->field($model, 'articul')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->widget(Widget::className(), [
-        'settings' => [
-            'minHeight' => 200,
-            'plugins' => [
-                'fullscreen',
-            ],
-        ],
-    ]) ?>
+    <?= $form->field($model, 'description')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
 
     <?= $form->field($model, 'category_id')->widget(Select2::classname(), [
         'data' => $data,

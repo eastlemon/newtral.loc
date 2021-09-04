@@ -1,13 +1,8 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
-use vova07\imperavi\Widget;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Store */
-/* @var $form yii\widgets\ActiveForm */
+use dosamigos\ckeditor\CKEditor;
 ?>
 
 <div class="store-form">
@@ -16,14 +11,7 @@ use vova07\imperavi\Widget;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'address')->widget(Widget::className(), [
-        'settings' => [
-            'minHeight' => 200,
-            'plugins' => [
-                'fullscreen',
-            ],
-        ],
-    ]) ?>
+    <?= $form->field($model, 'address')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
     
     <?= $form->field($model, 'delivery')->textInput(['maxlength' => true]) ?>
 

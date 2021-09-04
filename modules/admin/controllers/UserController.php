@@ -9,7 +9,6 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
-use yii2mod\editable\EditableAction;
 
 /**
  * Class UserController
@@ -49,11 +48,6 @@ class UserController extends Controller
     public function actions(): array
     {
         return [
-            'edit-user' => [
-                'class' => EditableAction::class,
-                'modelClass' => UserModel::class,
-                'forceCreate' => false,
-            ],
             'index' => [
                 'class' => 'yii2tech\admin\actions\Index',
                 'newSearchModel' => function () {

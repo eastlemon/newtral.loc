@@ -1,9 +1,4 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $model \yii2mod\cms\models\CmsModel */
-/* @var $commentWidgetParams array */
-
 use yii\helpers\ArrayHelper;
 use yii2mod\comments\widgets\Comment;
 

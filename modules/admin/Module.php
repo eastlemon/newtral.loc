@@ -6,9 +6,7 @@ use yii2mod\rbac\filters\AccessControl;
 class Module extends \yii\base\Module
 {
     public $defaultRoute = 'cms';
-
     public $layout = 'main';
-
     public $controllerNamespace = 'app\modules\admin\controllers';
 
     public function behaviors(): array

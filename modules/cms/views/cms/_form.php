@@ -1,15 +1,11 @@
 <?php
-
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use app\modules\cms\models\enumerables\CmsStatus;
 use app\modules\cms\Widget;
 use yii2mod\markdown\MarkdownEditor;
-
-/* @var $this yii\web\View */
-/* @var $model yii2mod\cms\models\CmsModel */
-/* @var $form yii\widgets\ActiveForm */
 ?>
+
 <div class="cms-model-form">
     <div class="row">
         <div class="col-md-12">
