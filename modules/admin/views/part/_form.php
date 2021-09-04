@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
+use vova07\imperavi\Widget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Part */
@@ -19,7 +20,14 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'articul')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->widget(Widget::className(), [
+        'settings' => [
+            'minHeight' => 200,
+            'plugins' => [
+                'fullscreen',
+            ],
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'producer_id')->widget(Select2::classname(), [
         'data' => $data,

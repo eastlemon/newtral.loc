@@ -17,8 +17,8 @@ class ProducerSearch extends Producer
     public function rules()
     {
         return [
-            [['id'/*, 'in_menu'*/], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'in_menu'], 'integer'],
+            [['name', 'slug'], 'safe'],
         ];
     }
 
@@ -59,10 +59,11 @@ class ProducerSearch extends Producer
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            //'in_menu' => $this->in_menu,
+            'in_menu' => $this->in_menu,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'slug', $this->slug]);
 
         return $dataProvider;
     }

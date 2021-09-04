@@ -18,8 +18,8 @@ $this->title = Yii::t('app', 'My Account');
 
                 <div class="panel-body">
                     <?php $form = ActiveForm::begin(['id' => 'change-password-form']); ?>
-                    <?php echo $form->field($resetPasswordForm, 'password')->passwordInput(); ?>
-                    <?php echo $form->field($resetPasswordForm, 'confirmPassword')->passwordInput(); ?>
+                    <?= $form->field($resetPasswordForm, 'password')->passwordInput() ?>
+                    <?= $form->field($resetPasswordForm, 'confirmPassword')->passwordInput() ?>
                     <div class="form-group">
                         <?php echo Html::resetButton(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default']); ?>
                         <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']); ?>

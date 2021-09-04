@@ -15,13 +15,13 @@ use yii2mod\user\models\enums\UserStatus;
 
     <div class="row">
         <div class="col-md-6">
-            <?php echo $form->field($model, 'username')->textInput(['maxlength' => 255]); ?>
+            <?= $form->field($model, 'username')->textInput(['maxlength' => 255]) ?>
 
-            <?php echo $form->field($model, 'email')->textInput(['maxlength' => 255]); ?>
+            <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
 
-            <?php echo $form->field($model, 'status')->dropDownList(UserStatus::listData()); ?>
+            <?= $form->field($model, 'status')->dropDownList(UserStatus::listData()) ?>
 
-            <?php echo $form->field($model, 'plainPassword')->passwordInput(['autocomplete' => 'off']); ?>
+            <?= $form->field($model, 'plainPassword')->passwordInput(['autocomplete' => 'off']) ?>
         </div>
     </div>
 

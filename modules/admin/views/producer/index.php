@@ -23,14 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
 
-            //'id',
             'name',
+            'slug',
             [
                 'attribute' => 'in_menu',
                 'value' => function ($model) {
                     return $model->in_menu ? 'Да' : 'Нет';
                 },
                 'contentOptions' => ['style' => 'width:1px;'],
+                'filter' => [
+                    0 => 'Нет',
+                    1 => 'Да',
+                ],
             ],
 
             [

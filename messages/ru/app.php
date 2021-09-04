@@ -1,5 +1,13 @@
 <?php
 return [
+    'Offer' => 'Предложение',
+    'Certificate IDs' => 'Сертификаты',
+    'Store ID' => 'Склад',
+    'Price' => 'Стоимость',
+    'Amount' => 'Количество',
+    'Description' => 'Описание',
+    'Category ID' => 'Категория',
+    'Producer ID' => 'Производитель',
     'Parent ID' => 'Родительский ИД',
     'Slug' => 'Слаг',
     'Empty Cart' => 'Корзина пуста',

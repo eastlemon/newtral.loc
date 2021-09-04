@@ -4,6 +4,7 @@ use yii\captcha\Captcha;
 use yii\bootstrap4\Html;
 use yii\helpers\ArrayHelper;
 use yii2mod\comments\widgets\Comment;
+use vova07\imperavi\Widget;
 
 $this->title = $cmsModel->meta_title;
 $this->registerMetaTag(['name' => 'keywords', 'content' => $cmsModel->meta_keywords]);
@@ -21,13 +22,20 @@ $this->params['breadcrumbs'][] = $cmsModel->title;
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-            <?php echo $form->field($model, 'name'); ?>
-            <?php echo $form->field($model, 'email'); ?>
-            <?php echo $form->field($model, 'subject'); ?>
-            <?php echo $form->field($model, 'body')->textArea(['rows' => 6]); ?>
-            <?php echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
+            <?= $form->field($model, 'name') ?>
+            <?= $form->field($model, 'email') ?>
+            <?= $form->field($model, 'subject') ?>
+            <?= $form->field($model, 'body')->widget(Widget::className(), [
+                'settings' => [
+                    'minHeight' => 200,
+                    'plugins' => [
+                        'fullscreen',
+                    ],
+                ],
+            ]) ?>
+            <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
                 'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-            ]); ?>
+            ]) ?>
             <div class="form-group">
                 <?php echo Html::submitButton(Yii::t('contact', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']); ?>
             </div>

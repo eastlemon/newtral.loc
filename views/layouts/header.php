@@ -60,8 +60,8 @@ use app\models\SearchModel;
 </div>
 
 <?php
-foreach (\app\models\Category::getRoots() as $item) $categories .= '<li class="list-group-item list-group-item-action"><a href="category/' . $item->slug . '">' . $item->name . '</a></li>';
-foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<li class="list-group-item list-group-item-action"><a href="producer/' . $item->slug . '">' . $item->name . '</a></li>';
+   foreach (\app\models\Category::getRoots() as $item) $categories .= '<a class="list-group-item list-group-item-action" href="/category/' . $item->slug . '">' . $item->name . '</a>';
+   foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<a class="list-group-item list-group-item-action" href="/producer/' . $item->slug . '">' . $item->name . '</a>';
 ?>
 
 <?php NavBar::begin(['options' => [
@@ -94,7 +94,7 @@ foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<li class
             'items' => [
                '<div class="container">
                   <div class="col-md-8"><div class="demo-trailer"></div></div>
-                  <div class="col-md-4"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
+                  <div class="col-md-4"><div class="list-group"' . $categories . '</div></div>
                </div>',
             ],
             'options' => ['class' => 'nav-item dropdown megamenu'],

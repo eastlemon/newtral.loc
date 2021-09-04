@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
+            'slug',
             [
                 'attribute' => 'in_menu',
                 'value' => function ($model) {

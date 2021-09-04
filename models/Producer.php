@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "producer".
@@ -15,7 +17,7 @@ use Yii;
  * @property Part[] $parts
  * @property Unit[] $units
  */
-class Producer extends \yii\db\ActiveRecord
+class Producer extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -31,10 +33,26 @@ class Producer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['slug'], 'required'],
             [['slug'], 'string'],
             [['in_menu'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['slug'], 'unique'],
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
+                    //ActiveRecord::EVENT_AFTER_UPDATE => 'slug',
+                ],
+                'ensureUnique' => true,
+            ]
         ];
     }
 

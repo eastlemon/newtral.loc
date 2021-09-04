@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "unit".
@@ -19,7 +21,7 @@ use Yii;
  * @property Producer $producer
  * @property UnitNode[] $unitNodes
  */
-class Unit extends \yii\db\ActiveRecord
+class Unit extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -35,12 +37,29 @@ class Unit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'articul', 'category_id', 'producer_id'], 'required'],
+            [['name', 'articul', 'category_id', 'producer_id'], 'required'],
             [['description'], 'string'],
             [['category_id', 'producer_id'], 'integer'],
             [['name', 'slug', 'articul'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
+            [['slug'], 'unique'],
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
+                    //ActiveRecord::EVENT_AFTER_UPDATE => 'slug',
+                ],
+                'ensureUnique' => true,
+            ]
         ];
     }
 

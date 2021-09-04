@@ -150,7 +150,7 @@ AdminAsset::register($this);
                     ]); ?>
                     <div class="row">
                         <div class="col-lg-12">
-                            <?php echo $content; ?>
+                            <?= $content ?>
                         </div>
                     </div>
                 </div>

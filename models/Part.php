@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\db\Query;
+use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "part".
@@ -22,7 +24,7 @@ use yii\db\Query;
  * @property PartPicture[] $partPictures
  * @property PartSpec[] $partSpecs
  */
-class Part extends \yii\db\ActiveRecord
+class Part extends ActiveRecord
 {
     public $picture, $offer, $certificate_ids;
 
@@ -40,7 +42,7 @@ class Part extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'articul', 'producer_id'], 'required'],
+            [['name', 'articul', 'producer_id'], 'required'],
             [['description'], 'string'],
             [['producer_id'], 'integer'],
             [['name', 'slug', 'articul'], 'string', 'max' => 255],
@@ -49,6 +51,22 @@ class Part extends \yii\db\ActiveRecord
             [['offer'], 'number'],
             [['certificate_ids'], 'safe'],
             [['slug'], 'unique'],
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
+                    //ActiveRecord::EVENT_AFTER_UPDATE => 'slug',
+                ],
+                'ensureUnique' => true,
+            ]
         ];
     }
 
@@ -63,7 +81,10 @@ class Part extends \yii\db\ActiveRecord
             'slug' => Yii::t('app', 'Slug'),
             'articul' => Yii::t('app', 'Articul'),
             'description' => Yii::t('app', 'Description'),
+            'picture' => Yii::t('app', 'Picture'),
             'producer_id' => Yii::t('app', 'Producer ID'),
+            'certificate_ids' => Yii::t('app', 'Certificate IDs'),
+            'offer' => Yii::t('app', 'Offer'),
         ];
     }
 

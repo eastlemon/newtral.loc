@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "category".
@@ -18,7 +20,7 @@ use Yii;
  * @property Node[] $nodes
  * @property Unit[] $units
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -39,6 +41,22 @@ class Category extends \yii\db\ActiveRecord
             [['name', 'slug'], 'string', 'max' => 255],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parent_id' => 'id']],
             [['slug'], 'unique'],
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name',
+                'slugAttribute' => 'slug',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
+                    //ActiveRecord::EVENT_AFTER_UPDATE => 'slug',
+                ],
+                'ensureUnique' => true,
+            ]
         ];
     }
 
@@ -99,17 +117,5 @@ class Category extends \yii\db\ActiveRecord
     public static function getRoots()
     {
         return self::find()->where(['parent_id' => null])->all();
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if ($insert) {
-                $this->slug = \yii\helpers\Inflector::slug($this->name);
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 }

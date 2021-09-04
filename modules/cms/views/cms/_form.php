@@ -15,29 +15,29 @@ use yii2mod\markdown\MarkdownEditor;
         <div class="col-md-12">
             <?php $form = ActiveForm::begin(['id' => 'cms-form']); ?>
 
-            <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]); ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
             <?php if (Yii::$app->getModule('cms')->enableMarkdown): ?>
-                <?php echo $form->field($model, 'markdown_content')->widget(MarkdownEditor::class, [
+                <?= $form->field($model, 'markdown_content')->widget(MarkdownEditor::class, [
                     'editorOptions' => Yii::$app->getModule('cms')->markdownEditorOptions,
-                ]); ?>
+                ]) ?>
             <?php else: ?>
-                <?php echo $form->field($model, 'content')->widget(Widget::class, Yii::$app->getModule('cms')->editorOptions); ?>
+                <?= $form->field($model, 'content')->widget(Widget::class, Yii::$app->getModule('cms')->editorOptions) ?>
             <?php endif; ?>
 
-            <?php echo $form->field($model, 'url', [
+            <?= $form->field($model, 'url', [
                 'inputTemplate' => '<div class="input-group"><span class="input-group-addon">' . Yii::$app->urlManager->hostInfo . '/' . '</span>{input}</div>',
-            ])->textInput(['maxlength' => 255])->hint(Yii::t('yii2mod.cms', 'This one accepts only letters, numbers, dash and slash, i.e. "docs/installation".')); ?>
+            ])->textInput(['maxlength' => 255])->hint(Yii::t('yii2mod.cms', 'This one accepts only letters, numbers, dash and slash, i.e. "docs/installation".')) ?>
 
-            <?php echo $form->field($model, 'meta_title')->textInput(['maxlength' => true]); ?>
+            <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
-            <?php echo $form->field($model, 'meta_description')->textarea(['rows' => 6]); ?>
+            <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
 
-            <?php echo $form->field($model, 'meta_keywords')->textarea(['rows' => 6]); ?>
+            <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 6]) ?>
 
-            <?php echo $form->field($model, 'comment_available')->checkbox()->label(Yii::t('yii2mod.cms', 'Are comments available on the page?')); ?>
+            <?= $form->field($model, 'comment_available')->checkbox()->label(Yii::t('yii2mod.cms', 'Are comments available on the page?')) ?>
 
-            <?php echo $form->field($model, 'status')->dropDownList(CmsStatus::listData()); ?>
+            <?= $form->field($model, 'status')->dropDownList(CmsStatus::listData()) ?>
 
             <div class="form-group">
                 <?php echo Html::submitButton($model->isNewRecord ? Yii::t('yii2mod.cms', 'Create') : Yii::t('yii2mod.cms', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']); ?>
