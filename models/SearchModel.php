@@ -38,7 +38,7 @@ class SearchModel extends Model
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['=', 'articule', $this->search]);
+        $query->andFilterWhere(['like', 'articul', $this->search]);
 
         return $dataProvider;
     }

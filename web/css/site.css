@@ -85,3 +85,7 @@ ul.auth-clients {
 #carouselProductControls .carousel-item {
   height: 300px;
 }
+
+#myCarousel {
+  margin-top: -15px;
+}

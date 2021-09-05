@@ -4,14 +4,14 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
+use app\models\SearchModel;
 
 class SearchController extends Controller
 {
     public function actionIndex()
     {
         return $this->render('index', [
-            'search_string' => Yii::$app->request->queryParams
+            'searchProvider' => (new SearchModel)->search(Yii::$app->request->queryParams),
         ]);
     }
 }

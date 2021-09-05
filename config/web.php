@@ -57,7 +57,7 @@ $config = [
             'rules' => [
                 'producer/<slug:[\w-]+>' => 'producer/index',
                 'category/<slug:[\w-]+>' => 'category/index',
-                'part/<name:\w+>' => 'part/index',
+                'part/<name:[\w-]+>' => 'part/index',
                 'product/<name:\w+>' => 'product/index',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
@@ -102,9 +102,11 @@ $config = [
             'class' => 'yii\rbac\DbManager',
         ],
         'formatter' => [
-            'thousandSeparator' => '&nbsp;',
-            'currencyCode' => '₽',
-        ],
+            'dateFormat' => 'dd.MM.yyyy',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'RUB',
+       ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [

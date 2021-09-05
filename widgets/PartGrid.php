@@ -48,16 +48,16 @@ class PartGrid extends Widget
                     'attribute' => 'name',
                     'format' => 'html',
                     'value' => function ($data) {
-                        return '<p>' . $data->name . '</p><p class="mt-1">' . Html::a('<i class="fas fa-eye"></i>', Url::to($data->slug), ['class' => 'btn btn-success btn-sm']) . '&nbsp;' . Html::a('<i class="far fa-bookmark"></i>', Url::to('part/' . $data->slug), ['class' => 'btn btn-warning btn-sm']) . '</p>';
+                        return '<p>' . $data->name . '</p><p class="mt-1">' . Html::a('<i class="fas fa-eye"></i>', Url::to('part/' . $data->slug), ['class' => 'btn btn-success btn-sm']) . '&nbsp;' . Html::a('<i class="far fa-bookmark"></i>', Url::to('part/' . $data->slug), ['class' => 'btn btn-warning btn-sm']) . '</p>';
                     },
                     'label' => Yii::t('app', 'Name'),
                 ],
                 [
-                    'attribute' => 'Warehouse',
+                    'attribute' => 'warehouse',
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
-                            $_r .= '<p class="mb-1"><span class="border border-dark rounded-sm px-2">' . $offer->store->name . '</span></p>';
+                            $_r .= '<p class="mb-1 text-nowrap"><span class="border border-dark rounded-sm px-2">' . $offer->store->name . '</span></p>';
                             if (++$k >= 3) break;
                         }
                         return $_r;
@@ -66,7 +66,7 @@ class PartGrid extends Widget
                     'contentOptions' => ['style' => 'width:1px;'],
                 ],
                 [
-                    'attribute' => 'Availability',
+                    'attribute' => 'availability',
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
@@ -79,7 +79,7 @@ class PartGrid extends Widget
                     'contentOptions' => ['style' => 'width:1px;'],
                 ],
                 [
-                    'attribute' => 'Timing',
+                    'attribute' => 'timing',
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
@@ -92,7 +92,7 @@ class PartGrid extends Widget
                     'contentOptions' => ['style' => 'width:1px;'],
                 ],
                 [
-                    'attribute' => 'Price with VAT',
+                    'attribute' => 'price-with-vat',
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {

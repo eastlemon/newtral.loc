@@ -3,4 +3,8 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?php var_dump($model) ?>
+<div class="container">
+    <div class="search-view">
+        
+    </div>
+</div>
