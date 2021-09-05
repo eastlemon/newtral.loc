@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\widgets\ActiveForm;
 use yii2mod\user\models\enums\UserStatus;
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 
@@ -17,7 +17,7 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'picture')->fileInput() ?>
+    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
 
     <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [
         'data' => $data,

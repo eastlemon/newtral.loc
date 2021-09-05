@@ -1,6 +1,6 @@
 <?php
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use app\modules\cms\models\enumerables\CmsStatus;
 use app\modules\cms\Widget;
 use yii2mod\markdown\MarkdownEditor;

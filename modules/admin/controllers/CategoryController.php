@@ -3,13 +3,13 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Category;
-use app\modules\admin\models\search\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
+use app\modules\admin\models\search\CategorySearch;
+use app\models\Category;
 use app\models\UploadForm;
 
 /**

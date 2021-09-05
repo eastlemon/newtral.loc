@@ -8,12 +8,27 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
 
 /**
  * SlideController implements the CRUD actions for Slide model.
  */
 class SlideController extends Controller
 {
+    public $positions;
+
+    public function init()
+    {
+        parent::init();
+        
+        $this->positions = [
+            'left' => Yii::t('app', 'toLeft'),
+            'center' => Yii::t('app', 'toCenter'),
+            'right' => Yii::t('app', 'toRight'),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -65,13 +80,19 @@ class SlideController extends Controller
     public function actionCreate()
     {
         $model = new Slide();
+        $model->scenario = 'create';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadModel = new UploadForm();
+            $uploadModel->uploadFile = UploadedFile::getInstance($model, 'picture');
+            $model->picture = $uploadModel->upload();
+            
+            if ($model->save()) return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'positions' => $this->positions,
         ]);
     }
 
@@ -85,13 +106,19 @@ class SlideController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $_p = $model->picture;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $uploadModel = new UploadForm();
+            $uploadModel->uploadFile = UploadedFile::getInstance($model, 'picture');
+            ($p = $uploadModel->upload()) ? $model->picture = $p : $model->picture = $_p;
+            
+            if ($model->save()) return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'positions' => $this->positions,
         ]);
     }
 

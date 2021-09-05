@@ -30,8 +30,10 @@ class Slide extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['header', 'content', 'position', 'picture', 'link'], 'required'],
-            [['header', 'content', 'position', 'picture', 'link'], 'string'],
+            [['header', 'content', 'position', 'link'], 'required'],
+            [['header', 'content', 'position', 'link'], 'string'],
+            [['picture'], 'file'],
+            [['picture'], 'required', 'on' => 'create'],
         ];
     }
 

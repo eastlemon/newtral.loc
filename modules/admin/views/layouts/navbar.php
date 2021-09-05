@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 ?>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
@@ -52,7 +52,7 @@ use yii\helpers\Html;
             </a>
         </li>
         <li class="nav-item">
-            <?= Html::a('<i class="fas fa-globe-americas"></i>&nbsp;' . Yii::t('app', 'Go to the site'), ['/'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+            <?= Html::a('<i class="fas fa-globe-americas"></i>&nbsp;' . Yii::t('app', 'Go to the site'), ['/'], ['class' => 'nav-link']) ?>
         </li>
         <li class="nav-item">
             <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>

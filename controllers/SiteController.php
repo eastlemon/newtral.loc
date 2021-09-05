@@ -2,39 +2,29 @@
 
 namespace app\controllers;
 
-use app\models\forms\ContactForm;
-use app\models\forms\ResetPasswordForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii2mod\rbac\filters\AccessControl;
-use app\modules\cms\models\CmsModel;
 use yii\web\NotFoundHttpException;
+use yii2mod\rbac\filters\AccessControl;
 use yii2mod\user\traits\EventTrait;
-use yii\base\DynamicModel;
+use app\modules\cms\models\CmsModel;
+use app\models\forms\ContactForm;
+use app\models\forms\ResetPasswordForm;
+use app\models\Slide;
 
-/**
- * Class SiteController
- *
- * @package app\controllers
- */
 class SiteController extends Controller
 {
     use EventTrait;
+
     const EVENT_BEFORE_SIGNUP = 'beforeSignup';
     const EVENT_AFTER_SIGNUP = 'afterSignup';
 
     public $loginModelClass = 'yii2mod\user\models\LoginForm';
     public $signupModelClass = 'yii2mod\user\models\SignupForm';
 
-    /**
-     * @var array
-     */
     public $commentWidgetParams = [];
 
-    /**
-     * @inheritdoc
-     */
     public function behaviors(): array
     {
         return [
@@ -78,9 +68,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function actions(): array
     {
         return [
@@ -163,21 +150,13 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'slides' => Slide::find()->all(),
+        ]);
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return string|\yii\web\Response
-     */
     public function actionContact()
     {
         $model = new ContactForm();
@@ -203,11 +182,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays account page.
-     *
-     * @return string|\yii\web\Response
-     */
     public function actionAccount()
     {
         $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);

@@ -1,19 +1,14 @@
 <?php
-
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\widgets\DetailView;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Slide */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Slides'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="slide-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="slide-view">
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -30,10 +25,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'header:ntext',
-            'content:ntext',
-            'position:ntext',
-            'picture:ntext',
+            [
+                'attribute' => 'header',
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'content',
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'position',
+                'value' => function ($model) {
+                    return '<i class="fas fa-align-' . $model->position . '"></i>';
+                },
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'picture',
+                'format' => 'html',    
+                'value' => function ($model) {
+                    $model['picture'] ? $picture = '/uploads/' . $model['picture'] : $picture = '/images/noImage.png';
+                    return Html::img($picture, ['width' => '140px']);
+                },
+            ],
             'link:ntext',
         ],
     ]) ?>

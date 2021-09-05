@@ -1,5 +1,13 @@
 <?php
 return [
+    'View details' => 'Подробнее',
+    'Link' => 'Ссылка',
+    'Position' => 'Позиция',
+    'Content' => 'Содержание',
+    'Header' => 'Заголовок',
+    'toLeft' => 'Слева',
+    'toCenter' => 'По центру',
+    'toRight' => 'Справа',
     'Version' => 'Версия',
     'Slides' => 'Слайды',
     'Other' => 'Другое',
@@ -32,7 +40,7 @@ return [
     'Warehouse' => 'Склад',
     'Name' => 'Название',
     'Articul' => 'Артикул',
-    'Picture' => 'Фото',
+    'Picture' => 'Картинка',
     'Select...' => 'Выбор...',
     'Assignment' => 'Назначения',
     'Role' => 'Роли',

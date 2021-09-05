@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use dosamigos\ckeditor\CKEditor;
@@ -27,7 +27,7 @@ use dosamigos\ckeditor\CKEditor;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'picture')->fileInput() ?>
+    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
 
     <div class="row">
         <div class="col-md-6"><?= $form->field($modelOffer, 'amount')->textInput() ?></div>
