@@ -21,13 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
 
-            //'id',
             'name',
-            'address:ntext',
+            [
+                'attribute' => 'address',
+                'format' => 'raw',
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width:67px; text-align:center;'],
+                'template' => '{view}&nbsp;{update}&nbsp;{delete}',
+                'contentOptions' => ['style' => 'width:80px; text-align:center;'],
             ],
         ],
     ]); ?>

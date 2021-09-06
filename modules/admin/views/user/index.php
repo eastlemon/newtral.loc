@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'template' => '{switch} {update} {delete}',
+                    'template' => '{switch}&nbsp;{update}&nbsp;{delete}',
                     'buttons' => [
                         'switch' => function ($url, $model) {
                             $options = [
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a($icon, $url, $options);
                         },
                     ],
-                    'contentOptions' => ['style' => 'width:67px; text-align:center;'],
+                    'contentOptions' => ['style' => 'width:80px; text-align:center;'],
                 ],
             ],
         ]) ?>

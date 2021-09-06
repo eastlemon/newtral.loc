@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{download} {view} {update} {delete}',
+                'template' => '{download}&nbsp;{view}&nbsp;{update}&nbsp;{delete}',
                 'buttons' => [
                     'download' => function ($url, $model) {
                         $options = [
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a($icon, $url, $options);
                     },
                 ],
-                'contentOptions' => ['style' => 'width:87px; text-align:center;'],
+                'contentOptions' => ['style' => 'width:95px; text-align:center;'],
             ],
         ],
     ]); ?>

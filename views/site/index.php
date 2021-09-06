@@ -8,17 +8,16 @@ $this->title = Yii::t('app', 'Front Page');
     <ol class="carousel-indicators">
         <?php foreach ($slides as $slide): ?>
             <?php ++$_k; ?>
-            <li data-target="#myCarousel" data-slide-to="<?= $_k ?>" class="<?= ($_k == 1) ? 'active' : ''?>"></li>
+            <li data-target="#myCarousel" data-slide-to="<?= $_k-1 ?>" class="<?= ($_k == 1) ? 'active' : ''?>"></li>
         <?php endforeach; ?>
     </ol>
     <div class="carousel-inner">
         <?php if ($slides): ?>
             <?php foreach ($slides as $slide): ?>
                 <?php ++$k; ?>
-                <div class="carousel-item<?= ($k == 1) ? ' active' : ''?>">
-                    <img src="/uploads/<?= $slide->picture ?>">
-                    <div class="container">
-                        <div class="carousel-caption text-<?= $slide->position ?>  text-dark">
+                <div class="carousel-item<?= ($k == 1) ? ' active' : ''?> carousel-item-bg" style="background-image: url('/uploads/<?= $slide->picture ?>');">
+                    <div class="carousel-caption text-<?= $slide->position ?> text-dark">
+                        <div class="container">
                             <?= $slide->header ?>
                             <?= $slide->content ?>
                             <p><a class="btn btn-lg btn-primary" href="<?= $slide->link ?>" role="button"><?= Yii::t('app', 'View details') ?></a></p>

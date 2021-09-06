@@ -25,7 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'slug',
             'articul',
-            'description:ntext',
+            [
+                'attribute' => 'description',
+                'format' => 'raw',
+            ],
             [
                 'attribute' => 'category_id',
                 'value' => 'category.name',
@@ -37,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'width:67px; text-align:center;'],
+                'template' => '{view}&nbsp;{update}&nbsp;{delete}',
+                'contentOptions' => ['style' => 'width:80px; text-align:center;'],
             ],
         ],
     ]); ?>

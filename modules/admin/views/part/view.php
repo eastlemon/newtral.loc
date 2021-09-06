@@ -32,7 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'slug',
             'articul',
-            'description:ntext',
+            [
+                'attribute' => 'description',
+                'format' => 'raw',
+            ],
             [
                 'attribute' => 'producer_id',
                 'label' => Yii::t('app', 'Producer'),

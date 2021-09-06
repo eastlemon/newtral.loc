@@ -29,7 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'address:ntext',
+            [
+                'attribute' => 'address',
+                'format' => 'raw',
+            ],
         ],
     ]) ?>
 

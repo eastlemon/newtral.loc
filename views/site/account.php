@@ -1,13 +1,11 @@
 <?php
-
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\widgets\DetailView;
 
-/* @var $resetPasswordForm \app\models\forms\ResetPasswordForm */
-
 $this->title = Yii::t('app', 'My Account');
 ?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">

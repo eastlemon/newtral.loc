@@ -30,10 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'key',
             'value:ntext',
-            'description:ntext',
+            [
+                'attribute' => 'description',
+                'format' => 'raw',
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update}{delete}',
+                'template' => '{update}&nbsp;{delete}',
+                'contentOptions' => ['style' => 'width:60px; text-align:center;'],
             ],
         ],
     ]) ?>

@@ -14,9 +14,14 @@ class ProducerController extends Controller
     public function actionIndex($slug)
     {
         $model = $this->findModel(Producer::class, ['slug' => $slug]);
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getParts(),
+        ]);
 
         return $this->render('index', [
             'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }
