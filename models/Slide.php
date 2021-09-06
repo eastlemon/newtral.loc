@@ -1,45 +1,25 @@
 <?php
-
 namespace app\models;
 
 use Yii;
 
-/**
- * This is the model class for table "slide".
- *
- * @property int $id
- * @property string $header
- * @property string $content
- * @property string $position
- * @property string $picture
- * @property string $link
- */
 class Slide extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return 'slide';
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function rules()
     {
         return [
             [['header', 'content', 'position', 'link'], 'required'],
             [['header', 'content', 'position', 'link'], 'string'],
-            [['picture'], 'file'],
             [['picture'], 'required', 'on' => 'create'],
+            [['picture'], 'file', 'extensions' => 'png, jpg, webp'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [

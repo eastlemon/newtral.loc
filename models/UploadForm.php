@@ -8,18 +8,17 @@ class UploadForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['uploadFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, png, jpg'],
+            [['uploadFile'], 'file', 'skipOnEmpty' => false],
         ];
     }
     
     public function upload()
     {
-        if ($this->validate()) {
+        if ($validate = $this->validate()) {
             $name = $this->uploadFile->baseName . '.' . $this->uploadFile->extension;
             $this->uploadFile->saveAs('uploads/' . $name);
             return $name;
-        } else {
-            return false;
         }
+        return $validate;
     }
 }

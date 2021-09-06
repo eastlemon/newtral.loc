@@ -30,7 +30,26 @@ use dosamigos\ckeditor\CKEditor;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'content')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
+    <?= $form->field($model, 'content')->widget(CKEditor::className(), [
+        'preset' => 'custom',
+        'clientOptions' => [
+            'toolbarGroups' => [
+                ['name' => 'document', 'groups' => ['mode', 'document', 'doctools' ]],
+                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo' ]],
+                ['name' => 'editing', 'groups' => ['find', 'selection', 'spellchecker' ]],
+                '/',
+                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup' ]],
+                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi' ]],
+                ['name' => 'links'],
+                ['name' => 'insert'],
+                '/',
+                ['name' => 'styles'],
+                ['name' => 'colors'],
+                ['name' => 'tools'],
+                ['name' => 'others']
+            ],
+        ],
+    ]) ?>
     
     <?= $form->field($model, 'position')->widget(Select2::classname(), [
         'data' => $positions,

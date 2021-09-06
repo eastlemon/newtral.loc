@@ -82,10 +82,6 @@ ul.auth-clients {
 }
 
 /*---------------------carousel-item---------------------*/
-#carouselProductControls .carousel-item {
-  height: 300px;
-}
-
 #myCarousel {
   margin-top: -15px;
 }
@@ -105,7 +101,10 @@ ul.auth-clients {
 }
 
 .carousel-item-bg {
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-repeat: no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: 50%;
 }
