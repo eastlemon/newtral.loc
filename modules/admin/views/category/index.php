@@ -24,8 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
 
-            'name',
-            'slug',
             [
                 'attribute' => 'picture',
                 'format' => 'html',    
@@ -33,12 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     $model['picture'] ? $picture = '/uploads/' . $model['picture'] : $picture = '/images/noImage.png';
                     return Html::img($picture, ['width' => '70px']);
                 },
+                'contentOptions' => ['style' => 'width:1px;'],
             ],
+            'name',
+            'slug',
             [
                 'attribute' => 'parent_id',
                 'value' => function ($model) {
                     return $model->parent->name ?: Yii::t('app', 'Root');
                 },
+                'label' => Yii::t('app', 'Category ID'),
             ],
 
             [

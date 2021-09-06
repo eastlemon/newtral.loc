@@ -48,7 +48,7 @@ class PartGrid extends Widget
                     'attribute' => 'name',
                     'format' => 'html',
                     'value' => function ($data) {
-                        return '<p>' . $data->name . '</p><p class="mt-1">' . Html::a('<i class="fas fa-eye"></i>', Url::to('part/' . $data->slug), ['class' => 'btn btn-success btn-sm']) . '&nbsp;' . Html::a('<i class="far fa-bookmark"></i>', Url::to('part/' . $data->slug), ['class' => 'btn btn-warning btn-sm']) . '</p>';
+                        return '<p>' . $data->name . '</p><p class="mt-1">' . Html::a('<i class="fas fa-eye"></i>', Url::to(['/part']) . '/' . $data->slug, ['class' => 'btn btn-success btn-sm']) . '&nbsp;' . Html::a('<i class="far fa-bookmark"></i>', '#', ['class' => 'btn btn-warning btn-sm']) . '</p>';
                     },
                     'label' => Yii::t('app', 'Name'),
                 ],
