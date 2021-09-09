@@ -54,7 +54,6 @@ class Node extends ActiveRecord
                 'slugAttribute' => 'slug',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
-                    //ActiveRecord::EVENT_AFTER_UPDATE => 'slug',
                 ],
                 'ensureUnique' => true,
             ]

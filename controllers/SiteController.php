@@ -12,6 +12,8 @@ use app\modules\cms\models\CmsModel;
 use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\Slide;
+use app\models\Producer;
+use app\models\Category;
 
 class SiteController extends Controller
 {
@@ -154,6 +156,8 @@ class SiteController extends Controller
     {
         return $this->render('index', [
             'slides' => Slide::find()->all(),
+            'producers' => Producer::find()->where(['in_menu' => 1])->all(),
+            'categories' => Category::getRoots(),
         ]);
     }
 

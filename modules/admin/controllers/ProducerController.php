@@ -3,20 +3,18 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Producer;
-use app\modules\admin\models\search\ProducerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
+use app\traits\FindModelTrait;
+use app\models\Producer;
+use app\modules\admin\models\search\ProducerSearch;
 
-/**
- * ProducerController implements the CRUD actions for Producer model.
- */
 class ProducerController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+    use FindModelTrait;
+    
     public function behaviors()
     {
         return [
@@ -28,11 +26,7 @@ class ProducerController extends Controller
             ],
         ];
     }
-
-    /**
-     * Lists all Producer models.
-     * @return mixed
-     */
+    
     public function actionIndex()
     {
         $searchModel = new ProducerSearch();
@@ -43,30 +37,20 @@ class ProducerController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Producer model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel(Producer::class, $id),
         ]);
     }
-
-    /**
-     * Creates a new Producer model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+    
     public function actionCreate()
     {
         $model = new Producer();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['produces/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -74,19 +58,13 @@ class ProducerController extends Controller
             'model' => $model,
         ]);
     }
-
-    /**
-     * Updates an existing Producer model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Producer::class, $id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['produces/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -94,34 +72,11 @@ class ProducerController extends Controller
             'model' => $model,
         ]);
     }
-
-    /**
-     * Deletes an existing Producer model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel(Producer::class, $id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Producer model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Producer the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Producer::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

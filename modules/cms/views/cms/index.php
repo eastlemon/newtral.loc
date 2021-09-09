@@ -1,18 +1,18 @@
 <?php
-use yii\grid\GridView;
-use yii\bootstrap4\Html;
-use yii\helpers\Url;
-use yii\widgets\Pjax;
+    use yii\grid\GridView;
+    use yii\bootstrap4\Html;
+    use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'Pages');
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = Yii::t('app', 'Pages');
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cms-model-index">
-    <p>
-        <?= Html::a(Yii::t('yii2mod.cms', 'Create Page'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('yii2mod.cms', 'View Comments'), ['/comment/manage/index'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?php Pjax::begin(['timeout' => 5000]); ?>
+
+<div class="container">
+    <div class="cms-model-index">
+        <p>
+            <?= Html::a(Yii::t('yii2mod.cms', 'Create Page'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(Yii::t('yii2mod.cms', 'View Comments'), ['/comment/manage/index'], ['class' => 'btn btn-success']) ?>
+        </p>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
@@ -51,5 +51,5 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ]) ?>
-    <?php Pjax::end(); ?>
+    </div>
 </div>

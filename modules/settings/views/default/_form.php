@@ -1,8 +1,10 @@
 <?php
+
 use yii\bootstrap4\Html;
 use yii\widgets\ActiveForm;
 use yii2mod\settings\models\enumerables\SettingStatus;
 use yii2mod\settings\models\enumerables\SettingType;
+
 ?>
 
 <div class="setting-form">

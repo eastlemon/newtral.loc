@@ -1,9 +1,11 @@
 <?php
+
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap4\Html;
 use app\modules\cms\models\enumerables\CmsStatus;
 use app\modules\cms\Widget;
 use yii2mod\markdown\MarkdownEditor;
+
 ?>
 
 <div class="cms-model-form">
@@ -36,8 +38,8 @@ use yii2mod\markdown\MarkdownEditor;
             <?= $form->field($model, 'status')->dropDownList(CmsStatus::listData()) ?>
 
             <div class="form-group">
-                <?php echo Html::submitButton($model->isNewRecord ? Yii::t('yii2mod.cms', 'Create') : Yii::t('yii2mod.cms', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']); ?>
-                <?php echo Html::a(Yii::t('yii2mod.cms', 'Go Back'), ['index'], ['class' => 'btn btn-default']); ?>
+                <?= Html::submitButton($model->isNewRecord ? Yii::t('yii2mod.cms', 'Create') : Yii::t('yii2mod.cms', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('yii2mod.cms', 'Go Back'), ['index'], ['class' => 'btn btn-default']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

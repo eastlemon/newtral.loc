@@ -3,22 +3,19 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Node;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use app\traits\FindModelTrait;
+use app\models\Node;
 use app\models\Category;
 
-/**
- * NodeController implements the CRUD actions for Node model.
- */
 class NodeController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+    use FindModelTrait;
+
     public function behaviors()
     {
         return [
@@ -30,11 +27,7 @@ class NodeController extends Controller
             ],
         ];
     }
-
-    /**
-     * Lists all Node models.
-     * @return mixed
-     */
+    
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
@@ -45,25 +38,14 @@ class NodeController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Node model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel(Node::class, $id),
         ]);
     }
-
-    /**
-     * Creates a new Node model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+    
     public function actionCreate()
     {
         $model = new Node();
@@ -77,17 +59,10 @@ class NodeController extends Controller
             'data' => ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
-
-    /**
-     * Updates an existing Node model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Node::class, $id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -98,33 +73,10 @@ class NodeController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Node model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel(Node::class, $id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Node model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Node the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Node::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

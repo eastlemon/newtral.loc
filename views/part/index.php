@@ -62,13 +62,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-6">
                             <div class="input-group">
                                 <span class="input-group-prepend">
-                                    <button type="button" class="btn btn-outline-secondary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                    <button type="button" class="btn btn-outline-secondary btn-number" onclick="minus()">
                                         <span class="fa fa-minus"></span>
                                     </button>
                                 </span>
-                                <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                                <input id="count" type="text" class="form-control input-number" value="1">
                                 <span class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary btn-number" data-type="plus" data-field="quant[1]">
+                                    <button type="button" class="btn btn-outline-secondary btn-number" onclick="plus()">
                                         <span class="fa fa-plus"></span>
                                     </button>
                                 </span>

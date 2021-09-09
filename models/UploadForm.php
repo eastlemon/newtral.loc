@@ -1,24 +1,29 @@
 <?php
+
 namespace app\models;
 
 class UploadForm extends \yii\base\Model
 {
-    public $uploadFile;
+    public $file;
+
+    public function __construct($_file, $config = []) {
+        $this->file = $_file;
+        parent::__construct();
+    }
 
     public function rules()
     {
         return [
-            [['uploadFile'], 'file', 'skipOnEmpty' => false],
+            [['file'], 'file', 'skipOnEmpty' => false],
         ];
     }
     
     public function upload()
     {
-        if ($validate = $this->validate()) {
-            $name = $this->uploadFile->baseName . '.' . $this->uploadFile->extension;
-            $this->uploadFile->saveAs('uploads/' . $name);
+        $name = \Yii::$app->security->generateRandomString(9) . '.' . $this->file->extension;
+        if ($this->file) {
+            $this->file->saveAs('uploads/' . $name);
             return $name;
-        }
-        return $validate;
+        } else return false;
     }
 }

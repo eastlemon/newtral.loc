@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Front Page');
         <?php if ($slides): ?>
             <?php foreach ($slides as $slide): ?>
                 <?php ++$k; ?>
-                <div class="carousel-item<?= ($k == 1) ? ' active' : ''?> carousel-item-bg" style="background-image: url('/uploads/<?= $slide->picture ?>');">
+                <div class="carousel-item<?= ($k == 1) ? ' active' : ''?> carousel-item-bg" style="background-image: url('<?= $slide->picture ?>');">
                     <div class="carousel-caption text-<?= $slide->position ?> text-dark">
                         <div class="container">
                             <?= $slide->header ?>
@@ -48,35 +48,69 @@ $this->title = Yii::t('app', 'Front Page');
     </a>
 </div>
 
-<div class="container">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b5889b12e%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b5889b12e%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.13333129882812%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-        </div>
-    </div>
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b5889b12f%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b5889b12f%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.13333129882812%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+<?php if ($producers): ?>
+    <?php $k = 0; ?>
+    <div class="container">
+        <h3>Запчасти по производителям</h3>
+        <div class="card-deck-wrapper">
+            <div class="card-deck py-2">
+                <?php foreach ($producers as $producer): ?>
+                    <div class="card p-2 shadow bg-white rounded">
+                        <div class="producer-card text-hide" style="background-image: url('<?= $producer->picture ?>');"></div>
+                        <a class="card-block stretched-link text-decoration-none" href="/producer/<?= $producer->slug ?>"></a>
+                    </div>
+                    <?php if (++$k == ceil(count($producers)/2)): ?></div><div class="card-deck py-2"><?php endif; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b5889b131%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b5889b131%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.13333129882812%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+<?php endif; ?>
+
+<?php if ($categories): ?>
+    <?php $k = 0; ?>
+    <div class="container">
+        <h3>Популярные категории</h3>
+        <div class="card-deck-wrapper">
+            <div class="card-deck py-2">
+                <?php foreach ($categories as $category): ?>
+                    <div class="card p-2 shadow bg-white rounded">
+                        <div class="category-card text-hide" style="background-image: url('<?= $category->picture ?>');"></div>
+                        <a class="card-block stretched-link text-decoration-none" href="/category/<?= $category->slug ?>"></a>
+                    </div>
+                    <?php if (++$k == ceil(count($categories)/2)): ?></div><div class="card-deck py-2"><?php endif; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
-    <hr class="featurette-divider">
+<?php endif; ?>
+
+<div class="counter">
+    <div class="container">
+        <div class="row" id="counter">
+            <div class="col-12 col-lg-3">
+                <div class="count-up">
+                    <p class="counter-count">100</p>
+                    <h3>Counter 1</h3>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="count-up">
+                    <p class="counter-count">200</p>
+                    <h3>Counter 2</h3>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="count-up">
+                    <p class="counter-count">300</p>
+                    <h3>Counter 3</h3>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="count-up">
+                    <p class="counter-count">400</p>
+                    <h3>Counter 4</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

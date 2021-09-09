@@ -34,7 +34,6 @@ ul.auth-clients {
 }
 
 /*---------------------megamenu---------------------*/
-
 .megamenu > .dropdown-menu {
   box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
 }
@@ -52,7 +51,6 @@ ul.auth-clients {
 }
 
 /*---------------------demo-trailer---------------------*/
-
 .demo-trailer {
   background: url("/images/demo-trailer.png") no-repeat;
   background-size: 688px 268px;
@@ -101,10 +99,38 @@ ul.auth-clients {
 }
 
 .carousel-item-bg {
-  background-repeat: no-repeat center center fixed; 
+  background-repeat: no-repeat; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-position: 50%;
+  background-position: center;
+}
+
+/*---------------------counter---------------------*/
+.counter {
+  text-align: center;
+}
+
+.counter-count {
+  font-size: 50px;
+  font-weight: bold;
+  position: relative;
+  color: #000000;
+  text-align: center;
+  display: inline-block;
+}
+
+/*---------------------producer card---------------------*/
+.producer-card {
+  height: 100px;
+  background-repeat: no-repeat; 
+  background-position: center;
+}
+
+/*---------------------category card---------------------*/
+.category-card {
+  height: 100px;
+  background-repeat: no-repeat; 
+  background-position: center;
 }

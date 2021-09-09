@@ -1,5 +1,9 @@
 <?php
 return [
+    'Record created!' => 'Запись создана!',
+    'ID' => 'ИД',
+    'Parent' => 'Родитель',
+    'Popular' => 'Популярный(ая)',
     'View details' => 'Подробнее',
     'Link' => 'Ссылка',
     'Position' => 'Позиция',

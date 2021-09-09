@@ -1,17 +1,15 @@
 <?php
-use yii\grid\GridView;
-use yii\bootstrap4\Html;
-use yii\widgets\Pjax;
-use yii2mod\user\models\enums\UserStatus;
+    use yii\grid\GridView;
+    use yii\bootstrap4\Html;
+    use yii2mod\user\models\enums\UserStatus;
 
-$this->title = Yii::t('app', 'Users');
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = Yii::t('app', 'Users');
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
 
-    <p><?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']); ?></p>
-    
-    <?php Pjax::begin(['timeout' => 10000]); ?>
+<div class="container">
+    <div class="user-index">
+        <p><?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
@@ -20,7 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'yii\grid\SerialColumn',
                     'contentOptions' => ['style' => 'width:1px;'],
                 ],
-
                 'username',
                 'email:email',
                 'status',
@@ -29,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'date',
                     'filter' => false,
                 ],
-
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{switch}&nbsp;{update}&nbsp;{delete}',
@@ -53,6 +49,5 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ]) ?>
-    <?php Pjax::end(); ?>
-
+    </div>
 </div>

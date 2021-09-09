@@ -7,19 +7,15 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\web\UploadedFile;
+use yii\helpers\Url;
+use app\traits\FindModelTrait;
 use app\modules\admin\models\search\CategorySearch;
 use app\models\Category;
-use app\models\UploadForm;
 
-/**
- * CategoryController implements the CRUD actions for Category model.
- */
 class CategoryController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
+    use FindModelTrait;
+
     public function behaviors()
     {
         return [
@@ -31,11 +27,7 @@ class CategoryController extends Controller
             ],
         ];
     }
-
-    /**
-     * Lists all Category models.
-     * @return mixed
-     */
+    
     public function actionIndex()
     {
         $searchModel = new CategorySearch();
@@ -46,34 +38,21 @@ class CategoryController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Category model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel(Category::class, ['id' => $id]),
         ]);
     }
 
-    /**
-     * Creates a new Category model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new Category(['scenario' => 'create']);
         
-        if ($model->load(Yii::$app->request->post())) {
-            $uploadModel = new UploadForm();
-            $uploadModel->uploadFile = UploadedFile::getInstance($model, 'picture');
-            $model->picture = $uploadModel->upload();
-            if ($model->save()) return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['category/create']) . '">' . Yii::t('app', 'Create') . '</a>');
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -81,54 +60,26 @@ class CategoryController extends Controller
             'data' => ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'name'),
         ]);
     }
-
-    /**
-     * Updates an existing Category model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Category::class, ['id' => $id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['category/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'data' => ArrayHelper::map(Category::find()->where(['<>', 'id', $id])->asArray()->all(), 'id', 'name'),
         ]);
     }
 
-    /**
-     * Deletes an existing Category model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel(Category::class, ['id' => $id])->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Category model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Category the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Category::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

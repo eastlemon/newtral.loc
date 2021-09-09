@@ -2,31 +2,20 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\UserModel;
-use app\modules\admin\models\search\UserSearch;
-use app\traits\FindModelTrait;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
+use app\traits\FindModelTrait;
+use app\models\UserModel;
+use app\modules\admin\models\search\UserSearch;
 
-/**
- * Class UserController
- *
- * @package app\modules\admin\controllers
- */
 class UserController extends Controller
 {
     use FindModelTrait;
 
-    /**
-     * Name of the session key in which the original user id is saved.
-     */
     const ORIGINAL_USER_SESSION_KEY = 'original_user';
 
-    /**
-     * @inheritdoc
-     */
     public function behaviors(): array
     {
         return [
@@ -41,10 +30,7 @@ class UserController extends Controller
             ],
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
+    
     public function actions(): array
     {
         return [
@@ -63,14 +49,7 @@ class UserController extends Controller
             ],
         ];
     }
-
-    /**
-     * Creates a new user.
-     *
-     * If creation is successful, the browser will be redirected to the 'index' page.
-     *
-     * @return mixed
-     */
+    
     public function actionCreate()
     {
         $model = new UserModel(['scenario' => 'create']);
@@ -88,18 +67,8 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing user.
-     *
-     * If update is successful, the browser will be redirected to the 'index' page.
-     *
-     * @param int $id
-     *
-     * @return mixed
-     */
     public function actionUpdate(int $id)
     {
-        /* @var $model UserModel */
         $model = $this->findModel(UserModel::class, $id);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -116,16 +85,7 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
-
-    /**
-     * Switches to the given user for the rest of the Session.
-     *
-     * @param int $id
-     *
-     * @throws ForbiddenHttpException
-     *
-     * @return string
-     */
+    
     public function actionSwitch(int $id)
     {
         if (Yii::$app->session->has(self::ORIGINAL_USER_SESSION_KEY)) {

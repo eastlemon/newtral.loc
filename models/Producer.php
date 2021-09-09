@@ -5,37 +5,29 @@ namespace app\models;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
 
-/**
- * This is the model class for table "producer".
- *
- * @property int $id
- * @property string|null $name
- * @property string $slug
- * @property int $in_menu
- *
- * @property Part[] $parts
- * @property Unit[] $units
- */
 class Producer extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function init() {
+        if ($this->isNewRecord) {
+            $this->in_menu = 0;
+        }
+        parent::init();
+    }
+
     public static function tableName()
     {
         return 'producer';
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function rules()
     {
         return [
             [['slug'], 'string'],
             [['in_menu'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'picture'], 'string', 'max' => 255],
             [['slug'], 'unique'],
         ];
     }
@@ -49,41 +41,28 @@ class Producer extends ActiveRecord
                 'slugAttribute' => 'slug',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
-                    //ActiveRecord::EVENT_AFTER_UPDATE => 'slug',
                 ],
                 'ensureUnique' => true,
             ]
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
+            'picture' => Yii::t('app', 'Picture'),
             'in_menu' => Yii::t('app', 'In Menu'),
         ];
     }
-
-    /**
-     * Gets query for [[Parts]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getParts()
     {
         return $this->hasMany(Part::className(), ['producer_id' => 'id']);
     }
-
-    /**
-     * Gets query for [[Units]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getUnits()
     {
         return $this->hasMany(Unit::className(), ['producer_id' => 'id']);
@@ -92,5 +71,17 @@ class Producer extends ActiveRecord
     public static function getMenuItems()
     {
         return self::find()->where(['in_menu' => 1])->all();
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->picture = (new UploadForm(UploadedFile::getInstance($this, 'picture')))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeSave($insert);
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->picture ? $this->picture = 'uploads/' . $this->picture : $this->picture = 'images/noImage100x100.png';
     }
 }

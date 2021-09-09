@@ -1,20 +1,11 @@
 <?php
-
-use yii\bootstrap4\Html;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Producer */
-
-$this->title = Yii::t('app', 'Create');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Producers'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = Yii::t('app', 'Create');
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Producers'), 'url' => ['index']];
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="producer-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
 </div>

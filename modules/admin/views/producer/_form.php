@@ -1,6 +1,8 @@
 <?php
+
 use yii\bootstrap4\Html;
 use yii\widgets\ActiveForm;
+
 ?>
 
 <div class="producer-form">
@@ -10,6 +12,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
 
     <?= $form->field($model, 'in_menu')->radioList([1 => 'Да', 0 => 'Нет']) ?>
 

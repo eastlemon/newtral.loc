@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\ArrayHelper;
 use yii2mod\comments\widgets\Comment;
 
@@ -6,6 +7,7 @@ $this->title = $model->meta_title;
 $this->registerMetaTag(['name' => 'keywords', 'content' => $model->meta_keywords]);
 $this->registerMetaTag(['name' => 'description', 'content' => $model->meta_description]);
 ?>
+
 <div class="page-wrapper">
     <h1 class="page-title">
         <?= $model->title ?>
