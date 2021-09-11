@@ -5,7 +5,7 @@
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="part-update">
+<div class="container-fluid">
     <?= $this->render('_form', [
         'model' => $model,
         'modelOffer' => $modelOffer,

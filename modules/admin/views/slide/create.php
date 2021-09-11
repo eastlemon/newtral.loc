@@ -4,7 +4,7 @@
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="slide-create">
+<div class="container-fluid">
     <?= $this->render('_form', [
         'model' => $model,
         'positions' => $positions,

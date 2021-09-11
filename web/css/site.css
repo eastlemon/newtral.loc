@@ -80,7 +80,7 @@ ul.auth-clients {
 }
 
 /*---------------------carousel-item---------------------*/
-#myCarousel {
+#mainCarousel {
   margin-top: -15px;
 }
 
@@ -130,7 +130,8 @@ ul.auth-clients {
 
 /*---------------------category card---------------------*/
 .category-card {
-  height: 100px;
-  background-repeat: no-repeat; 
-  background-position: center;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: 90px;
+  background-position: right 5% bottom 25%;
 }

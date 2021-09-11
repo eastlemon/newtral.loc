@@ -5,10 +5,8 @@
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="container">
-    <div class="office-update">
-        <?= $this->render('_form', [
-            'model' => $model,
-        ]) ?>
-    </div>
+<div class="container-fluid">
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
 </div>

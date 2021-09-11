@@ -4,11 +4,11 @@ use yii\bootstrap4\Html;
 $this->title = Yii::t('app', 'Front Page');
 ?>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="mainCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <?php foreach ($slides as $slide): ?>
             <?php ++$_k; ?>
-            <li data-target="#myCarousel" data-slide-to="<?= $_k-1 ?>" class="<?= ($_k == 1) ? 'active' : ''?>"></li>
+            <li data-target="#mainCarousel" data-slide-to="<?= $_k-1 ?>" class="<?= ($_k == 1) ? 'active' : ''?>"></li>
         <?php endforeach; ?>
     </ol>
     <div class="carousel-inner">
@@ -38,11 +38,11 @@ $this->title = Yii::t('app', 'Front Page');
             </div>
         <?php endif; ?>
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
@@ -50,7 +50,7 @@ $this->title = Yii::t('app', 'Front Page');
 
 <?php if ($producers): ?>
     <?php $k = 0; ?>
-    <div class="container">
+    <div class="container mt-4">
         <h3>Запчасти по производителям</h3>
         <div class="card-deck-wrapper">
             <div class="card-deck py-2">
@@ -68,13 +68,13 @@ $this->title = Yii::t('app', 'Front Page');
 
 <?php if ($categories): ?>
     <?php $k = 0; ?>
-    <div class="container">
+    <div class="container mt-4">
         <h3>Популярные категории</h3>
         <div class="card-deck-wrapper">
             <div class="card-deck py-2">
                 <?php foreach ($categories as $category): ?>
-                    <div class="card p-2 shadow bg-white rounded">
-                        <div class="category-card text-hide" style="background-image: url('<?= $category->picture ?>');"></div>
+                    <div class="card category-card p-2 shadow bg-white rounded" style="background-image: url('<?= $category->picture ?>');">
+                        <h5 class="card-title text-uppercase text-muted mb-0"><?= $category->name ?></h5>
                         <a class="card-block stretched-link text-decoration-none" href="/category/<?= $category->slug ?>"></a>
                     </div>
                     <?php if (++$k == ceil(count($categories)/2)): ?></div><div class="card-deck py-2"><?php endif; ?>
@@ -83,6 +83,15 @@ $this->title = Yii::t('app', 'Front Page');
         </div>
     </div>
 <?php endif; ?>
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
 
 <div class="counter">
     <div class="container">

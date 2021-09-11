@@ -11,7 +11,7 @@ use app\models\UploadForm;
 class Category extends ActiveRecord
 {
     public function init() {
-        if ($this->isNewRecord) {
+        if ($this->scenario == 'create') {
             $this->is_popular = 0;
         }
         parent::init();
@@ -83,6 +83,11 @@ class Category extends ActiveRecord
     public static function getRoots()
     {
         return self::find()->where(['parent_id' => null])->all();
+    }
+
+    public static function getPopularRoots()
+    {
+        return self::find()->where(['parent_id' => null, 'is_popular' => 1])->all();
     }
 
     public function beforeSave($insert)

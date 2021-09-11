@@ -157,7 +157,7 @@ class SiteController extends Controller
         return $this->render('index', [
             'slides' => Slide::find()->all(),
             'producers' => Producer::find()->where(['in_menu' => 1])->all(),
-            'categories' => Category::getRoots(),
+            'categories' => Category::getPopularRoots(),
         ]);
     }
 

@@ -4,7 +4,7 @@
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="cms-model-create">
+<div class="container-fluid">
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

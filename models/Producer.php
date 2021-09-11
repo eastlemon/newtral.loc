@@ -11,7 +11,7 @@ use app\models\UploadForm;
 class Producer extends ActiveRecord
 {
     public function init() {
-        if ($this->isNewRecord) {
+        if ($this->scenario == 'create') {
             $this->in_menu = 0;
         }
         parent::init();

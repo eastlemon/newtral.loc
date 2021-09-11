@@ -1,16 +1,11 @@
 <?php
-
-use yii\bootstrap4\Html;
-use yii\widgets\ActiveForm;
-use kartik\select2\Select2;
-use dosamigos\ckeditor\CKEditor;
-
+    use yii\bootstrap4\Html;
+    use yii\widgets\ActiveForm;
+    use kartik\select2\Select2;
+    use dosamigos\ckeditor\CKEditor;
 ?>
 
-<div class="slide-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
+<?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'header')->widget(CKEditor::className(), [
         'preset' => 'custom',
         'clientOptions' => [
@@ -31,7 +26,6 @@ use dosamigos\ckeditor\CKEditor;
             ],
         ],
     ]) ?>
-
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'preset' => 'custom',
         'clientOptions' => [
@@ -52,7 +46,6 @@ use dosamigos\ckeditor\CKEditor;
             ],
         ],
     ]) ?>
-    
     <?= $form->field($model, 'position')->widget(Select2::classname(), [
         'data' => $positions,
         'options' => [
@@ -62,15 +55,9 @@ use dosamigos\ckeditor\CKEditor;
             'allowClear' => true
         ],
     ]) ?>
-
     <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
-
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+<?php ActiveForm::end(); ?>

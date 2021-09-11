@@ -6,45 +6,15 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii2mod\settings\models\SettingModel;
 
-/**
- * Class SettingController
- *
- * @package yii2mod\settings\controllers
- */
 class DefaultController extends Controller
 {
-    /**
-     * @var string path to index view file, which is used in admin panel
-     */
     public $indexView = '/default/index';
-
-    /**
-     * @var string path to create view file, which is used in admin panel
-     */
     public $createView = '/default/create';
-
-    /**
-     * @var string path to update view file, which is used in admin panel
-     */
     public $updateView = '/default/update';
-
-    /**
-     * @var string search class name for searching
-     */
     public $searchClass = 'yii2mod\settings\models\search\SettingSearch';
-
-    /**
-     * @var string model class name for CRUD operations
-     */
     public $modelClass = 'yii2mod\settings\models\SettingModel';
 
-    /**
-     * Returns a list of behaviors that this component should behave as.
-     *
-     * @return array
-     */
     public function behaviors(): array
     {
         return [
@@ -60,11 +30,6 @@ class DefaultController extends Controller
         ];
     }
 
-    /**
-     * Lists all Settings.
-     *
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = Yii::createObject($this->searchClass);
@@ -76,13 +41,6 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Setting.
-     *
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     *
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = Yii::createObject($this->modelClass);
@@ -98,15 +56,6 @@ class DefaultController extends Controller
         }
     }
 
-    /**
-     * Updates an existing Setting.
-     *
-     * If update is successful, the browser will be redirected to the 'view' page.
-     *
-     * @param int $id
-     *
-     * @return mixed
-     */
     public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
@@ -122,15 +71,6 @@ class DefaultController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing Setting.
-     *
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     *
-     * @param int $id
-     *
-     * @return mixed
-     */
     public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
@@ -139,17 +79,6 @@ class DefaultController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds a Setting model based on its primary key value.
-     *
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     *
-     * @param int $id
-     *
-     * @return SettingModel the loaded model
-     *
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel(int $id)
     {
         $settingModelClass = $this->modelClass;
