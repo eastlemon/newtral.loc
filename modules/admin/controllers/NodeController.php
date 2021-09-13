@@ -51,6 +51,7 @@ class NodeController extends Controller
         $model = new Node();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['node/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

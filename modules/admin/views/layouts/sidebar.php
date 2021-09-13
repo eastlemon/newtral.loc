@@ -31,6 +31,7 @@
                         'items' => [
                             ['label' => Yii::t('app', 'List'), 'url' => ['/admin/settings-storage'], 'iconStyle' => 'far'],
                             ['label' => Yii::t('app', 'Slides'), 'url' => ['/admin/slide'], 'iconStyle' => 'far'],
+                            ['label' => Yii::t('app', 'Main Page'), 'url' => ['/admin/main-page'], 'iconStyle' => 'far'],
                         ]
                     ],
                 ],

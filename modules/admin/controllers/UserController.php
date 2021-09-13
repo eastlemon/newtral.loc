@@ -56,8 +56,7 @@ class UserController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->create()) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'User has been created.'));
-
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['user/create']) . '">' . Yii::t('app', 'Create') . '</a>');
                 return $this->redirect(['index']);
             }
         }

@@ -57,7 +57,10 @@ class StoreController extends Controller
                 $office_store->delivery = $model->delivery;
                 $office_store->office_id = $model->office;
                 $office_store->store_id = $model->id;
-                if ($office_store->save()) return $this->redirect(['view', 'id' => $model->id]);
+                if ($office_store->save()) {
+                    Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['store/create']) . '">' . Yii::t('app', 'Create') . '</a>');
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         }
 

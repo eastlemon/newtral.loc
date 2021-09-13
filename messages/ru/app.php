@@ -1,5 +1,9 @@
 <?php
 return [
+    'Saved!' => 'Сохранено!',
+    'Spare parts by manufacturer' => 'Запчасти по производителям',
+    'Popular Categories' => 'Популярные категории',
+    'Profitable offer' => 'Выгодные предложения',
     'See' => 'Посмотреть',
     'Record created!' => 'Запись создана!',
     'ID' => 'ИД',
@@ -72,7 +76,7 @@ return [
     'Cabinet' => 'Кабинет',
     'Account' => 'Аккаунт',
     'Signup' => 'Регистрация',
-    'Front Page' => 'Главная страница',
+    'Main Page' => 'Главная страница',
     'Parts By Groups' => 'Запчасти по группам',
     'Parts By Producers' => 'Запчасти по производителям',
     'Parts By Models' => 'Запчасти по моделям',

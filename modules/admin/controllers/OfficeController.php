@@ -49,6 +49,7 @@ class OfficeController extends Controller
         $model = new Office();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['office/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

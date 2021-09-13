@@ -49,6 +49,7 @@ class CertificateController extends Controller
         $model = new Certificate();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['certificate/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

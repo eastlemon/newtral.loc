@@ -62,7 +62,7 @@ class SlideController extends Controller
         $model = new Slide(['scenario' => 'create']);
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['slide/create']) . '">' . Yii::t('app', 'Create') . '</a>');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['slide/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -77,7 +77,6 @@ class SlideController extends Controller
         $model = $this->findModel(Slide::class, $id);
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['slide/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

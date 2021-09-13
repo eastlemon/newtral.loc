@@ -1,8 +1,9 @@
 <?php
     use yii\bootstrap4\Html;
     use yii\helpers\StringHelper;
+    use yii\helpers\HtmlPurifier;
 
-    $this->title = Yii::t('app', 'Front Page');
+    $this->title = Yii::t('app', 'Main Page');
 ?>
 
 <div id="mainCarousel" class="carousel slide" data-ride="carousel">
@@ -52,7 +53,7 @@
 <?php if ($producers): ?>
     <?php $k = 0; ?>
     <div class="container mt-4">
-        <h3>Запчасти по производителям</h3>
+        <h3><?= Yii::t('app', 'Spare parts by manufacturer') ?></h3>
         <div class="card-deck-wrapper">
             <div class="card-deck py-2">
                 <?php foreach ($producers as $producer): ?>
@@ -70,7 +71,7 @@
 <?php if ($categories): ?>
     <?php $k = 0; ?>
     <div class="container mt-4">
-        <h3>Популярные категории</h3>
+        <h3><?= Yii::t('app', 'Popular Categories') ?></h3>
         <div class="card-deck-wrapper">
             <div class="card-deck py-2">
                 <?php foreach ($categories as $category): ?>
@@ -87,7 +88,7 @@
 
 <?php if ($profitParts): ?>
     <div class="container mt-4">
-        <h3>Выгодные предложения</h3>
+        <h3><?= Yii::t('app', 'Profitable offer') ?></h3>
         <div class="row">
             <?php foreach ($profitParts as $part): ?>
                 <div class="col-3 d-flex">
@@ -109,14 +110,11 @@
 <?php endif; ?>
 
 <div class="container mt-4">
-    <h2 style="margin-left: 0px; padding-bottom: 10px;">Глобалспецтранс – экспресс-поставка запчастей в любую точку России с полной гарантией совместимости</h2>
-    <div style="text-align:justify; font-size: 16px;">
-        <p>У нас вы можете купить абсолютно всё в одном месте (от гайки до прицепа) и получить заказ в кратчайшие сроки.</p>
-        <p>В ассортименте запчасти как для отечественных полуприцепов – ТСП (Политранс), ТСМ (Тверьстроймаш), SPECPRICEP (Спецприцеп), HARTUNG (ЧКПЗ), ЧМЗАП (УРАЛАВТОПРИЦЕП) , УЗСТ, СПЕЦМАШ, НОВТРАК, ТОНАР, GRUNWALD и прочих</p>
-        <p>Так и для зарубежных - Kassbohrer (Кессборер), Schwarzmüller (Шварцмюллер), Nooteboom (Нотебум), Goldhofer (Голдхофер), Broshuis (Брошус), Faymonville (Файмонвиль), Fruehauf (Фрюхауф), Meusburger (Мейсбургер), Doll (Доль) и т.д</p>
-        <p>В наличие оси в сборе, подвески и запасные части к ним на самые известные марки BPW, SAF, Gigant, ЧМЗАП, L1, так и редкие ADR, SAE-SMB, Fuwa, BMT.</p>
-        <p>В наличии на складе запасные части на пневмоподвески, на оси, на рессорные подвески. Также всегда в наличии шкворни, опорные устройства, колесные диски, седельно-сцепные устройства рем.комплекты к ним. Кроме того, мы продаем запчасти на тягачи и спецтехнику.</p>
-        <p>Мы регулярно выполняем заявки, на запчасти, которые вообще не завозились в Россию.</p>
+    <div class="row text-justify">
+        <div class="col-md-12">
+            <?= HtmlPurifier::process($mainPage['block5Header']) ?>
+            <?= HtmlPurifier::process($mainPage['block5Content']) ?>
+        </div>
     </div>
 </div>
 
@@ -231,7 +229,7 @@
 
 <div class="container mt-4 mb-4">
     <div class="row">
-        <div class="col p-0">
+        <div class="col p-0 border border-primary rounded-sm">
             <table class="our-advantages">
                 <tr>
                     <td><i class="far fa-thumbs-down"></i><p>5 ключевых проблем с которыми сталкиваются 95% клиентов</p></td>

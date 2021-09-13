@@ -82,6 +82,10 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages',
                 ],
+                'yii2mod.cms' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/cms/messages',
+                ],
                 'yii2mod.comments' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@yii2mod/comments/messages',

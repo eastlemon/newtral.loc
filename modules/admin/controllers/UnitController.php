@@ -52,6 +52,7 @@ class UnitController extends Controller
         $model = new Unit();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['unit/create']) . '">' . Yii::t('app', 'Create') . '</a>');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

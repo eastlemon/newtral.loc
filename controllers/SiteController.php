@@ -156,6 +156,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index', [
+            'mainPage' => Yii::$app->settings->getAllBySection('mainPage'),
             'slides' => Slide::find()->all(),
             'producers' => Producer::find()->where(['in_menu' => 1])->all(),
             'categories' => Category::getPopularRoots(),

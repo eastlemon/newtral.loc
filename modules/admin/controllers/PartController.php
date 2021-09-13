@@ -70,6 +70,7 @@ class PartController extends Controller
                 $modelOffer->part_id = $model->id;
                 if ($modelOffer->save()) return $this->redirect(['view', 'id' => $model->id]);
             }
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['part/create']) . '">' . Yii::t('app', 'Create') . '</a>');
         }
 
         return $this->render('create', [
