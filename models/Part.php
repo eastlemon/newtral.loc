@@ -21,10 +21,10 @@ class Part extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'articul', 'producer_id'], 'required'],
-            [['description'], 'string'],
+            [['name', 'slug', 'articul', 'producer_id'], 'required'],
+            [['name', 'description'], 'string'],
             [['producer_id'], 'integer'],
-            [['name', 'slug', 'articul'], 'string', 'max' => 255],
+            [['slug', 'articul'], 'string', 'max' => 255],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
             [['picture'], 'file'],
             [['offer'], 'number'],
@@ -100,8 +100,7 @@ class Part extends ActiveRecord
 
     public function getStocks()
     {
-        return self::find()
-        ->andFilterWhere(['=', 'articul', $this->articul]);
+        return self::find()->andFilterWhere(['=', 'articul', $this->articul]);
     }
 
     public function getAnalogues()
@@ -110,6 +109,11 @@ class Part extends ActiveRecord
         ->orFilterWhere(['like', 'articul', $this->articul])
         ->orFilterWhere(['like', 'name', $this->name])
         ->andFilterWhere(['<>', 'id', $this->id]);
+    }
+
+    public static function getProfit()
+    {
+        return self::find()->orderBy('RAND()')->limit(4)->all();
     }
 
     public function beforeSave($insert)

@@ -1,15 +1,15 @@
 <?php
-use yii\bootstrap4\Html;
-use yii\widgets\DetailView;
-use yii\grid\GridView;
-use yii\widgets\ListView;
-use yii\helpers\Url;
-use app\widgets\PartGrid;
+    use yii\bootstrap4\Html;
+    use yii\widgets\DetailView;
+    use yii\grid\GridView;
+    use yii\widgets\ListView;
+    use yii\helpers\Url;
+    use app\widgets\PartGrid;
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Parts'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+    $this->title = $model->name;
+    //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Parts'), 'url' => ['index']];
+    $this->params['breadcrumbs'][] = $this->title;
+    \yii\web\YiiAsset::register($this);
 ?>
 
 <div class="container">

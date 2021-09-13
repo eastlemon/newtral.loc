@@ -6,33 +6,13 @@ use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\db\ActiveRecord;
 
-/**
- * This is the model class for table "node".
- *
- * @property int $id
- * @property string $name
- * @property string $slug
- * @property string $articul
- * @property string|null $description
- * @property int $category_id
- *
- * @property Category $category
- * @property NodePart[] $nodeParts
- * @property UnitNode[] $unitNodes
- */
 class Node extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return 'node';
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function rules()
     {
         return [
@@ -59,10 +39,7 @@ class Node extends ActiveRecord
             ]
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function attributeLabels()
     {
         return [
@@ -74,34 +51,24 @@ class Node extends ActiveRecord
             'category_id' => Yii::t('app', 'Category ID'),
         ];
     }
-
-    /**
-     * Gets query for [[Category]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
-
-    /**
-     * Gets query for [[NodeParts]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getNodeParts()
+    
+    /*public function getNodeParts()
     {
         return $this->hasMany(NodePart::className(), ['node_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[UnitNodes]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    }*/
+    
     public function getUnitNodes()
     {
         return $this->hasMany(UnitNode::className(), ['node_id' => 'id']);
+    }
+
+    public function getParts()
+    {
+        return $this->hasMany(Part::className(), ['id' => 'part_id'])->viaTable('node_part', ['node_id' => 'id']);
     }
 }

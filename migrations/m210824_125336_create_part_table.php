@@ -14,7 +14,7 @@ class m210824_125336_create_part_table extends Migration
     {
         $this->createTable('{{%part}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
+            'name' => $this->text()->notNull(),
             'slug' => $this->string()->notNull(),
             'articul' => $this->string()->notNull(),
             'description' => $this->text(),

@@ -48,6 +48,7 @@ class ProducerController extends Controller
     public function actionCreate()
     {
         $model = new Producer();
+        $model->in_menu = 0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record created! ') . '<a href="' . Url::toRoute(['produces/create']) . '">' . Yii::t('app', 'Create') . '</a>');

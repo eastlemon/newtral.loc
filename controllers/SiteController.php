@@ -14,6 +14,7 @@ use app\models\forms\ResetPasswordForm;
 use app\models\Slide;
 use app\models\Producer;
 use app\models\Category;
+use app\models\Part;
 
 class SiteController extends Controller
 {
@@ -158,6 +159,7 @@ class SiteController extends Controller
             'slides' => Slide::find()->all(),
             'producers' => Producer::find()->where(['in_menu' => 1])->all(),
             'categories' => Category::getPopularRoots(),
+            'profitParts' => Part::getProfit(),
         ]);
     }
 

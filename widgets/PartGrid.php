@@ -103,7 +103,7 @@ class PartGrid extends Widget
                         $count = count($data->offers);
                         return $_r . (($count > 3) ? '<p class="mb-1">' . Html::a('+ ' . Yii::t('app', 'More') . ' ' . ($count - 3), ['show-more', 'slug' => $data->slug]) . '</p>' : '');
                     },
-                    'label' => Yii::t('app', 'Price with VAT'),
+                    'label' => Yii::t('app', '+VAT'),
                     'contentOptions' => ['style' => 'width:1px;'],
                 ],
             ],

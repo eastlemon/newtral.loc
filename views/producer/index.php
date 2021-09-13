@@ -1,10 +1,10 @@
 <?php
-use yii\bootstrap4\Html;
-use app\widgets\PartGrid;
+    use yii\bootstrap4\Html;
+    use app\widgets\PartGrid;
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+    $this->title = $model->name;
+    $this->params['breadcrumbs'][] = $this->title;
+    \yii\web\YiiAsset::register($this);
 ?>
 
 <div class="container">

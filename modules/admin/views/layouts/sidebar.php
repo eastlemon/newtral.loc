@@ -6,7 +6,7 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image text-white bg-dark"><i class="fas fa-user-circle fa-2x"></i></div>
-            <div class="info"><a href="/site/cabinet" class="d-block"><?= Yii::$app->user->identity->username ?></a></div>
+            <div class="info"><a href="/account" class="d-block"><?= Yii::$app->user->identity->username ?></a></div>
         </div>
         <nav class="mt-2">
             <?= \hail812\adminlte\widgets\Menu::widget([

@@ -10,13 +10,6 @@ use app\models\UploadForm;
 
 class Category extends ActiveRecord
 {
-    public function init() {
-        if ($this->scenario == 'create') {
-            $this->is_popular = 0;
-        }
-        parent::init();
-    }
-
     public static function tableName()
     {
         return 'category';

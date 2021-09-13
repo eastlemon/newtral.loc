@@ -30,7 +30,7 @@ use app\models\SearchModel;
                   <?php if (Yii::$app->user->can('admin')): ?>
                      <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php else: ?>
-                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/cabinet"><?= Yii::t('app', 'Cabinet') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
+                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/account"><?= Yii::t('app', 'Account') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php endif; ?>
                <?php else: ?>
                   <i class="fas fa-key"></i>&nbsp;<a href="/site/login"><?= Yii::t('app', 'Enter') ?></a></a>
@@ -59,8 +59,8 @@ use app\models\SearchModel;
    </div>
 </div>
 
-<?php foreach (\app\models\Category::getRoots() as $item) $categories .= '<a class="list-group-item list-group-item-action" href="/category/' . $item->slug . '">' . $item->name . '</a>'; ?>
-<?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<a class="list-group-item list-group-item-action" href="/producer/' . $item->slug . '">' . $item->name . '</a>'; ?>
+<?php foreach (\app\models\Category::getRoots() as $item) $categories .= '<a class="list-group-item list-group-item-action" href="/category/' . $item->slug . '"><img src="/images/noImage100x100.png" height="25">&nbsp;' . $item->name . '</a>'; ?>
+<?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<a class="list-group-item list-group-item-action" href="/producer/' . $item->slug . '"><img src="/images/noImage100x100.png" height="25">&nbsp;' . $item->name . '</a>'; ?>
 
 <?php NavBar::begin(['options' => [
    'id' => 'mainNav',
@@ -74,14 +74,14 @@ use app\models\SearchModel;
             'label' => Yii::t('app', 'Parts Catalog'),
             'items' => [
                '<div class="container">
-                  <div class="col-4 sidebar">
+                  <div class="col-4 pt-4 sidebar">
                      <div class="list-group flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="list-group-item list-group-item-action active" id="v-pills-groups-tab" data-toggle="pill" href="#v-pills-groups" role="tab" aria-controls="v-pills-groups" aria-selected="true">' . Yii::t('app', 'Groups') . '</a>
+                        <a class="list-group-item list-group-item-action active" id="v-pills-categories-tab" data-toggle="pill" href="#v-pills-categories" role="tab" aria-controls="v-pills-categories" aria-selected="true">' . Yii::t('app', 'Categories') . '</a>
                         <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Producers') . '</a>
                      </div>
                   </div>
-                  <div class="col tab-content" id="v-pills-tabContent">
-                     <div class="tab-pane fade show active" id="v-pills-groups" role="tabpanel" aria-labelledby="v-pills-groups-tab"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
+                  <div class="col pt-4 pb-4 tab-content" id="v-pills-tabContent">
+                     <div class="tab-pane fade show active" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
                      <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab"><ul class="list-group list-group-flush">' . $producers . '</ul></div>
                   </div>
                </div>',
