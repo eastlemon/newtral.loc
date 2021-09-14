@@ -1,7 +1,6 @@
 <?php
     use yii\bootstrap4\Html;
     use yii\helpers\StringHelper;
-    use yii\helpers\HtmlPurifier;
 
     $this->title = Yii::t('app', 'Main Page');
 ?>
@@ -111,125 +110,156 @@
 
 <div class="container mt-4">
     <div class="row text-justify">
-        <div class="col-md-12">
-            <?= HtmlPurifier::process($mainPage['block5Header']) ?>
-            <?= HtmlPurifier::process($mainPage['block5Content']) ?>
+        <div class="col-12">
+            <?= $mainPage['block5Header'] ?>
+            <?= $mainPage['block5Content'] ?>
         </div>
     </div>
 </div>
 
-<div class="counter">
-    <div class="container mt-4 mb-4">
-        <div class="row" id="counter">
-            <div class="col-12 col-lg-3 shadow bg-white rounded">
-                <div class="count-up">
-                    <p class="counter-count">2500</p>
-                    <h3>Запчастей</h3>
-                    <p>для тралов в ассортименте</p>
-                </div>
+<div class="container mt-4 mb-4">
+    <div class="row" id="counter">
+        <div class="col">
+            <div class="text-center shadow p-2 bg-white rounded">
+                <p class="counter-count">2500</p>
+                <h3>Запчастей</h3>
+                <p>для тралов в ассортименте</p>
             </div>
-            <div class="col-12 col-lg-3 shadow bg-white rounded">
-                <div class="count-up">
-                    <p class="counter-count">1632</p>
-                    <h3>Позиций</h3>
-                    <p>в наличии на наших складах</p>
-                </div>
+        </div>
+        <div class="col">
+            <div class="text-center shadow p-2 bg-white rounded">
+                <p class="counter-count">1632</p>
+                <h3>Позиций</h3>
+                <p>в наличии на наших складах</p>
             </div>
-            <div class="col-12 col-lg-3 shadow bg-white rounded">
-                <div class="count-up">
-                    <p class="counter-count">1500</p>
-                    <h3>Заявок</h3>
-                    <p>успешно завершено за год</p>
-                </div>
+        </div>
+        <div class="col">
+            <div class="text-center shadow p-2 bg-white rounded">
+                <p class="counter-count">1500</p>
+                <h3>Заявок</h3>
+                <p>успешно завершено за год</p>
             </div>
-            <div class="col-12 col-lg-3 shadow bg-white rounded">
-                <div class="count-up">
-                    <p class="counter-count">15</p>
-                    <h3>Минут</h3>
-                    <p>средняя скорость подбора</p>
-                </div>
+        </div>
+        <div class="col">
+            <div class="text-center shadow p-2 bg-white rounded">
+                <p class="counter-count">15</p>
+                <h3>Минут</h3>
+                <p>средняя скорость подбора</p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid pt-4">
     <div class="container mt-4">
-        <h3>Ощутимые преимущества для клиентов</h3>
+        <h3 class="text-center mb-4">Ощутимые преимущества для клиентов</h3>
         <div class="row">
-            <div class="col shadow bg-white rounded">
-                <h4>Точность подбора 98%</h4>
-                <span><i class="fas fa-check-double"></i></span>
-                <p>Подобранные нами запчасти гарантированно подойдут на Ваш прицеп</p>
+            <div class="col d-flex">
+                <div class="text-center shadow p-2 bg-white rounded">
+                    <h5 class="h-25">Точность подбора 98%</h5>
+                    <div class="pb-4"><i class="fas fa-4x fa-check-double"></i></div>
+                    <p>Подобранные нами запчасти гарантированно подойдут на Ваш прицеп</p>
+                </div>
             </div>
-            <div class="col shadow bg-white rounded">
-                <h4>Экстренная доставка даже на крайний север</h4>	
-                <span><i class="fas fa-truck-loading"></i></span>
-                <p><a href="#">Грамотная логистика</a> по всей России, лично проехали все самые сложные северные маршруты</p>
+            <div class="col d-flex">
+                <div class="text-center shadow p-2 bg-white rounded">
+                    <h5 class="h-25">Экстренная доставка даже на крайний север</h5>
+                    <div class="pb-4"><i class="fas fa-4x fa-truck-loading"></i></div>
+                    <p><a href="#">Грамотная логистика</a> по всей России, лично проехали все самые сложные северные маршруты</p>
+                </div>
             </div>
-            <div class="col shadow bg-white rounded">
-                <h4>Сервис с заботой о клиенте 24/7</h4>	
-                <span><i class="fas fa-people-carry"></i></span>
-                <p>Решаем все вопросы, управляем заказом 24/7/365. Доступ к каталогу Вашего полуприцепа и закрытым ценам</p>
+            <div class="col d-flex">
+                <div class="text-center shadow p-2 bg-white rounded">
+                    <h5 class="h-25">Сервис с заботой о клиенте 24/7</h5>
+                    <div class="pb-4"><i class="fa fa-4x fa-people-carry"></i></div>
+                    <p>Решаем все вопросы, управляем заказом 24/7/365. Доступ к каталогу Вашего полуприцепа и закрытым ценам</p>
+                </div>
 			</div>
-            <div class="col shadow bg-white rounded">
-                <h4>Единый поставщик для всей вашей техники</h4>	
-                <span><i class="fas fa-parachute-box"></i></span>
-                <p>Закроем потребности в запчастях для всей вашей колесной техники, комплектуем склады и всегда готовы экстренно отправить необходимые запчасти</p>
+            <div class="col d-flex">
+                <div class="text-center shadow p-2 bg-white rounded">
+                    <h5 class="h-25">Единый поставщик для всей вашей техники</h5>
+                    <div class="pb-4"><i class="fas fa-4x fa-parachute-box"></i></div>
+                    <p>Закроем потребности в запчастях для всей вашей колесной техники, комплектуем склады и всегда готовы экстренно отправить необходимые запчасти</p>
+                </div>
 			</div>
-            <div class="col shadow bg-white rounded">
-                <h4>Собственное производство и склады по России</h4>	
-                <span><i class="fas fa-map-marked-alt"></i></span>
-                <p>Оперативно комплектуем клиентов и решаем нестандартные и индивидуальные задачи</p>
+            <div class="col d-flex">
+                <div class="text-center shadow p-2 bg-white rounded">
+                    <h5 class="h-25">Собственное производство и склады по России</h5>
+                    <div class="pb-4"><i class="fas fa-4x fa-map-marked-alt"></i></div>
+                    <p>Оперативно комплектуем клиентов и решаем нестандартные и индивидуальные задачи</p>
+                </div>
 			</div>
         </div>
     </div>
 </div>
 
 <div class="container mt-4 mb-4">
-    <h3>Почему нам доверяют</h3>
-    <div class="row">
-        <div class="col shadow bg-white rounded">
-            <h4>Глобалспецтранс это собственное производство и система складов</h4>
-            <p>Экстренно комплектуем клиентов по всей России и выполняем индивидуальные производственные заказы любой сложности</p>
+    <h3 class="text-center">Почему нам доверяют</h3>
+    <div class="row mb-2">
+        <div class="col d-flex mh-100">
+            <div class="shadow p-4 bg-white rounded">
+                <h5>Глобалспецтранс это собственное производство и система складов</h4>
+                <p>Экстренно комплектуем клиентов по всей России и выполняем индивидуальные производственные заказы любой сложности</p>
+            </div>
         </div>
-        <div class="col shadow bg-white rounded">
-            <h4>Мы из Челябинска – родины отечественных полуприцепов</h4>
-            <p>Большинство полуприцепов в России произведено именно здесь, благодаря этому ведущие производители запчастей располагают свои склады на территории УРФО и мы имеем к ним прямой доступ. Мы являемся официальным представителем уральского завода ООО ПКФ «Политранс», знаем до мелочей специфику местного рынка и гораздо быстрее решаем задачи по подбору запчастей</p>
+        <div class="col d-flex mh-100">
+            <div class="shadow p-4 bg-white rounded">
+                <h5>Мы из Челябинска – родины отечественных полуприцепов</h4>
+                <p>Большинство полуприцепов в России произведено именно здесь, благодаря этому ведущие производители запчастей располагают свои склады на территории УРФО и мы имеем к ним прямой доступ. Мы являемся официальным представителем уральского завода ООО ПКФ «Политранс», знаем до мелочей специфику местного рынка и гораздо быстрее решаем задачи по подбору запчастей</p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col shadow bg-white rounded">
-            <h4>Гарантируем результат</h4>
-            <p>Неважно насколько мало информации будет для поиска, мы предложим вам оптимальный вариант уже в день обращения. Данный результат достигается благодаря отточенному за 12 лет специальному алгоритму подбора, который исключает финансовые риски со стороны клиента</p>
+    <div class="row mb-2">
+        <div class="col d-flex mh-100">
+            <div class="shadow p-4 bg-white rounded">
+                <h5>Гарантируем результат</h4>
+                <p>Неважно насколько мало информации будет для поиска, мы предложим вам оптимальный вариант уже в день обращения. Данный результат достигается благодаря отточенному за 12 лет специальному алгоритму подбора, который исключает финансовые риски со стороны клиента</p>
+            </div>
         </div>
-        <div class="col shadow bg-white rounded">
-            <h4>Глобалспецтранс – там, где другие сдаются мы работаем на совесть</h4>
-            <p>Со многими нашими клиентами мы начали долгосрочное партнерство именно с самых проблемных запросов. Решаем любые нестандартные задачи от поиска очень редких запчастей до поставок в самые труднодоступные территории</p>
+        <div class="col d-flex mh-100">
+            <div class="shadow p-4 bg-white rounded">
+                <h5>Глобалспецтранс – там, где другие сдаются мы работаем на совесть</h4>
+                <p>Со многими нашими клиентами мы начали долгосрочное партнерство именно с самых проблемных запросов. Решаем любые нестандартные задачи от поиска очень редких запчастей до поставок в самые труднодоступные территории</p>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid pt-4">
     <div class="container mt-4">
-        <div class="row"><div class="col"><h3>Отточенный до совершенства алгоритм работы</h3></div></div>
+        <h3 class="text-center mb-6">Отточенный до совершенства алгоритм работы</h3>
         <div class="row">
-            <div class="col shadow bg-white rounded">
-                <h4>01</h4>
+            <div class="col d-flex">
+                <div class="shadow p-4 bg-white rounded">
+                    <h1 class="text-warning font-weight-bold">01</h1>
+                    <p>Заявка на подбор <i class="far fa-clock"></i> ~ 15 минут</p>
+                    <div class="height-250"><b>Вы оставляете заявку, и Ваша поломка теперь наша головоломка!</b> Ищем по любым зацепкам, даже запчасти, которые не завозились в РФ. Уточним все детали и произведём мгновенный поиск по всем складам. Предложим не только дорогой оригинал, но и альтернативы - аналоги приемлемого качества и цены.</div>
+                    <p><i class="fas fa-2x fa-chevron-right"></i> Выгодное предложение по запчастям с 100% гарантией совместимости + <a href="#">доступ к закрытым сервисам и ценам на сайте</a></p>
+                </div>
             </div>
-            <div class="col shadow bg-white rounded">
-                <h4>02</h4>
+            <div class="col d-flex">
+                <div class="shadow p-4 bg-white rounded">
+                    <h1 class="text-warning font-weight-bold">02</h1>
+                    <p>Оплата заказа и отгрузка <i class="far fa-clock"></i> ~ 1 день</p>
+                    <div class="height-250">Оплата заказа осуществляется всеми <a href="#">доступными способами</a>. После оплаты товар тщательно проверяется и бережно упаковывается.</div>
+                    <p><i class="fas fa-2x fa-chevron-right"></i> Ваш заказ оплачен, проверен упакован и готов к отгрузке с нашего склада.<br><b>Также предоставляем фотоотчет по отгрузке</b>. <b>Доставляем бесплатно до ТК</b></p>
+                </div>
             </div>
-            <div class="col shadow bg-white rounded">
-                <h4>03</h4>
-			</div>
+            <div class="col d-flex">
+                <div class="shadow p-4 bg-white rounded">
+                    <h1 class="text-warning font-weight-bold">03</h1>
+                    <p>Доставка товара <i class="far fa-clock"></i> ~ от 1 дня</p>
+                    <div class="height-250">Отправляем заказ согласованным с Вами транспортом, наши логисты всегда предложат самые быстрые варианты по доставке, а менеджер проконтролирует доставку 24/7. В нашей практике очень много случаев, когда заказ приходил уже на следующий день после оплаты.</div>
+                    <p><i class="fas fa-2x fa-chevron-right"></i> Вы получаете все запчасти и документы к ним в срок. Кроме того, для постоянных клиентов мы комплектуем наши склады заказанными ранее запчастями.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container mt-4 mb-4">
     <div class="row">
-        <div class="col p-0 border border-primary rounded-sm">
+        <div class="col p-0 border border-primary rounded">
             <table class="our-advantages">
                 <tr>
                     <td><i class="far fa-thumbs-down"></i><p>5 ключевых проблем с которыми сталкиваются 95% клиентов</p></td>
@@ -241,11 +271,11 @@
                 </tr>
                 <tr>
                     <td><hr>Приходится работать с множеством поставщиков по различной технике и даже так не всегда удается найти нужную запчасть в наличии</td>
-                    <td><hr><strong>У нас вы всегда найдете всё для полуприцепа в наличии</strong>, кроме того поставляем запчасти и на другую колесную технику. Расширим номенклатуру под любого заказчика и всегда доставим вовремя</td>
+                    <td><hr><b>У нас вы всегда найдете всё для полуприцепа в наличии</b>, кроме того поставляем запчасти и на другую колесную технику. Расширим номенклатуру под любого заказчика и всегда доставим вовремя</td>
                 </tr>
                 <tr>
                     <td><hr>Постоянный дефицит по запчастям и их высокая цена в труднодоступных для доставки районах</td>
-                    <td><hr><strong>Работа с северными направлениями – наш профиль.</strong> Найдем транспорт даже там где его нет, привезем туда где на карте только координаты</td>
+                    <td><hr><b>Работа с северными направлениями – наш профиль.</b> Найдем транспорт даже там где его нет, привезем туда где на карте только координаты</td>
                 </tr>
                 <tr>
                     <td><hr>Отсутствие нужной запчасти у поставщика в случае возникновения экстренного ремонта и невозможность поставщика доставить запчасть в срок</td>

@@ -25,12 +25,7 @@
         'attributes' => [
             'id',
             'name',
-            'slug',
             'articul',
-            [
-                'attribute' => 'description',
-                'format' => 'raw',
-            ],
             [
                 'attribute' => 'category_id',
                 'label' => Yii::t('app', 'Category'),

@@ -1,12 +1,14 @@
 <?php
+
 namespace app\models;
 
 use Yii;
-use yii\web\UploadedFile;
 use app\models\UploadForm;
 
 class Slide extends \yii\db\ActiveRecord
 {
+    public $file;
+
     public static function tableName()
     {
         return 'slide';
@@ -18,7 +20,7 @@ class Slide extends \yii\db\ActiveRecord
             [['header', 'content', 'position', 'link'], 'required'],
             [['header', 'content', 'position', 'link'], 'string'],
             [['picture'], 'required', 'on' => 'create'],
-            [['picture'], 'file', 'extensions' => 'png, jpg, webp'],
+            [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
         ];
     }
 
@@ -31,13 +33,14 @@ class Slide extends \yii\db\ActiveRecord
             'position' => Yii::t('app', 'Position'),
             'picture' => Yii::t('app', 'Picture'),
             'link' => Yii::t('app', 'Link'),
+            'file' => Yii::t('app', 'File'),
         ];
     }
 
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
-        $this->picture = (new UploadForm(UploadedFile::getInstance($this, 'picture')))->upload() ?: $this->picture = $this->getOldAttribute('picture');
-        return parent::beforeSave($insert);
+        $this->picture = (new UploadForm($this))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeValidate();
     }
 
     public function afterFind()

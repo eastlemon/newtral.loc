@@ -15,7 +15,7 @@ class m210824_132155_create_certificate_table extends Migration
         $this->createTable('{{%certificate}}', [
             'id' => $this->primaryKey(),
             'name' => $this->text()->notNull(),
-            'file' => $this->text()->notNull(),
+            'document' => $this->text()->notNull(),
         ]);
     }
 

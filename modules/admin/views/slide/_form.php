@@ -10,14 +10,11 @@
         'preset' => 'custom',
         'clientOptions' => [
             'toolbarGroups' => [
-                ['name' => 'document', 'groups' => ['mode', 'document', 'doctools' ]],
-                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo' ]],
-                ['name' => 'editing', 'groups' => ['find', 'selection', 'spellchecker' ]],
+                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
+                ['name' => 'editing', 'groups' => ['find', 'selection']],
                 '/',
-                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup' ]],
-                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi' ]],
-                ['name' => 'links'],
-                ['name' => 'insert'],
+                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
+                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi']],
                 '/',
                 ['name' => 'styles'],
                 ['name' => 'colors'],
@@ -30,14 +27,11 @@
         'preset' => 'custom',
         'clientOptions' => [
             'toolbarGroups' => [
-                ['name' => 'document', 'groups' => ['mode', 'document', 'doctools' ]],
-                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo' ]],
-                ['name' => 'editing', 'groups' => ['find', 'selection', 'spellchecker' ]],
+                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
+                ['name' => 'editing', 'groups' => ['find', 'selection']],
                 '/',
-                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup' ]],
-                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi' ]],
-                ['name' => 'links'],
-                ['name' => 'insert'],
+                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
+                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi']],
                 '/',
                 ['name' => 'styles'],
                 ['name' => 'colors'],
@@ -55,7 +49,7 @@
             'allowClear' => true
         ],
     ]) ?>
-    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
+    <?= $form->field($model, 'file')->fileInput(['class' => 'form-control-file']) ?>
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

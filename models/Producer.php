@@ -10,6 +10,8 @@ use app\models\UploadForm;
 
 class Producer extends ActiveRecord
 {
+    public $file;
+    
     public static function tableName()
     {
         return 'producer';
@@ -20,7 +22,9 @@ class Producer extends ActiveRecord
         return [
             [['slug'], 'string'],
             [['in_menu'], 'integer'],
-            [['name', 'picture'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
+            [['picture'], 'required', 'on' => 'create'],
+            [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
             [['slug'], 'unique'],
         ];
     }
@@ -66,10 +70,10 @@ class Producer extends ActiveRecord
         return self::find()->where(['in_menu' => 1])->all();
     }
 
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
-        $this->picture = (new UploadForm(UploadedFile::getInstance($this, 'picture')))->upload() ?: $this->picture = $this->getOldAttribute('picture');
-        return parent::beforeSave($insert);
+        $this->picture = (new UploadForm($this))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeValidate();
     }
 
     public function afterFind()

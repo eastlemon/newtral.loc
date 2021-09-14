@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\UploadForm;
 
 class PartPicture extends \yii\db\ActiveRecord
 {
@@ -14,10 +15,10 @@ class PartPicture extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['picture', 'part_id'], 'required'],
-            [['picture'], 'string'],
             [['part_id'], 'integer'],
+            [['part_id'], 'required'],
             [['part_id'], 'exist', 'skipOnError' => true, 'targetClass' => Part::className(), 'targetAttribute' => ['part_id' => 'id']],
+            [['picture'], 'required', 'on' => 'create'],
         ];
     }
     
@@ -25,7 +26,7 @@ class PartPicture extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'picture' => Yii::t('app', 'Picture'),
+            'file' => Yii::t('app', 'File'),
             'part_id' => Yii::t('app', 'Part ID'),
         ];
     }
@@ -33,5 +34,11 @@ class PartPicture extends \yii\db\ActiveRecord
     public function getPart()
     {
         return $this->hasOne(Part::className(), ['id' => 'part_id']);
+    }
+
+    public function beforeValidate()
+    {
+        $this->picture = (new UploadForm($this->part))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeValidate();
     }
 }

@@ -5,11 +5,12 @@ namespace app\models;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\db\ActiveRecord;
-use yii\web\UploadedFile;
 use app\models\UploadForm;
 
 class Category extends ActiveRecord
 {
+    public $file;
+    
     public static function tableName()
     {
         return 'category';
@@ -20,7 +21,9 @@ class Category extends ActiveRecord
         return [
             [['name'], 'required'],
             [['parent_id', 'is_popular'], 'integer'],
-            [['name', 'slug', 'picture'], 'string', 'max' => 255],
+            [['name', 'slug'], 'string', 'max' => 255],
+            [['picture'], 'required', 'on' => 'create'],
+            [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parent_id' => 'id']],
             [['slug'], 'unique'],
         ];
@@ -83,10 +86,10 @@ class Category extends ActiveRecord
         return self::find()->where(['parent_id' => null, 'is_popular' => 1])->all();
     }
 
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
-        $this->picture = (new UploadForm(UploadedFile::getInstance($this, 'picture')))->upload() ?: $this->picture = $this->getOldAttribute('picture');
-        return parent::beforeSave($insert);
+        $this->picture = (new UploadForm($this))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeValidate();
     }
 
     public function afterFind()

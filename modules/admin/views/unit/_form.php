@@ -9,7 +9,23 @@
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'articul')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'description')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
+    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+        'preset' => 'custom',
+        'clientOptions' => [
+            'toolbarGroups' => [
+                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
+                ['name' => 'editing', 'groups' => ['find', 'selection']],
+                '/',
+                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
+                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi']],
+                '/',
+                ['name' => 'styles'],
+                ['name' => 'colors'],
+                ['name' => 'tools'],
+                ['name' => 'others']
+            ],
+        ],
+    ]) ?>
     <?= $form->field($model, 'category_id')->widget(Select2::classname(), [
         'data' => $dataCategory,
         'options' => [

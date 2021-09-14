@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use app\traits\FindModelTrait;
 use app\models\Part;
 use app\models\Producer;
@@ -55,10 +56,11 @@ class PartController extends Controller
     {
         $model = new Part();
         $modelOffer = new Offer(['scenario' => 'create']);
+        $modelPartPicture = new PartPicture(['scenario' => 'create']);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($certs = $model->certificate_ids) {
-                foreach ($certs as $item) {
+            if ($certificates = $model->certificate_ids) {
+                foreach ($certificates as $item) {
                     $partCertificate = new PartCertificate();
                     $partCertificate->part_id = $model->id;
                     $partCertificate->certificate_id = $item;
@@ -68,14 +70,20 @@ class PartController extends Controller
 
             if ($modelOffer->load(Yii::$app->request->post())) {
                 $modelOffer->part_id = $model->id;
-                if ($modelOffer->save()) return $this->redirect(['view', 'id' => $model->id]);
+                $modelOffer->save();
             }
+
+            $modelPartPicture->part_id = $model->id;
+            $modelPartPicture->save();
+
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['part/create']) . '">' . Yii::t('app', 'Create') . '</a>');
+            //return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
             'modelOffer' => $modelOffer,
+            'modelPartPicture' => $modelPartPicture,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
             'dataStores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
             'dataCertificates' => ArrayHelper::map(Certificate::find()->asArray()->all(), 'id', 'name'),

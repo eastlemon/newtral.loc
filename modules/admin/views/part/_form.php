@@ -9,7 +9,23 @@
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'articul')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'description')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
+    <?= $form->field($model, 'description')->widget(CKEditor::className(), [
+        'preset' => 'custom',
+        'clientOptions' => [
+            'toolbarGroups' => [
+                ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
+                ['name' => 'editing', 'groups' => ['find', 'selection']],
+                '/',
+                ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
+                ['name' => 'paragraph', 'groups' => ['list', 'indent', 'blocks', 'align', 'bidi']],
+                '/',
+                ['name' => 'styles'],
+                ['name' => 'colors'],
+                ['name' => 'tools'],
+                ['name' => 'others']
+            ],
+        ],
+    ]) ?>
     <?= $form->field($model, 'producer_id')->widget(Select2::classname(), [
         'data' => $data,
         'options' => [
@@ -19,7 +35,7 @@
             'allowClear' => true
         ],
     ]) ?>
-    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
+    <?= $form->field($model, 'file')->fileInput(['class' => 'form-control-file']) ?>
     <div class="row">
         <div class="col-md-6"><?= $form->field($modelOffer, 'amount')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($modelOffer, 'price')->textInput() ?></div>

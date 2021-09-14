@@ -25,6 +25,17 @@ class CertificateController extends Controller
             ],
         ];
     }
+
+    public function actionDownload($id) 
+    { 
+        $model = $this->findModel(Certificate::class, $id);
+        if (file_exists($path = 'uploads/' . $model->document)) {
+            return Yii::$app->response->sendFile($path, $model->name);
+        } else {
+            Yii::$app->session->setFlash('warning', Yii::t('app', 'The file does not exist'));
+            return $this->redirect('index');
+        }
+    }
     
     public function actionIndex()
     {
@@ -46,7 +57,7 @@ class CertificateController extends Controller
 
     public function actionCreate()
     {
-        $model = new Certificate();
+        $model = new Certificate(['scenario' => 'create']);
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['certificate/create']) . '">' . Yii::t('app', 'Create') . '</a>');

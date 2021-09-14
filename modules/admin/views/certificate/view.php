@@ -25,7 +25,7 @@
         'attributes' => [
             'id',
             'name:ntext',
-            'file:ntext',
+            'document:ntext',
         ],
     ]) ?>
 </div>

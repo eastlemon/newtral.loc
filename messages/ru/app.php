@@ -1,5 +1,8 @@
 <?php
 return [
+    'The file does not exist' => 'Файл не существует',
+    'Document' => 'Документ',
+    'File' => 'Файл',
     'Saved!' => 'Сохранено!',
     'Spare parts by manufacturer' => 'Запчасти по производителям',
     'Popular Categories' => 'Популярные категории',

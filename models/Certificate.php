@@ -3,11 +3,12 @@
 namespace app\models;
 
 use Yii;
-use yii\web\UploadedFile;
 use app\models\UploadForm;
 
 class Certificate extends \yii\db\ActiveRecord
 {
+    public $file;
+
     public static function tableName()
     {
         return 'certificate';
@@ -17,7 +18,9 @@ class Certificate extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name', 'file'], 'string', 'max' => 255],
+            [['name', 'document'], 'string', 'max' => 255],
+            [['document'], 'required', 'on' => 'create'],
+            [['file'], 'file', 'extensions' => 'pdf, doc, docx'],
         ];
     }
 
@@ -26,6 +29,7 @@ class Certificate extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'document' => Yii::t('app', 'Document'),
             'file' => Yii::t('app', 'File'),
         ];
     }
@@ -40,9 +44,9 @@ class Certificate extends \yii\db\ActiveRecord
         return $this->hasMany(Part::className(), ['id' => 'part_id'])->viaTable('part_certificate', ['certificate_id' => 'id']);
     }
 
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
-        $this->file = (new UploadForm(UploadedFile::getInstance($this, 'file')))->upload() ?: $this->file = $this->getOldAttribute('file');
-        return parent::beforeSave($insert);
+        $this->document = (new UploadForm($this))->upload() ?: $this->document = $this->getOldAttribute('document');
+        return parent::beforeValidate();
     }
 }

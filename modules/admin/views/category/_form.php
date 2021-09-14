@@ -7,7 +7,7 @@
 <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control-file']) ?>
+    <?= $form->field($model, 'file')->fileInput(['class' => 'form-control-file']) ?>
     <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [
         'data' => $data,
         'options' => [

@@ -16,7 +16,6 @@
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
             'name:ntext',
-            'file:ntext',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{download}&nbsp;{view}&nbsp;{update}&nbsp;{delete}',

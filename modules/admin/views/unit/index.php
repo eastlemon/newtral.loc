@@ -16,12 +16,7 @@
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
             'name',
-            'slug',
             'articul',
-            [
-                'attribute' => 'description',
-                'format' => 'raw',
-            ],
             [
                 'attribute' => 'category_id',
                 'value' => 'category.name',

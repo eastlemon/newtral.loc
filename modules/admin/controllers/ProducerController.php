@@ -47,7 +47,7 @@ class ProducerController extends Controller
     
     public function actionCreate()
     {
-        $model = new Producer();
+        $model = new Producer(['scenario' => 'create']);
         $model->in_menu = 0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

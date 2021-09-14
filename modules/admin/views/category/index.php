@@ -26,7 +26,6 @@
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
             'name',
-            'slug',
             [
                 'attribute' => 'parent_id',
                 'value' => function ($model) {

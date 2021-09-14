@@ -26,12 +26,7 @@
         'attributes' => [
             'id',
             'name',
-            'slug',
             'articul',
-            [
-                'attribute' => 'description',
-                'format' => 'raw',
-            ],
             [
                 'attribute' => 'producer_id',
                 'label' => Yii::t('app', 'Producer'),

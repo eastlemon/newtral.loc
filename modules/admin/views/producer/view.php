@@ -25,7 +25,6 @@
         'attributes' => [
             'id',
             'name',
-            'slug',
             [
                 'attribute' => 'picture',
                 'format' => 'html',    

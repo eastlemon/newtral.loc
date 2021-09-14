@@ -3,15 +3,12 @@
 namespace app\models;
 
 use Yii;
-use yii\db\Query;
-use yii\behaviors\SluggableBehavior;
 use yii\db\ActiveRecord;
-use yii\web\UploadedFile;
-use app\models\UploadForm;
+use yii\behaviors\SluggableBehavior;
 
 class Part extends ActiveRecord
 {
-    public $picture, $offer, $certificate_ids;
+    public $partFirstImage, $file, $offer, $certificate_ids;
 
     public static function tableName()
     {
@@ -21,12 +18,12 @@ class Part extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug', 'articul', 'producer_id'], 'required'],
+            [['name', 'articul', 'producer_id'], 'required'],
             [['name', 'description'], 'string'],
             [['producer_id'], 'integer'],
             [['slug', 'articul'], 'string', 'max' => 255],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
-            [['picture'], 'file'],
+            [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
             [['offer'], 'number'],
             [['certificate_ids'], 'safe'],
             [['slug'], 'unique'],
@@ -56,7 +53,7 @@ class Part extends ActiveRecord
             'slug' => Yii::t('app', 'Slug'),
             'articul' => Yii::t('app', 'Articul'),
             'description' => Yii::t('app', 'Description'),
-            'picture' => Yii::t('app', 'Picture'),
+            'file' => Yii::t('app', 'File'),
             'producer_id' => Yii::t('app', 'Producer ID'),
             'certificate_ids' => Yii::t('app', 'Certificate IDs'),
             'offer' => Yii::t('app', 'Offer'),
@@ -116,9 +113,9 @@ class Part extends ActiveRecord
         return self::find()->orderBy('RAND()')->limit(4)->all();
     }
 
-    public function beforeSave($insert)
+    public function afterFind()
     {
-        $this->picture = (new UploadForm(UploadedFile::getInstance($this, 'picture')))->upload() ?: $this->picture = $this->getOldAttribute('picture');
-        return parent::beforeSave($insert);
+        parent::afterFind();
+        $this->partPictures[0]->picture ? $this->partFirstImage = 'uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = 'images/noImage100x100.png';
     }
 }

@@ -25,7 +25,6 @@
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
             'name',
-            'slug',
             [
                 'attribute' => 'in_menu',
                 'value' => function ($model) {
