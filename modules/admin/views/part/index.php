@@ -21,6 +21,8 @@
                 'attribute' => 'producer_id',
                 'value' => 'producer.name',
             ],
+            'created_at:date',
+            'updated_at:date',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}&nbsp;{update}&nbsp;{delete}',

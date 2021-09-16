@@ -33,7 +33,8 @@
         "2amigos/yii2-ckeditor-widget" : "~2.1",
         "rmrevin/yii2-fontawesome": "~3.5",
         "kartik-v/yii2-widget-select2": "dev-master",
-        "hail812/yii2-adminlte3": "~1.1"
+        "hail812/yii2-adminlte3": "~1.1",
+        "skeeks/yii2-slug-behavior": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

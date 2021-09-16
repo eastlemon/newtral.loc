@@ -19,6 +19,8 @@ class m210824_125336_create_part_table extends Migration
             'articul' => $this->string()->notNull(),
             'description' => $this->text(),
             'producer_id' => $this->integer()->notNull(),
+            'created_at' => $this->string()->notNull(),
+            'updated_at' => $this->string()->notNull(),
         ]);
 
         $this->addForeignKey(

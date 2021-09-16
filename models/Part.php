@@ -4,7 +4,9 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\behaviors\SluggableBehavior;
+use skeeks\yii2\slug\SlugBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 class Part extends ActiveRecord
 {
@@ -19,7 +21,7 @@ class Part extends ActiveRecord
     {
         return [
             [['name', 'articul', 'producer_id'], 'required'],
-            [['name', 'description'], 'string'],
+            [['name', 'description', 'created_at', 'updated_at'], 'string'],
             [['producer_id'], 'integer'],
             [['slug', 'articul'], 'string', 'max' => 255],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
@@ -33,15 +35,36 @@ class Part extends ActiveRecord
     public function behaviors()
     {
         return [
-            [
+            /*[
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
                 'slugAttribute' => 'slug',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
                 ],
+                'maxLength' => 64,
+                'minLength' => 3,
                 'ensureUnique' => true,
-            ]
+            ],*/
+            'slug' => [
+                'class' => SlugBehavior::className(),
+                'slugAttribute' => 'slug',
+                'attribute' => 'name',
+                'maxLength' => 64,
+                'minLength' => 3,
+                'ensureUnique' => true,
+                'slugifyOptions' => [
+                    'lowercase' => true,
+                    'separator' => '-',
+                    'trim' => true,
+                ]
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -57,6 +80,8 @@ class Part extends ActiveRecord
             'producer_id' => Yii::t('app', 'Producer ID'),
             'certificate_ids' => Yii::t('app', 'Certificate IDs'),
             'offer' => Yii::t('app', 'Offer'),
+            'created_at' => Yii::t('app', 'Created at'),
+            'updated_at' => Yii::t('app', 'Updated at'),
         ];
     }
 
