@@ -26,23 +26,13 @@ class Category extends ActiveRecord
             [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parent_id' => 'id']],
             [['slug'], 'unique'],
+            [['in_menu'], 'integer'],
         ];
     }
     
     public function behaviors()
     {
         return [
-            /*[
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
-                'slugAttribute' => 'slug',
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
-                ],
-                'maxLength' => 64,
-                'minLength' => 3,
-                'ensureUnique' => true,
-            ]*/
             'slug' => [
                 'class' => SlugBehavior::className(),
                 'slugAttribute' => 'slug',
@@ -68,7 +58,20 @@ class Category extends ActiveRecord
             'picture' => Yii::t('app', 'Picture'),
             'parent_id' => Yii::t('app', 'Parent ID'),
             'is_popular' => Yii::t('app', 'Popular'),
+            'in_menu' => Yii::t('app', 'In Menu'),
         ];
+    }
+
+    public function beforeValidate()
+    {
+        $this->picture = (new UploadForm($this))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeValidate();
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->picture ? $this->picture = 'uploads/' . $this->picture : $this->picture = 'images/noImage100x100.png';
     }
     
     public function getParent()
@@ -101,15 +104,8 @@ class Category extends ActiveRecord
         return self::find()->where(['parent_id' => null, 'is_popular' => 1])->all();
     }
 
-    public function beforeValidate()
+    public static function getMenuItems()
     {
-        $this->picture = (new UploadForm($this))->upload() ?: $this->picture = $this->getOldAttribute('picture');
-        return parent::beforeValidate();
-    }
-
-    public function afterFind()
-    {
-        parent::afterFind();
-        $this->picture ? $this->picture = 'uploads/' . $this->picture : $this->picture = 'images/noImage100x100.png';
+        return self::find()->where(['in_menu' => 1])->all();
     }
 }

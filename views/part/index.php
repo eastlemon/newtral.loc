@@ -7,7 +7,7 @@
     use app\widgets\PartGrid;
 
     $this->title = $model->name;
-    //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Parts'), 'url' => ['index']];
+    $this->params['breadcrumbs'][] = ['label' => $model->producer->name, 'url' => ['/producer/' . $model->producer->slug]];
     $this->params['breadcrumbs'][] = $this->title;
     \yii\web\YiiAsset::register($this);
 ?>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row pt-4">
             <div class="col-12">
                 <ul class="nav nav-tabs nav-justified" id="productTab">
                     <li class="nav-item">

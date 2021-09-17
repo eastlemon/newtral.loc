@@ -18,6 +18,7 @@
         ],
     ]) ?>
     <?= $form->field($model, 'is_popular')->radioList([1 => 'Да', 0 => 'Нет']) ?>
+    <?= $form->field($model, 'in_menu')->radioList([1 => 'Да', 0 => 'Нет']) ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

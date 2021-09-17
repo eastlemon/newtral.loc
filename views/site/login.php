@@ -1,10 +1,10 @@
 <?php
-use yii\helpers\Url;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
+    use yii\helpers\Url;
+    use yii\bootstrap4\Html;
+    use yii\bootstrap4\ActiveForm;
 
-$this->title = Yii::t('yii2mod.user', 'Login');
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = Yii::t('yii2mod.user', 'Login');
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="container">

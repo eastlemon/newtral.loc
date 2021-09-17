@@ -1,14 +1,14 @@
 <?php
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
-use yii\bootstrap4\Html;
-use yii\helpers\ArrayHelper;
-use yii2mod\comments\widgets\Comment;
+    use yii\bootstrap\ActiveForm;
+    use yii\captcha\Captcha;
+    use yii\bootstrap4\Html;
+    use yii\helpers\ArrayHelper;
+    use yii2mod\comments\widgets\Comment;
 
-$this->title = $cmsModel->meta_title;
-$this->registerMetaTag(['name' => 'keywords', 'content' => $cmsModel->meta_keywords]);
-$this->registerMetaTag(['name' => 'description', 'content' => $cmsModel->meta_description]);
-$this->params['breadcrumbs'][] = $cmsModel->title;
+    $this->title = $cmsModel->meta_title;
+    $this->registerMetaTag(['name' => 'keywords', 'content' => $cmsModel->meta_keywords]);
+    $this->registerMetaTag(['name' => 'description', 'content' => $cmsModel->meta_description]);
+    $this->params['breadcrumbs'][] = $cmsModel->title;
 ?>
 
 <div class="container">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $cmsModel->title;
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                 ]) ?>
                 <div class="form-group">
-                    <?php echo Html::submitButton(Yii::t('contact', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']); ?>
+                    <?= Html::submitButton(Yii::t('contact', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

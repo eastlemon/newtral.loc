@@ -15,6 +15,14 @@
                 'class' => 'yii\grid\SerialColumn',
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
+            [
+                'attribute' => 'picture',
+                'format' => 'html',    
+                'value' => function ($model) {
+                    return Html::img($model->partFirstImage, ['width' => '70px']);
+                },
+                'contentOptions' => ['style' => 'width:1px;'],
+            ],
             'name',
             'articul',
             [

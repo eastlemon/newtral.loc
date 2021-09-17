@@ -1,7 +1,7 @@
 <?php
-use yii\bootstrap4\Html;
+    use yii\bootstrap4\Html;
 
-$this->title = $name;
+    $this->title = $name;
 ?>
 
 <div class="container">

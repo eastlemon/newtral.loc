@@ -28,17 +28,6 @@ class Node extends ActiveRecord
     public function behaviors()
     {
         return [
-            /*[
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
-                'slugAttribute' => 'slug',
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
-                ],
-                'maxLength' => 64,
-                'minLength' => 3,
-                'ensureUnique' => true,
-            ]*/
             'slug' => [
                 'class' => SlugBehavior::className(),
                 'slugAttribute' => 'slug',

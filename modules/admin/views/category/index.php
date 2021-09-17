@@ -45,6 +45,17 @@
                 ],
             ],
             [
+                'attribute' => 'in_menu',
+                'value' => function ($model) {
+                    return $model->in_menu ? 'Да' : 'Нет';
+                },
+                'contentOptions' => ['style' => 'width:1px;'],
+                'filter' => [
+                    0 => 'Нет',
+                    1 => 'Да',
+                ],
+            ],
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}&nbsp;{update}&nbsp;{delete}',
                 'contentOptions' => ['style' => 'width:80px; text-align:center;'],

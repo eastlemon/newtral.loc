@@ -1,45 +1,45 @@
 <?php
-use yii\bootstrap4\ActiveForm;
-use yii\bootstrap4\Html;
-use yii\widgets\DetailView;
+    use yii\bootstrap4\ActiveForm;
+    use yii\bootstrap4\Html;
+    use yii\widgets\DetailView;
 
-$this->title = Yii::t('app', 'My Account');
+    $this->title = Yii::t('app', 'Account');
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <?php echo Yii::t('app', 'Change Password'); ?>
+            <div class="card">
+                <div class="card-header">
+                    <?= Yii::t('app', 'Change Password') ?>
                 </div>
-
-                <div class="panel-body">
+                <div class="card-body">
                     <?php $form = ActiveForm::begin(['id' => 'change-password-form']); ?>
-                    <?= $form->field($resetPasswordForm, 'password')->passwordInput() ?>
-                    <?= $form->field($resetPasswordForm, 'confirmPassword')->passwordInput() ?>
-                    <div class="form-group">
-                        <?php echo Html::resetButton(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default']); ?>
-                        <?php echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']); ?>
-                    </div>
+                        <?= $form->field($resetPasswordForm, 'password')->passwordInput() ?>
+                        <?= $form->field($resetPasswordForm, 'confirmPassword')->passwordInput() ?>
+                        <div class="form-group">
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                            <?= Html::resetButton(Yii::t('app', 'Cancel'), ['class' => 'btn btn-link']) ?>
+                        </div>
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading no-bottom-border">
-                    <?php echo Yii::t('app', 'Personal Information'); ?>
+            <div class="card">
+                <div class="card-header">
+                    <?= Yii::t('app', 'Personal Information') ?>
                 </div>
-                <div class="table-responsive">
-                    <?php echo DetailView::widget([
+                <div class="card-body">
+                    <?= DetailView::widget([
                         'model' => Yii::$app->user->identity,
                         'attributes' => [
                             'username',
                             'email',
                             'last_login:date',
                         ],
-                    ]); ?>
+                    ]) ?>
                 </div>
             </div>
         </div>

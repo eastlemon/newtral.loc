@@ -26,7 +26,7 @@ class PartPicture extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'file' => Yii::t('app', 'File'),
+            'picture' => Yii::t('app', 'Picture'),
             'part_id' => Yii::t('app', 'Part ID'),
         ];
     }

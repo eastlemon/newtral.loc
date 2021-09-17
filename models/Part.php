@@ -35,17 +35,6 @@ class Part extends ActiveRecord
     public function behaviors()
     {
         return [
-            /*[
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
-                'slugAttribute' => 'slug',
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'slug',
-                ],
-                'maxLength' => 64,
-                'minLength' => 3,
-                'ensureUnique' => true,
-            ],*/
             'slug' => [
                 'class' => SlugBehavior::className(),
                 'slugAttribute' => 'slug',
@@ -141,6 +130,6 @@ class Part extends ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        $this->partPictures[0]->picture ? $this->partFirstImage = 'uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = 'images/noImage100x100.png';
+        $this->partPictures[0]->picture ? $this->partFirstImage = '/uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = '/images/noImage100x100.png';
     }
 }

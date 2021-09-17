@@ -59,8 +59,8 @@ use app\models\SearchModel;
    </div>
 </div>
 
-<?php foreach (\app\models\Category::getRoots() as $item) $categories .= '<a class="list-group-item list-group-item-action" href="/category/' . $item->slug . '"><img src="/images/noImage100x100.png" height="25">&nbsp;' . $item->name . '</a>'; ?>
-<?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<a class="list-group-item list-group-item-action" href="/producer/' . $item->slug . '"><img src="/images/noImage100x100.png" height="25">&nbsp;' . $item->name . '</a>'; ?>
+<?php foreach (\app\models\Category::getMenuItems() as $item) $categories .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/category/' . $item->slug . '"><img class="img-thumbnail" src="' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
+<?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/producer/' . $item->slug . '"><img class="img-thumbnail" src="' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
 
 <?php NavBar::begin(['options' => [
    'id' => 'mainNav',
@@ -73,16 +73,16 @@ use app\models\SearchModel;
          (!Yii::$app->user->isGuest) ? [
             'label' => Yii::t('app', 'Parts Catalog'),
             'items' => [
-               '<div class="container">
-                  <div class="col-4 pt-4 sidebar">
-                     <div class="list-group flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="list-group-item list-group-item-action active" id="v-pills-categories-tab" data-toggle="pill" href="#v-pills-categories" role="tab" aria-controls="v-pills-categories" aria-selected="true">' . Yii::t('app', 'Categories') . '</a>
-                        <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Producers') . '</a>
+               '<div class="container d-flex align-items-start p-4">
+                  <div class="col sidebar">
+                     <div class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="list-group-item list-group-item-action active" id="v-pills-categories-tab" data-toggle="pill" href="#v-pills-categories" role="tab" aria-controls="v-pills-categories" aria-selected="true">' . Yii::t('app', 'Spare parts by groups') . '</a>
+                        <a class="list-group-item list-group-item-action" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="false">' . Yii::t('app', 'Spare parts by manufacturer') . '</a>
                      </div>
                   </div>
-                  <div class="col pt-4 pb-4 tab-content" id="v-pills-tabContent">
-                     <div class="tab-pane fade show active" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
-                     <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab"><ul class="list-group list-group-flush">' . $producers . '</ul></div>
+                  <div class="col-8 tab-content" id="v-pills-tabContent">
+                     <div class="tab-pane fade show active" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"><div class="container"><div class="row">' . $categories . '</div></div></div>
+                     <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab">' . $producers . '</div>
                   </div>
                </div>',
             ],
@@ -91,8 +91,12 @@ use app\models\SearchModel;
             'label' => Yii::t('app', 'Parts Catalog'),
             'items' => [
                '<div class="container">
-                  <div class="col-md-8"><div class="demo-trailer"></div></div>
-                  <div class="col-md-4"><div class="list-group"' . $categories . '</div></div>
+                  <div class="row">
+                     <div class="col-8 sidebar"><div class="demo-trailer"></div></div>
+                     <div class="col pt-4 pb-4 tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"><ul class="list-group list-group-flush">' . $categories . '</ul></div>
+                     </div>
+                  </div>
                </div>',
             ],
             'options' => ['class' => 'nav-item dropdown megamenu'],

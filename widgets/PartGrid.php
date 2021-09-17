@@ -15,6 +15,7 @@ class PartGrid extends Widget
     public function init()
     {
         parent::init();
+        Yii::$app->formatter->nullDisplay = 'N\A';
     }
 
     public function run()
@@ -58,7 +59,7 @@ class PartGrid extends Widget
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
-                            $_r .= '<p class="mb-1 text-nowrap"><span class="border border-dark rounded-sm px-2">' . $offer->store->name . '</span></p>';
+                            if ($offer->amount > 0) $_r .= '<p class="mb-1 text-nowrap"><span class="border border-dark rounded-sm px-2">' . $offer->store->name . '</span></p>';
                             if (++$k >= 3) break;
                         }
                         return $_r;
@@ -71,7 +72,7 @@ class PartGrid extends Widget
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
-                            $_r .= '<p class="mb-1">' . $offer->amount . '</p>';
+                            if ($offer->amount > 0) $_r .= '<p class="mb-1">' . $offer->amount . '</p>';
                             if (++$k >= 3) break;
                         }
                         return $_r;
@@ -84,7 +85,7 @@ class PartGrid extends Widget
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
-                            $_r .= '<p class="mb-1">' . $offer->store->officeStores[0]->delivery . ' д.</p>';
+                            if ($offer->amount > 0) $_r .= '<p class="mb-1">' . $offer->store->officeStores[0]->delivery . ' д.</p>';
                             if (++$k >= 3) break;
                         }
                         return $_r;
@@ -97,13 +98,13 @@ class PartGrid extends Widget
                     'format' => 'html',
                     'value' => function ($data) {
                         foreach ($data->offers as $offer) {
-                            $_r .= '<p class="text-nowrap mb-1">' . Yii::$app->formatter->asCurrency($offer->price) . '&nbsp;' . Html::a('<i class="fas fa-cart-plus"></i>', ['cart/add', 'slug' => $data->slug, 'store' => $offer->store->id]) . '</p>';
+                            if ($offer->amount > 0) $_r .= '<p class="font-weight-bold text-nowrap mb-1">' . Yii::$app->formatter->asCurrency($offer->price) . '&nbsp;' . Html::a('<i class="fas fa-cart-plus"></i>', ['cart/add', 'slug' => $data->slug, 'store' => $offer->store->id]) . '</p>';
                             if (++$k >= 3) break;
                         }
                         $count = count($data->offers);
                         return $_r . (($count > 3) ? '<p class="mb-1">' . Html::a('+ ' . Yii::t('app', 'More') . ' ' . ($count - 3), ['show-more', 'slug' => $data->slug]) . '</p>' : '');
                     },
-                    'label' => Yii::t('app', '+VAT'),
+                    'label' => Yii::t('app', 'Price with VAT'),
                     'contentOptions' => ['style' => 'width:1px;'],
                 ],
             ],

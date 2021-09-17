@@ -46,6 +46,12 @@
                     return $model->is_popular ? 'Да' : 'Нет';
                 },
             ],
+            [
+                'attribute' => 'in_menu',
+                'value' => function ($model) {
+                    return $model->in_menu ? 'Да' : 'Нет';
+                },
+            ],
         ],
     ]) ?>
 </div>
