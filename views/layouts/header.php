@@ -1,10 +1,10 @@
 <?php
-use yii\helpers\Url;
-use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
-use yii\bootstrap4\ActiveForm;
-use app\models\SearchModel;
+   use yii\helpers\Url;
+   use yii\bootstrap4\Html;
+   use yii\bootstrap4\Nav;
+   use yii\bootstrap4\NavBar;
+   use yii\bootstrap4\ActiveForm;
+   use app\models\SearchModel;
 ?>
 
 <div class="container">
@@ -82,7 +82,7 @@ use app\models\SearchModel;
                   </div>
                   <div class="col-8 tab-content" id="v-pills-tabContent">
                      <div class="tab-pane fade show active" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"><div class="container"><div class="row">' . $categories . '</div></div></div>
-                     <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab">' . $producers . '</div>
+                     <div class="tab-pane fade" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab"><div class="container"><div class="row">' . $producers . '</div></div></div>
                   </div>
                </div>',
             ],

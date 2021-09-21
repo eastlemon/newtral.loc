@@ -6,7 +6,7 @@ use yii2mod\notify\BootstrapNotify;
 \app\assets\AppAsset::register($this);
 ?>
 
-<div class="container">
+<!--<div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6">
             <a href="#"><img src="https://dummyimage.com/160x120/000000/fff.png&text=Photo+1" class="img-thumbnail my-3"></a>
@@ -33,7 +33,7 @@ use yii2mod\notify\BootstrapNotify;
             <a href="#"><img src="https://dummyimage.com/160x120/000000/fff.png&text=Photo+8" class="img-thumbnail my-3"></a>
         </div>
     </div>
-</div>
+</div>-->
 
 <?php $this->beginPage(); ?>
     <!DOCTYPE html>
