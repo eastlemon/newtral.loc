@@ -20,7 +20,7 @@ class FtpController extends Controller
         $ftp = new FtpClient();
         $ftp->connect($settings->get('ftp', 'url'));
         $ftp->login($settings->get('ftp', 'username'), $settings->get('ftp', 'password'));
-        $ftp->pasv(true); // !important
+        $ftp->pasv(true); // important passive mode!
         $ftp->getAll($settings->get('ftp', 'host_folder'), $local_folder);
 
         return ExitCode::OK;

@@ -7,10 +7,12 @@
 ?>
 
 <div class="container-fluid">
-    <p><?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'beforeRow' => function ($model, $index, $widget, $grid) {
+            if ($widget == 0) return '<tr><td colspan="' . (count($model->attributes) + 2) . '">' . Html::a('<i class="fas fa-plus-square"></i>&nbsp;' . Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-link']) . '</td></tr>';
+        },
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
@@ -26,7 +28,7 @@
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{switch}&nbsp;{update}&nbsp;{delete}',
+                'template' => '{switch} {update} {delete}',
                 'buttons' => [
                     'switch' => function ($url, $model) {
                         $options = [
@@ -43,7 +45,7 @@
                         return Html::a($icon, $url, $options);
                     },
                 ],
-                'contentOptions' => ['style' => 'width:80px; text-align:center;'],
+                'contentOptions' => ['style' => 'width:1px; text-align:center; white-space: nowrap;'],
             ],
         ],
     ]) ?>

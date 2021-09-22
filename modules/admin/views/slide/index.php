@@ -7,9 +7,11 @@
 ?>
 
 <div class="container-fluid">
-    <p><?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'beforeRow' => function ($model, $index, $widget, $grid) {
+            if ($widget == 0) return '<tr><td colspan="' . (count($model->attributes) + 2) . '">' . Html::a('<i class="fas fa-plus-square"></i>&nbsp;' . Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-link']) . '</td></tr>';
+        },
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
@@ -17,11 +19,15 @@
             ],
             [
                 'attribute' => 'header',
-                'format' => 'raw',
+                'value' => function ($model) {
+                    return strip_tags($model->header);
+                }
             ],
             [
                 'attribute' => 'content',
-                'format' => 'raw',
+                'value' => function ($model) {
+                    return strip_tags($model->content);
+                }
             ],
             [
                 'attribute' => 'position',
@@ -42,8 +48,8 @@
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}&nbsp;{update}&nbsp;{delete}',
-                'contentOptions' => ['style' => 'width:80px; text-align:center;'],
+                'template' => '{view} {update} {delete}',
+                'contentOptions' => ['style' => 'width:1px; text-align:center; white-space: nowrap;'],
             ],
         ],
     ]) ?>

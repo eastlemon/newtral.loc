@@ -36,8 +36,8 @@
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update}&nbsp;{delete}',
-                'contentOptions' => ['style' => 'width:60px; text-align:center;'],
+                'template' => '{update} {delete}',
+                'contentOptions' => ['style' => 'width:1px; text-align:center; white-space: nowrap;'],
             ],
         ],
     ]) ?>

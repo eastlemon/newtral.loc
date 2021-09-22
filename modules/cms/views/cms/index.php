@@ -20,7 +20,6 @@
                 'class' => 'yii\grid\SerialColumn',
                 'contentOptions' => ['style' => 'width:1px;'],
             ],
-
             'url',
             'title',
             'status',
@@ -29,10 +28,9 @@
                 'attribute' => 'created_at',
                 'format' => ['date', 'full'],
             ],
-
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}&nbsp;{update}&nbsp;{delete}',
+                'template' => '{view} {update} {delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
                         return Html::a(
@@ -46,7 +44,7 @@
                         );
                     },
                 ],
-                'contentOptions' => ['style' => 'width:80px; text-align:center;'],
+                'contentOptions' => ['style' => 'width:1px; text-align:center; white-space: nowrap;'],
             ],
         ],
     ]) ?>

@@ -1,5 +1,7 @@
 <?php
 return [
+    'Spare parts for semitrailers' => 'Запчасти для полуприцепов',
+    'Address' => 'Адрес',
     'New Password' => 'Новый пароль',
     'Confirm New Password' => 'Повторите пароль',
     'Change Password' => 'Сменить пароль',

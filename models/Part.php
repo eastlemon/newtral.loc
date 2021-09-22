@@ -61,6 +61,7 @@ class Part extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'picture' => Yii::t('app', 'Picture'),
             'name' => Yii::t('app', 'Name'),
             'slug' => Yii::t('app', 'Slug'),
             'articul' => Yii::t('app', 'Articul'),

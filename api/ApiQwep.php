@@ -2,24 +2,21 @@
 
 namespace app\api;
 
-use Yii;
-
 class ApiQwep extends \yii\httpclient\Client
 {
   public $baseUrl;
   public $authorizationCode;
+  public $token;
 
-  public function __construct($config = [])
+  public function __construct($url, $code, $config = [])
   {
-    $settings = Yii::$app->settings;
-    
-    $this->baseUrl = $settings->get('qwep', 'url');
-    $this->authorizationCode = $settings->get('qwep', 'authorizationCode');
-
+    $this->baseUrl = $url;
+    $this->authorizationCode = $code;
+    $this->token = $this->getToken();
     parent::__construct($config);
   }
 
-  public function authorization()
+  public function getToken()
   {
     $response = $this->createRequest()
     ->setMethod('POST')
@@ -30,34 +27,23 @@ class ApiQwep extends \yii\httpclient\Client
           "authorizationCode": "' . $this->authorizationCode . '"
         }
       }
-    }')
-    ->send();
-
-    if ($response->isOk) return $response->data;
+    }')->send();
+    if ($response->isOk) return $response->data['Response']['entity']['token'];
   }
 
-  public function search()
+  public function searchArticul($a)
   {
     $response = $this->createRequest()
     ->setMethod('POST')
     ->setUrl('search?json')
-    ->addHeaders(['Authorization' => 'Bearer 3777154ce2389224a6823447cf7570b1c861cc60'])
+    ->addHeaders(['Authorization' => 'Bearer ' . $this->token])
     ->setContent('{
       "Request": {
         "RequestData": {
-          "article": "01244",
-          "brand": "Febi",
-          "accounts": [
-            {
-              "id": 14
-            }
-          ],
-          "type": 0
+          "article": "' . $a . '"
         }
       }
-    }')
-    ->send();
-
+    }')->send();
     if ($response->isOk) return $response->data;
   }
 }
