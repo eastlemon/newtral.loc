@@ -43,4 +43,9 @@ class OldNode extends \yii\db\ActiveRecord
     {
         return $this->hasOne(OldCategory::className(), ['id' => 'node_type_id']);
     }
+    
+    public function getNodeParts()
+    {
+        return $this->hasMany(OldNodePart::className(), ['node_id' => 'id']);
+    }
 }

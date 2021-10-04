@@ -34,7 +34,8 @@
         "rmrevin/yii2-fontawesome": "~3.5",
         "kartik-v/yii2-widget-select2": "dev-master",
         "hail812/yii2-adminlte3": "~1.1",
-        "skeeks/yii2-slug-behavior": "*"
+        "skeeks/yii2-slug-behavior": "*",
+        "kl83/yii2-ymaps": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

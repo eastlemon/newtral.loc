@@ -1,5 +1,5 @@
 <?php
-    use yii\bootstrap\ActiveForm;
+    use yii\bootstrap4\ActiveForm;
     use yii\bootstrap4\Html;
     use app\modules\cms\models\enumerables\CmsStatus;
     use app\modules\cms\Widget;

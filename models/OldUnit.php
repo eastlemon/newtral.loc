@@ -45,4 +45,9 @@ class OldUnit extends \yii\db\ActiveRecord
     {
         return $this->hasOne(OldManufacturer::className(), ['id' => 'node_manufacturer_id']);
     }
+    
+    public function getNodes()
+    {
+        return $this->hasMany(OldNode::class, ['id' => 'node_id'])->viaTable('old_node_to_unit_to_semitrailer', ['unit_id' => 'id']);
+    }
 }

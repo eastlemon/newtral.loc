@@ -5,6 +5,7 @@
     $this->title = $model->meta_title;
     $this->registerMetaTag(['name' => 'keywords', 'content' => $model->meta_keywords]);
     $this->registerMetaTag(['name' => 'description', 'content' => $model->meta_description]);
+    $this->params['breadcrumbs'][] = $model->title;
 ?>
 
 <div class="container">

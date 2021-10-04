@@ -10,9 +10,11 @@ class AppAsset extends \yii\web\AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/popper.min.js',
         'js/megamenu.js',
         'js/scrollcounter.js',
         'js/plusminus.js',
+        'js/site.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

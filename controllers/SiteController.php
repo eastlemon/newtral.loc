@@ -4,29 +4,23 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\VerbFilter;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii2mod\rbac\filters\AccessControl;
 use yii2mod\user\traits\EventTrait;
-use app\modules\cms\models\CmsModel;
-use app\models\forms\ContactForm;
-use app\models\forms\ResetPasswordForm;
 use app\models\Slide;
 use app\models\Producer;
 use app\models\Category;
 use app\models\Part;
 
-class SiteController extends Controller
+class SiteController extends \yii\web\Controller
 {
     use EventTrait;
-
+    
     const EVENT_BEFORE_SIGNUP = 'beforeSignup';
     const EVENT_AFTER_SIGNUP = 'afterSignup';
 
     public $loginModelClass = 'yii2mod\user\models\LoginForm';
+    
     public $signupModelClass = 'yii2mod\user\models\SignupForm';
-
-    public $commentWidgetParams = [];
 
     public function behaviors(): array
     {
@@ -65,7 +59,6 @@ class SiteController extends Controller
                     'signup' => ['get', 'post'],
                     'request-password-reset' => ['get', 'post'],
                     'password-reset' => ['get', 'post'],
-                    'page' => ['get', 'post'],
                 ],
             ],
         ];
@@ -76,10 +69,6 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
             /*'login' => [
                 'class' => 'yii2mod\user\actions\LoginAction',
@@ -95,9 +84,6 @@ class SiteController extends Controller
             ],
             'password-reset' => [
                 'class' => 'yii2mod\user\actions\PasswordResetAction',
-            ],
-            'page' => [
-                'class' => 'app\modules\cms\actions\PageAction',
             ],
         ];
     }
@@ -161,46 +147,6 @@ class SiteController extends Controller
             'producers' => Producer::find()->where(['in_menu' => 1])->all(),
             'categories' => Category::getPopularRoots(),
             'profitParts' => Part::getProfit(),
-        ]);
-    }
-
-    public function actionContact()
-    {
-        $model = new ContactForm();
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->contact(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Thank you for contacting us. We will respond to you as soon as possible.'));
-            } else {
-                Yii::$app->session->setFlash('error', Yii::t('app', 'There was an error sending email.'));
-            }
-
-            return $this->refresh();
-        }
-
-        if (!$cmsModel = (new CmsModel)->findPage('site/contact')) {
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-        }
-
-        return $this->render('contact', [
-            'model' => $model,
-            'cmsModel' => $cmsModel,
-            'commentWidgetParams' => $this->commentWidgetParams,
-        ]);
-    }
-
-    public function actionAccount()
-    {
-        $resetPasswordForm = new ResetPasswordForm(Yii::$app->user->identity);
-
-        if ($resetPasswordForm->load(Yii::$app->request->post()) && $resetPasswordForm->resetPassword()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Password has been updated.'));
-
-            return $this->refresh();
-        }
-
-        return $this->render('account', [
-            'resetPasswordForm' => $resetPasswordForm,
         ]);
     }
 }

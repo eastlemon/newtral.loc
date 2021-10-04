@@ -13,39 +13,18 @@ use app\modules\cms\models\CmsModel;
 
 class ManageController extends Controller
 {
-    /**
-     * @var string path to index view file, which is used in admin panel
-     */
     public $indexView = '/cms/index';
 
-    /**
-     * @var string path to create view file, which is used in admin panel
-     */
     public $createView = '/cms/create';
 
-    /**
-     * @var string path to update view file, which is used in admin panel
-     */
     public $updateView = '/cms/update';
 
-    /**
-     * @var string search class name for searching
-     */
     public $searchClass = 'app\modules\cms\models\search\CmsSearch';
 
-    /**
-     * @var string model class name for CRUD operations
-     */
     public $modelClass = 'app\modules\cms\models\CmsModel';
 
-    /**
-     * @var string class name for attachment model
-     */
     public $attachmentModelClass = 'app\modules\cms\models\AttachmentModel';
 
-    /**
-     * @var array verb filter config
-     */
     public $verbFilterConfig = [
         'class' => 'yii\filters\VerbFilter',
         'actions' => [
@@ -59,9 +38,6 @@ class ManageController extends Controller
         ],
     ];
 
-    /**
-     * @var array access control config
-     */
     public $accessControlConfig = [
         'class' => 'yii\filters\AccessControl',
         'rules' => [
@@ -72,9 +48,6 @@ class ManageController extends Controller
         ],
     ];
 
-    /**
-     * @inheritdoc
-     */
     public function behaviors(): array
     {
         return [
@@ -83,11 +56,6 @@ class ManageController extends Controller
         ];
     }
 
-    /**
-     * List of all cms models.
-     *
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = Yii::createObject($this->searchClass);
@@ -99,13 +67,6 @@ class ManageController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new CmsModel.
-     *
-     * If creation is successful, the browser will be redirected to the 'index' page.
-     *
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = Yii::createObject($this->modelClass);
@@ -121,21 +82,12 @@ class ManageController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing CmsModel.
-     *
-     * If update is successful, the browser will be redirected to the 'index' page.
-     *
-     * @param int $id
-     *
-     * @return mixed
-     */
     public function actionUpdate(int $id)
     {
         $model = $this->findModel($this->modelClass, $id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('yii2mod.cms', 'Page has been updated.'));
+            Yii::$app->session->setFlash('success', Yii::t('yii2mod.cms', 'Page has been updated'));
 
             return $this->redirect(['index']);
         }
@@ -145,30 +97,14 @@ class ManageController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing CmsModel.
-     *
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     *
-     * @param int $id
-     *
-     * @return mixed
-     */
     public function actionDelete(int $id)
     {
         $this->findModel($this->modelClass, $id)->delete();
-        Yii::$app->session->setFlash('success', Yii::t('yii2mod.cms', 'Page has been deleted.'));
+        Yii::$app->session->setFlash('success', Yii::t('yii2mod.cms', 'Page has been deleted'));
 
         return $this->redirect(['index']);
     }
 
-    /**
-     * Upload an image
-     *
-     * @return Response
-     *
-     * @throws UnprocessableEntityHttpException
-     */
     public function actionUploadImage(): Response
     {
         $model = Yii::createObject($this->attachmentModelClass);
@@ -183,13 +119,6 @@ class ManageController extends Controller
         ]);
     }
 
-    /**
-     * Delete the image
-     *
-     * @return Response
-     *
-     * @throws UnprocessableEntityHttpException
-     */
     public function actionDeleteImage(): Response
     {
         $model = $this->findModel($this->attachmentModelClass, Yii::$app->request->post('id'));
@@ -200,12 +129,7 @@ class ManageController extends Controller
             'status' => 'success',
         ]);
     }
-
-    /**
-     * Return list of all images
-     *
-     * @return Response
-     */
+    
     public function actionImages(): Response
     {
         $result = [];
@@ -220,18 +144,7 @@ class ManageController extends Controller
 
         return $this->asJson($result);
     }
-
-    /**
-     * Finds the model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     *
-     * @param string|ActiveRecord $modelClass
-     * @param $condition
-     *
-     * @return ActiveRecord the loaded model
-     *
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    
     protected function findModel($modelClass, $condition)
     {
         if (($model = $modelClass::findOne($condition)) !== null) {

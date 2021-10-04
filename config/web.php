@@ -54,16 +54,15 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
-                'account' => 'site/account',
                 'node/<slug:[\w-]+>' => 'node/index',
                 'producer/<slug:[\w-]+>' => 'producer/index',
                 'category/<slug:[\w-]+>' => 'category/index',
                 'part/<name:[\w-]+>' => 'part/index',
                 'product/<name:\w+>' => 'product/index',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:(page)>/<action:\w+>' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                ['class' => 'app\modules\cms\components\PageUrlRule'],
                 
                 //'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 //'<controller:(product|category)>/<id:\d+>' => '<controller>/view',
@@ -79,6 +78,10 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
                 'app'=> [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+                'contact'=> [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages',
                 ],
@@ -112,7 +115,7 @@ $config = [
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'RUB',
-       ],
+        ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
@@ -122,6 +125,9 @@ $config = [
                     'clientSecret' => '',
                 ],
             ],
+        ],
+        'yandexMapsApi' => [
+            'class' => 'mirocow\yandexmaps\Api',
         ],
     ],
     'modules' => [

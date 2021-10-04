@@ -4,11 +4,11 @@
 			<div class="col-md-auto"><a href="/"><img src="/images/header-logo.png"></a></div>
 			<div class="col-md-auto">
 				<ul class="list-inline">
-					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/"><?= Yii::t('app', 'Parts Catalog') ?></a></li>
-					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/about"><?= Yii::t('app', 'About') ?></a></li>
-					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/contacts"><?= Yii::t('app', 'Contacts') ?></a></li>
-					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/news"><?= Yii::t('app', 'News') ?></a></li>
-					<li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="/delivery"><?= Yii::t('app', 'Delivery') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" href="/old"><?= Yii::t('app', 'Old Semitrailers') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" href="/page/about"><?= Yii::t('app', 'About') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" href="/page/contact"><?= Yii::t('app', 'Contacts') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" href="/page/news"><?= Yii::t('app', 'News') ?></a></li>
+					<li class="list-inline-item"><a class="social-icon text-xs-center" href="/page/delivery"><?= Yii::t('app', 'Delivery') ?></a></li>
 				</ul>
 				<p>&copy; <?= Yii::$app->settings->get('mainPage', 'startYear') ?> - <?= date('Y', time()) ?> <?= Yii::$app->settings->get('mainPage', 'copyrightText') ?></p>
 			</div>

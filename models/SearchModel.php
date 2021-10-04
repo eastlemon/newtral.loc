@@ -28,6 +28,7 @@ class SearchModel extends Model
     public function search($params)
     {
         $query = Part::find();
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -38,7 +39,9 @@ class SearchModel extends Model
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'articul', $this->search]);
+        $query
+            ->andFilterWhere(['like', 'articul', $this->search])
+            ->orFilterWhere(['like', 'name', $this->search]);
 
         return $dataProvider;
     }

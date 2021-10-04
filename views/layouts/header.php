@@ -30,7 +30,7 @@
                   <?php if (Yii::$app->user->can('admin')): ?>
                      <i class="fas fa-users-cog"></i>&nbsp;<a href="/admin"><?= Yii::t('app', 'Control') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php else: ?>
-                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/site/account"><?= Yii::t('app', 'Account') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
+                     <i class="fas fa-user-shield"></i>&nbsp;<a href="/account"><?= Yii::t('app', 'Account') ?></a>&nbsp;|&nbsp;<?= Html::a('<i class="fas fa-door-open"></i>', Url::to(['site/logout']), ['data-method' => 'POST']) ?>
                   <?php endif; ?>
                <?php else: ?>
                   <i class="fas fa-key"></i>&nbsp;<a href="/site/login"><?= Yii::t('app', 'Enter') ?></a></a>
@@ -60,8 +60,8 @@
 </div>
 
 <?php if (!Yii::$app->user->isGuest): ?>
-   <?php foreach (\app\models\Category::getMenuItems() as $item) $categories .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/category/' . $item->slug . '"><img class="img-thumbnail" src="' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
-   <?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/producer/' . $item->slug . '"><img class="img-thumbnail" src="' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
+   <?php foreach (\app\models\Category::getMenuItems() as $item) $categories .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/category/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
+   <?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/producer/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
 <?php endif; ?>
 
 <?php NavBar::begin(['options' => [
@@ -113,10 +113,10 @@
             ],
             'options' => ['class' => 'nav-item dropdown megamenu'],
          ],
-         ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
-         ['label' => Yii::t('app', 'News'), 'url' => ['/site/news']],
-         ['label' => Yii::t('app', 'Delivery'), 'url' => ['/site/delivery']],
-         ['label' => Yii::t('app', 'Contacts'), 'url' => ['/site/contact']],
+         ['label' => Yii::t('app', 'About'), 'url' => ['/page/about']],
+         ['label' => Yii::t('app', 'News'), 'url' => ['/page/news']],
+         ['label' => Yii::t('app', 'Delivery'), 'url' => ['/page/delivery']],
+         ['label' => Yii::t('app', 'Contacts'), 'url' => ['/page/contact']],
       ],
    ]) ?>
    <?php $searchModel = new SearchModel(); ?>

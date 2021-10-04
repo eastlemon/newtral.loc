@@ -3,41 +3,22 @@
 namespace app\modules\cms\actions;
 
 use Yii;
-use yii\base\Action;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use app\modules\cms\models\CmsModel;
 
-class PageAction extends Action
+class PageAction extends \yii\base\Action
 {
-    /**
-     * @var string custom layout
-     */
     public $layout;
 
-    /**
-     * @var string Page path
-     */
     public $view = '/../modules/cms/views/page';
 
-    /**
-     * @var mixed pageId
-     */
     public $pageId;
 
-    /**
-     * @var array base template params
-     */
     public $baseTemplateParams = [];
 
-    /**
-     * @var array
-     */
     public $commentWidgetParams = [];
 
-    /**
-     * @inheritdoc
-     */
     public function init()
     {
         parent::init();
@@ -51,13 +32,6 @@ class PageAction extends Action
         }
     }
 
-    /**
-     * Run action
-     *
-     * @throws \yii\web\NotFoundHttpException
-     *
-     * @return string
-     */
     public function run()
     {
         $model = $this->findModel();
@@ -69,13 +43,6 @@ class PageAction extends Action
         ]);
     }
 
-    /**
-     * Parse base template params, like {homeUrl}
-     *
-     * @param $pageContent
-     *
-     * @return string
-     */
     protected function parseBaseTemplateParams(string $pageContent)
     {
         $params = $this->getBaseTemplateParams();
@@ -87,13 +54,6 @@ class PageAction extends Action
         return strtr($pageContent, $p);
     }
 
-    /**
-     * Return base template params
-     *
-     * If one of this params exist in page content, it will be parsed
-     *
-     * @return array
-     */
     protected function getBaseTemplateParams()
     {
         return ArrayHelper::merge($this->baseTemplateParams, [
@@ -102,13 +62,6 @@ class PageAction extends Action
         ]);
     }
 
-    /**
-     * Find CmsModel
-     *
-     * @return CmsModel
-     *
-     * @throws NotFoundHttpException
-     */
     protected function findModel(): CmsModel
     {
         if (($model = CmsModel::findOne($this->pageId)) !== null) {

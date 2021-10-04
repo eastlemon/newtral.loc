@@ -9,35 +9,13 @@ use yii\db\ActiveRecord;
 use app\modules\cms\models\enumerables\CmsStatus;
 use yii2mod\enum\helpers\BooleanEnum;
 
-/**
- * Cms model
- *
- * @property int $id
- * @property string $url
- * @property string $title
- * @property string $content
- * @property string $markdown_content
- * @property int $status
- * @property int $comment_available
- * @property string $meta_title
- * @property string $meta_description
- * @property string $meta_keywords
- * @property int $created_at
- * @property int $updated_at
- */
 class CmsModel extends ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     public static function tableName(): string
     {
         return '{{%cms}}';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules(): array
     {
         return [
@@ -72,15 +50,12 @@ class CmsModel extends ActiveRecord
             'meta_title' => Yii::t('yii2mod.cms', 'Meta Title'),
             'meta_description' => Yii::t('yii2mod.cms', 'Meta Description'),
             'meta_keywords' => Yii::t('yii2mod.cms', 'Meta Keywords'),
-            'comment_available' => Yii::t('yii2mod.cms', 'Comments available'),
+            'comment_available' => Yii::t('yii2mod.cms', 'Comments'),
             'created_at' => Yii::t('yii2mod.cms', 'Date Created'),
             'updated_at' => Yii::t('yii2mod.cms', 'Date Updated'),
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function behaviors(): array
     {
         return [
@@ -88,17 +63,11 @@ class CmsModel extends ActiveRecord
         ];
     }
 
-    /**
-     * @return CmsQuery
-     */
     public static function find(): CmsQuery
     {
         return new CmsQuery(get_called_class());
     }
 
-    /**
-     * @inheritdoc
-     */
     public function beforeValidate(): bool
     {
         if (parent::beforeDelete()) {
@@ -112,25 +81,11 @@ class CmsModel extends ActiveRecord
         }
     }
 
-    /**
-     * Find page by url
-     *
-     * @param $url
-     *
-     * @return null|ActiveRecord
-     */
-    public function findPage(string $url)
+    public static function findPage(string $url)
     {
         return self::find()->byUrl($url)->enabled()->one();
     }
 
-    /**
-     * Returns content and replace widgets short codes
-     *
-     * Widget short code example: [[\app\widgets\SomeWidget:method]]
-     *
-     * @return string
-     */
     public function getContent(): string
     {
         $content = preg_replace_callback('/\[\[([^(\[\[)]+:[^(\[\[)]+)\]\]/is', [$this, 'replace'], $this->content);
@@ -138,13 +93,6 @@ class CmsModel extends ActiveRecord
         return $content;
     }
 
-    /**
-     * Replaces widget short code on appropriate widget
-     *
-     * @param $data
-     *
-     * @return string
-     */
     private function replace(array $data): string
     {
         $widget = explode(':', $data[1]);

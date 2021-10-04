@@ -5,13 +5,10 @@
 
     $this->title = Yii::t('app', 'Pages');
     $this->params['breadcrumbs'][] = $this->title;
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Create'), 'url' => ['/admin/page/create']];
 ?>
 
 <div class="container-fluid">
-    <p>
-        <?= Html::a(Yii::t('yii2mod.cms', 'Create Page'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('yii2mod.cms', 'View Comments'), ['/comment/manage/index'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -22,12 +19,19 @@
             ],
             'url',
             'title',
-            'status',
-            'comment_available',
             [
-                'attribute' => 'created_at',
-                'format' => ['date', 'full'],
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return $model->status ? 'Вкл.' : 'Выкл.';
+                }
             ],
+            [
+                'attribute' => 'comment_available',
+                'value' => function ($model) {
+                    return $model->comment_available ? 'Вкл.' : 'Выкл.';
+                }
+            ],
+            'created_at:date',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',

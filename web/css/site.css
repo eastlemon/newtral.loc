@@ -206,6 +206,9 @@ table.our-advantages tr td:last-child hr {
 table.our-advantages td {
   padding: 5px 5px 5px 5px;
 }
+table.our-advantages tr:last-child td {
+  padding-bottom: 25px;
+}
 
 /*@media all and (max-width: 850px) {
   table.our-advantages {

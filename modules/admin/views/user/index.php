@@ -4,15 +4,13 @@
 
     $this->title = Yii::t('app', 'Users');
     $this->params['breadcrumbs'][] = $this->title;
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Create'), 'url' => ['/admin/user/create']];
 ?>
 
 <div class="container-fluid">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'beforeRow' => function ($model, $index, $widget, $grid) {
-            if ($widget == 0) return '<tr><td colspan="' . (count($model->attributes) + 2) . '">' . Html::a('<i class="fas fa-plus-square"></i>&nbsp;' . Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-link']) . '</td></tr>';
-        },
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
