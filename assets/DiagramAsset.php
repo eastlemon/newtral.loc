@@ -1,21 +1,15 @@
 <?php
 namespace app\assets;
 
-class AppAsset extends \yii\web\AssetBundle
+class DiagramAsset extends \yii\web\AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
         'css/trailer-scheme.css',
-        'css/carousel.css',
-        'css/site.css',
     ];
     public $js = [
-        'js/popper.min.js',
-        'js/megamenu.js',
-        'js/scrollcounter.js',
-        'js/plusminus.js',
-        'js/site.js',
+        'js/trailer-scheme.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

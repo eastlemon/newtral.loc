@@ -62,6 +62,7 @@
 <?php if (!Yii::$app->user->isGuest): ?>
    <?php foreach (\app\models\Category::getMenuItems() as $item) $categories .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/category/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
    <?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/producer/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
+   <?php foreach (\app\models\Producer::getMenuItems() as $item) $producers2 .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/trailer/producer?slug=' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
 <?php endif; ?>
 
 <?php NavBar::begin(['options' => [
@@ -80,11 +81,13 @@
                      <div class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="list-group-item list-group-item-action disabled" id="v-pills-categories-tab" data-toggle="pill" href="#v-pills-categories" role="tab" aria-controls="v-pills-categories" aria-selected="false"><i class="fas fa-screwdriver"></i>&nbsp;' . Yii::t('app', 'Spare parts by groups') . '</a>
                         <a class="list-group-item list-group-item-action active" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="true">' . Yii::t('app', 'Spare parts by manufacturer') . '</a>
+                        <a class="list-group-item list-group-item-action" id="v-pills-producers2-tab" data-toggle="pill" href="#v-pills-producers2" role="tab" aria-controls="v-pills-producers2" aria-selected="true">' . Yii::t('app', 'Spare parts by manufacturer') . ' 2</a>
                      </div>
                   </div>
                   <div class="col-8 tab-content" id="v-pills-tabContent">
                      <div class="tab-pane fade" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab"><div class="container"><div class="row">' . $categories . '</div></div></div>
                      <div class="tab-pane fade show active" id="v-pills-producers" role="tabpanel" aria-labelledby="v-pills-producers-tab"><div class="container"><div class="row">' . $producers . '</div></div></div>
+                     <div class="tab-pane fade show" id="v-pills-producers2" role="tabpanel" aria-labelledby="v-pills-producers2-tab"><div class="container"><div class="row">' . $producers2 . '</div></div></div>
                   </div>
                </div>',
             ],

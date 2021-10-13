@@ -24,12 +24,10 @@ class OldController extends \yii\web\Controller
     
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => OldSemitrailerType::find(),
-        ]);
+        $semitrailer_model = $this->findModel(OldSemitrailerModel::class, ['semitrailer_manufacturer_id' => 4]);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'semitrailer_model' => $semitrailer_model,
         ]);
     }
 

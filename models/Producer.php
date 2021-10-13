@@ -59,6 +59,11 @@ class Producer extends ActiveRecord
         ];
     }
     
+    public function getTrailers()
+    {
+        return $this->hasMany(Trailer::className(), ['producer_id' => 'id']);
+    }
+    
     public function getParts()
     {
         return $this->hasMany(Part::className(), ['producer_id' => 'id']);

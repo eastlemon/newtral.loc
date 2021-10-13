@@ -1,5 +1,11 @@
 <?php
 return [
+    'Diagram' => 'Схема',
+    'Trailers' => 'Трейлеры',
+    'Type ID' => 'Тип',
+    'Mode ID' => 'Модификация',
+    'Axis ID' => 'Ось',
+    'Chassis ID' => 'Шасси',
     'Spare parts for semitrailers' => 'Запчасти для полуприцепов',
     'Address' => 'Адрес',
     'New Password' => 'Новый пароль',

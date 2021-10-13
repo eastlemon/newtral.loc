@@ -24,6 +24,7 @@
                     ['label' => Yii::t('app', 'Producers'), 'icon' => 'industry', 'url' => ['/admin/producer'], 'active' => $this->context->id == 'producer'],
                     
                     ['label' => Yii::t('app', 'Other'), 'header' => true],
+                    ['label' => Yii::t('app', 'Trailers'), 'icon' => 'trailer', 'url' => ['/admin/trailer'], 'active' => $this->context->id == 'trailer'],
                     ['label' => Yii::t('app', 'Slides'), 'icon' => 'image', 'url' => ['/admin/slide'], 'active' => $this->context->id == 'slide'],
                     ['label' => Yii::t('app', 'Certificates'), 'icon' => 'certificate', 'url' => ['/admin/certificate'], 'active' => $this->context->id == 'certificate'],
                     [

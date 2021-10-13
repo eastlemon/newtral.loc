@@ -41,7 +41,7 @@
                 'value' => function ($model) {
                     if (!empty($pictures = $model->partPictures)) {
                         foreach ($pictures as $picture) {
-                            $_return .= Html::img('/uploads/' . $picture->picture, ['width' => '140px']);
+                            $_return .= Html::img('@web/uploads/' . $picture->picture, ['width' => '140px']);
                         }
                     } else $_return .= Html::img('/images/noImage100x100.png', ['width' => '140px']);
                     return $_return;

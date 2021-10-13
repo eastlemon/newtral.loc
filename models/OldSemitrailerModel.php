@@ -56,7 +56,7 @@ class OldSemitrailerModel extends \yii\db\ActiveRecord
 
     public function getOldSemitrailerManufacturer()
     {
-        return $this->hasMany(OldSemitrailerManufacturer::className(), ['id' => 'semitrailer_manufacturer_id']);
+        return $this->hasOne(OldSemitrailerManufacturer::className(), ['id' => 'semitrailer_manufacturer_id']);
     }
 
     public function getOldSemitrailerType()

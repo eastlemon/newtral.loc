@@ -131,6 +131,6 @@ class Part extends ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        $this->partPictures[0]->picture ? $this->partFirstImage = '/uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = '/images/noImage100x100.png';
+        $this->partPictures[0]->picture ? $this->partFirstImage = '@web/uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = '/images/noImage100x100.png';
     }
 }
