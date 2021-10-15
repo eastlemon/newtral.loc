@@ -7,10 +7,12 @@
 <div class="container-fluid">
     <?= $this->render('_form', [
         'model' => $model,
+        'cmodel' => $cmodel,
         'producers' => $producers,
         'types' => $types,
         'modes' => $modes,
         'axes' => $axes,
         'chassis' => $chassis,
+        'categories' => $categories,
     ]) ?>
 </div>

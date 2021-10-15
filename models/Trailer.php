@@ -67,6 +67,7 @@ class Trailer extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'image' => Yii::t('app', 'Image'),
+            'file' => Yii::t('app', 'File'),
             'markup' => Yii::t('app', 'Markup'),
             'producer_id' => Yii::t('app', 'Producer ID'),
             'type_id' => Yii::t('app', 'Type ID'),
@@ -146,6 +147,11 @@ class Trailer extends \yii\db\ActiveRecord
         return $this->hasMany(UserTrailer::className(), ['trailer_id' => 'id']);
     }
 
+    public function getTrailerCategories()
+    {
+        return $this->hasMany(TrailerCategory::className(), ['trailer_id' => 'id']);
+    }
+
     public function beforeValidate()
     {
         $this->image = (new UploadForm($this))->upload() ?: $this->image = $this->getOldAttribute('image');
@@ -156,5 +162,10 @@ class Trailer extends \yii\db\ActiveRecord
     {
         parent::afterFind();
         $this->image ? $this->image = 'uploads/' . $this->image : $this->image = 'images/noImage100x100.png';
+    }
+
+    public function getCategories()
+    {
+        return $this->hasMany(Category::className(), ['id' => 'category_id'])->viaTable('trailer_category', ['trailer_id' => 'id']);
     }
 }

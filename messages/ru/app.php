@@ -1,5 +1,6 @@
 <?php
 return [
+    'Image' => 'Картинка',
     'Diagram' => 'Схема',
     'Trailers' => 'Трейлеры',
     'Type ID' => 'Тип',

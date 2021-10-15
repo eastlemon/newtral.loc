@@ -2,7 +2,7 @@
     use yii\bootstrap4\Html;
     use yii\widgets\DetailView;
 
-    $this->title = $model->id;
+    $this->title = $model->name;
     $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Trailers'), 'url' => ['index']];
     $this->params['breadcrumbs'][] = $this->title;
     

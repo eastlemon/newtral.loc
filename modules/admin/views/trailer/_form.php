@@ -52,6 +52,113 @@
             'allowClear' => true
         ],
     ]) ?>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c1')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('1') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c2')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('2') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c3')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('3') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c4')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('4') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c5')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('5') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c6')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('6') ?>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <?= $form->field($cmodel, 'c7')->widget(Select2::classname(), [
+                        'data' => $categories,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select...'),
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('7') ?>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

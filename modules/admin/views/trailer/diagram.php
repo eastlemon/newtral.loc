@@ -4,7 +4,7 @@
 
     $this->title = Yii::t('app', 'Diagram');
     $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Trailers'), 'url' => ['index']];
-    $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+    $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
     $this->params['breadcrumbs'][] = $this->title;
     $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Save'), 'url' => '#', 'id' => 'save'];
     
