@@ -35,7 +35,8 @@
         "kartik-v/yii2-widget-select2": "dev-master",
         "hail812/yii2-adminlte3": "~1.1",
         "skeeks/yii2-slug-behavior": "*",
-        "kl83/yii2-ymaps": "@dev"
+        "kl83/yii2-ymaps": "@dev",
+        "tugmaks/yii2-jivosite": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

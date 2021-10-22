@@ -17,7 +17,6 @@ class m211006_160155_create_mode_table extends Migration
             'name' => $this->string()->notNull(),
         ]);
 
-        $this->insert('mode', ['name' => '---']);
         $this->insert('mode', ['name' => 'Односкатные']);
         $this->insert('mode', ['name' => 'Двускатные']);
     }

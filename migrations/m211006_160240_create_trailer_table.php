@@ -15,6 +15,7 @@ class m211006_160240_create_trailer_table extends Migration
         $this->createTable('{{%trailer}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
+            'slug' => $this->string()->notNull(),
             'image' => $this->string()->defaultValue(null),
             'markup' => $this->text()->defaultValue(null),
             'producer_id' => $this->integer()->notNull(),

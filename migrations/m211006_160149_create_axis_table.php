@@ -17,7 +17,6 @@ class m211006_160149_create_axis_table extends Migration
             'name' => $this->string()->notNull(),
         ]);
 
-        $this->insert('axis', ['name' => '---']);
         $this->insert('axis', ['name' => '2-х осные']);
         $this->insert('axis', ['name' => '3-х осные']);
         $this->insert('axis', ['name' => '4-х осные']);

@@ -7,7 +7,6 @@ use yii\web\NotFoundHttpException;
 use app\modules\cms\models\CmsModel;
 use app\models\forms\ContactForm;
 use app\models\forms\ResetPasswordForm;
-use app\models\OldSemitrailer;
 use yii\data\ActiveDataProvider;
 
 class PageController extends \yii\web\Controller

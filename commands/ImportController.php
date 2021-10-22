@@ -12,12 +12,6 @@ use app\models\Category;
 use app\models\Node;
 use app\models\Unit;
 use app\models\NodePart;
-use app\models\OldPart;
-use app\models\OldOffer;
-use app\models\OldNode;
-use app\models\OldUnit;
-use app\models\OldCategory;
-use app\models\OldNodePart;
 
 class ImportController extends Controller
 {
@@ -105,83 +99,6 @@ class ImportController extends Controller
                     $offer->store_id = 3;
                     $offer->save();
                 }
-            }
-        }
-    }
-
-    public function actionCategories()
-    {
-        $oldCategories = OldCategory::find()->all();
-        foreach ($oldCategories as $oldCategory) {
-            $category = new Category();
-            $category->name = $oldCategory->name;
-            $category->picture = '';
-            $category->is_popular = 0;
-            $category->parent_id = $this->get_category_by_name($oldCategory->parent->name);
-            $category->save(false);
-        }
-    }
-
-    public function actionUnits()
-    {
-        $oldUnits = OldUnit::find()->all();
-        foreach ($oldUnits as $oldUnit) {
-            $unit = new Unit();
-            $unit->name = $oldUnit->name;
-            $unit->articul = $oldUnit->article;
-            $unit->description = $oldUnit->description;
-            $unit->category_id = $this->get_category_by_name($oldUnit->oldCategory->name);
-            $unit->producer_id = $this->get_producer_by_name($oldNode->oldManufacturer->name);
-            $unit->save(false);
-        }
-    }
-
-    public function actionNodeParts()
-    {
-        $oldNodeParts = OldNodePart::find()->all();
-        foreach ($oldNodeParts as $oldNodePart) {
-            $nodeParts = new NodePart();
-            $nodeParts->node_id = $this->get_node_by_name($oldNodePart->oldNode->name);
-            $nodeParts->part_id = $this->get_part_by_name($oldNodePart->oldPart->name);
-            $nodeParts->save(false);
-
-            var_dump($oldNodePart->oldNode->name);
-            var_dump($oldNodePart->oldPart->name);
-        }
-    }
-
-    public function actionNodes()
-    {
-        $oldNodes = OldNode::find()->all();
-        foreach ($oldNodes as $oldNode) {
-            $node = new Node();
-            $node->name = $oldNode->name;
-            $node->articul = $oldNode->article;
-            $node->description = $oldNode->description;
-            $node->category_id = $this->get_category_by_name($oldNode->oldCategory->name);
-            $node->save(false);
-        }
-    }
-
-    public function actionParts()
-    {
-        $oldParts = OldPart::find()->all();
-        foreach ($oldParts as $oldPart) {
-            $part = new Part();
-            $part->name = $oldPart->name;
-            $part->articul = $oldPart->article;
-            $part->description = $oldPart->note;
-            $part->producer_id = $this->get_producer_by_name($oldPart->oldManufacturer->name);
-            $part->save(false);
-
-            $oldOffers = OldOffer::find()->where(['part_id' => $oldPart->id])->all();
-            foreach ($oldOffers as $oldOffer) {
-                $offer = new Offer();
-                $offer->amount = $oldOffer->count;
-                $offer->price = $oldOffer->price;
-                $offer->part_id = $part->id;
-                $offer->store_id = $this->get_store_by_name($oldOffer->oldStore->name);
-                $offer->save(false);
             }
         }
     }

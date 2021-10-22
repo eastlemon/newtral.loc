@@ -78,6 +78,9 @@ $(document).ready(function() {
                 markup: points,
             },
             dataType: 'json',
+            success: function() {
+                alert("OK");
+            },
         });
     }
 

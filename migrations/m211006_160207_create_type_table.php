@@ -17,7 +17,6 @@ class m211006_160207_create_type_table extends Migration
             'name' => $this->string()->notNull(),
         ]);
 
-        $this->insert('type', ['name' => '---']);
         $this->insert('type', ['name' => 'Низкорамные']);
         $this->insert('type', ['name' => 'Высокорамные до 40тн.']);
         $this->insert('type', ['name' => 'Высокорамные от 40 до 50тн.']);

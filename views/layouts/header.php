@@ -81,7 +81,7 @@
                      <div class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="list-group-item list-group-item-action disabled" id="v-pills-categories-tab" data-toggle="pill" href="#v-pills-categories" role="tab" aria-controls="v-pills-categories" aria-selected="false"><i class="fas fa-screwdriver"></i>&nbsp;' . Yii::t('app', 'Spare parts by groups') . '</a>
                         <a class="list-group-item list-group-item-action active" id="v-pills-producers-tab" data-toggle="pill" href="#v-pills-producers" role="tab" aria-controls="v-pills-producers" aria-selected="true">' . Yii::t('app', 'Spare parts by manufacturer') . '</a>
-                        <a class="list-group-item list-group-item-action" id="v-pills-producers2-tab" data-toggle="pill" href="#v-pills-producers2" role="tab" aria-controls="v-pills-producers2" aria-selected="true">' . Yii::t('app', 'Spare parts by manufacturer') . ' 2</a>
+                        <a class="list-group-item list-group-item-action" id="v-pills-producers2-tab" data-toggle="pill" href="#v-pills-producers2" role="tab" aria-controls="v-pills-producers2" aria-selected="true">Запчасти для полуприцепов</a>
                      </div>
                   </div>
                   <div class="col-8 tab-content" id="v-pills-tabContent">

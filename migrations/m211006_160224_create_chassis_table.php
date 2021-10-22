@@ -18,7 +18,6 @@ class m211006_160224_create_chassis_table extends Migration
             'image' => $this->string()->defaultValue(null),
         ]);
 
-        $this->insert('chassis', ['name' => '---']);
         $this->insert('chassis', ['name' => 'Пневматическая']);
         $this->insert('chassis', ['name' => 'Рессорная (рессорно-балансирная)']);
         $this->insert('chassis', ['name' => 'Балансирная']);

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use skeeks\yii2\slug\SlugBehavior;
 use app\models\UploadForm;
 
 /**
@@ -47,7 +48,7 @@ class Trailer extends \yii\db\ActiveRecord
             [['name', 'producer_id', 'type_id', 'mode_id', 'axis_id', 'chassis_id'], 'required'],
             [['markup'], 'string'],
             [['producer_id', 'type_id', 'mode_id', 'axis_id', 'chassis_id'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'slug'], 'string', 'max' => 255],
             [['axis_id'], 'exist', 'skipOnError' => true, 'targetClass' => Axis::className(), 'targetAttribute' => ['axis_id' => 'id']],
             [['chassis_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chassis::className(), 'targetAttribute' => ['chassis_id' => 'id']],
             [['mode_id'], 'exist', 'skipOnError' => true, 'targetClass' => Mode::className(), 'targetAttribute' => ['mode_id' => 'id']],
@@ -55,6 +56,7 @@ class Trailer extends \yii\db\ActiveRecord
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
             [['image'], 'safe'],
+            [['slug'], 'unique'],
         ];
     }
 
@@ -66,6 +68,7 @@ class Trailer extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
             'file' => Yii::t('app', 'File'),
             'markup' => Yii::t('app', 'Markup'),
@@ -74,6 +77,25 @@ class Trailer extends \yii\db\ActiveRecord
             'mode_id' => Yii::t('app', 'Mode ID'),
             'axis_id' => Yii::t('app', 'Axis ID'),
             'chassis_id' => Yii::t('app', 'Chassis ID'),
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'slug' => [
+                'class' => SlugBehavior::className(),
+                'slugAttribute' => 'slug',
+                'attribute' => 'name',
+                'maxLength' => 64,
+                'minLength' => 3,
+                'ensureUnique' => true,
+                'slugifyOptions' => [
+                    'lowercase' => true,
+                    'separator' => '-',
+                    'trim' => true,
+                ]
+            ],
         ];
     }
 

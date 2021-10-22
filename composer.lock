@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "159e776c6eabc8079d870255c68dc185",
+    "content-hash": "8eb5fd000ec4e7483695697841db83fb",
     "packages": [
         {
             "name": "2amigos/yii2-arrayquery-component",
@@ -271,7 +271,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -664,16 +664,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "c81f18a3efb941d8c4d2e025f6183b5c6d697307"
+                "reference": "ee0db30118f661fb166bcffbf5d82032df484697"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/c81f18a3efb941d8c4d2e025f6183b5c6d697307",
-                "reference": "c81f18a3efb941d8c4d2e025f6183b5c6d697307",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/ee0db30118f661fb166bcffbf5d82032df484697",
+                "reference": "ee0db30118f661fb166bcffbf5d82032df484697",
                 "shasum": ""
             },
             "require": {
@@ -720,7 +720,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/3.1.1"
+                "source": "https://github.com/egulias/EmailValidator/tree/3.1.2"
             },
             "funding": [
                 {
@@ -728,7 +728,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-01T18:37:14+00:00"
+            "time": "2021-10-11T09:18:27+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1009,12 +1009,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "bbce8822b5ce5ef64de0fc9869c2f56500b67297"
+                "reference": "b3c74af0612d47928d64e04efaae242d7611dda2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/bbce8822b5ce5ef64de0fc9869c2f56500b67297",
-                "reference": "bbce8822b5ce5ef64de0fc9869c2f56500b67297",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/b3c74af0612d47928d64e04efaae242d7611dda2",
+                "reference": "b3c74af0612d47928d64e04efaae242d7611dda2",
                 "shasum": ""
             },
             "require": {
@@ -1066,7 +1066,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-09-27T16:02:48+00:00"
+            "time": "2021-10-06T11:17:54+00:00"
         },
         {
             "name": "kl83/yii2-ymaps",
@@ -1525,16 +1525,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v6.2.7",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "15f7faf8508e04471f666633addacf54c0ab5933"
+                "reference": "8a5d5072dca8f48460fce2f4131fcc495eec654c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/15f7faf8508e04471f666633addacf54c0ab5933",
-                "reference": "15f7faf8508e04471f666633addacf54c0ab5933",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/8a5d5072dca8f48460fce2f4131fcc495eec654c",
+                "reference": "8a5d5072dca8f48460fce2f4131fcc495eec654c",
                 "shasum": ""
             },
             "require": {
@@ -1546,7 +1546,7 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "symfony/phpunit-bridge": "^4.4|^5.0"
+                "symfony/phpunit-bridge": "^4.4|^5.4"
             },
             "suggest": {
                 "ext-intl": "Needed to support internationalized email addresses"
@@ -1584,7 +1584,7 @@
             ],
             "support": {
                 "issues": "https://github.com/swiftmailer/swiftmailer/issues",
-                "source": "https://github.com/swiftmailer/swiftmailer/tree/v6.2.7"
+                "source": "https://github.com/swiftmailer/swiftmailer/tree/v6.3.0"
             },
             "funding": [
                 {
@@ -1596,7 +1596,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-09T12:30:35+00:00"
+            "time": "2021-10-18T15:26:12+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2157,16 +2157,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v5.3.8",
+            "version": "v5.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "89b162f3d885bae57a79f83df2fc0c4228c117ba"
+                "reference": "6e69f3551c1a3356cf6ea8d019bf039a0f8b6886"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/89b162f3d885bae57a79f83df2fc0c4228c117ba",
-                "reference": "89b162f3d885bae57a79f83df2fc0c4228c117ba",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/6e69f3551c1a3356cf6ea8d019bf039a0f8b6886",
+                "reference": "6e69f3551c1a3356cf6ea8d019bf039a0f8b6886",
                 "shasum": ""
             },
             "require": {
@@ -2232,7 +2232,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v5.3.8"
+                "source": "https://github.com/symfony/translation/tree/v5.3.9"
             },
             "funding": [
                 {
@@ -2248,7 +2248,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-10T12:46:58+00:00"
+            "time": "2021-08-26T08:22:53+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -2327,6 +2327,52 @@
                 }
             ],
             "time": "2021-03-23T23:28:01+00:00"
+        },
+        {
+            "name": "tugmaks/yii2-jivosite",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tugmaks/yii2-jivosite.git",
+                "reference": "3c00cd7e0f4ac75f3305d4fcb540361d1f3f7aae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tugmaks/yii2-jivosite/zipball/3c00cd7e0f4ac75f3305d4fcb540361d1f3f7aae",
+                "reference": "3c00cd7e0f4ac75f3305d4fcb540361d1f3f7aae",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "tugmaks\\Jivosite\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxim Tugaev",
+                    "email": "tugmaks@yandex.ru"
+                }
+            ],
+            "description": "Jivosite widget plugin",
+            "keywords": [
+                "extension",
+                "jivosite",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/tugmaks/yii2-jivosite/issues",
+                "source": "https://github.com/tugmaks/yii2-jivosite/tree/master"
+            },
+            "time": "2018-12-21T10:47:49+00:00"
         },
         {
             "name": "yii2mod/yii2-behaviors",
@@ -3605,16 +3651,16 @@
         },
         {
             "name": "yiisoft/yii2-redis",
-            "version": "2.0.15",
+            "version": "2.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-redis.git",
-                "reference": "2d11252cb9d04091469a08b5ebb1faedc11fb2b1"
+                "reference": "1b9efe97d8add594256b51089fbf7a56f31e3c9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-redis/zipball/2d11252cb9d04091469a08b5ebb1faedc11fb2b1",
-                "reference": "2d11252cb9d04091469a08b5ebb1faedc11fb2b1",
+                "url": "https://api.github.com/repos/yiisoft/yii2-redis/zipball/1b9efe97d8add594256b51089fbf7a56f31e3c9c",
+                "reference": "1b9efe97d8add594256b51089fbf7a56f31e3c9c",
                 "shasum": ""
             },
             "require": {
@@ -3675,7 +3721,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-05T22:10:20+00:00"
+            "time": "2021-10-04T11:28:17+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -3738,25 +3784,24 @@
     "packages-dev": [
         {
             "name": "behat/gherkin",
-            "version": "v4.8.0",
+            "version": "v4.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "2391482cd003dfdc36b679b27e9f5326bd656acd"
+                "reference": "0bc8d1e30e96183e4f36db9dc79caead300beff4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/2391482cd003dfdc36b679b27e9f5326bd656acd",
-                "reference": "2391482cd003dfdc36b679b27e9f5326bd656acd",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/0bc8d1e30e96183e4f36db9dc79caead300beff4",
+                "reference": "0bc8d1e30e96183e4f36db9dc79caead300beff4",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.2|~8.0"
             },
             "require-dev": {
-                "cucumber/cucumber": "dev-gherkin-16.0.0",
+                "cucumber/cucumber": "dev-gherkin-22.0.0",
                 "phpunit/phpunit": "~8|~9",
-                "symfony/phpunit-bridge": "~3|~4|~5",
                 "symfony/yaml": "~3|~4|~5"
             },
             "suggest": {
@@ -3765,7 +3810,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "4.x-dev"
                 }
             },
             "autoload": {
@@ -3796,9 +3841,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Behat/Gherkin/issues",
-                "source": "https://github.com/Behat/Gherkin/tree/v4.8.0"
+                "source": "https://github.com/Behat/Gherkin/tree/v4.9.0"
             },
-            "time": "2021-02-04T12:44:21+00:00"
+            "time": "2021-10-12T13:05:09+00:00"
         },
         {
             "name": "codeception/codeception",
@@ -4477,16 +4522,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "1dc8d9cba3897165e16d12bb13d813afb1eb3fe7"
+                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1dc8d9cba3897165e16d12bb13d813afb1eb3fe7",
-                "reference": "1dc8d9cba3897165e16d12bb13d813afb1eb3fe7",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
+                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
                 "shasum": ""
             },
             "require": {
@@ -4510,7 +4555,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -4524,12 +4569,33 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
                     "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
                     "homepage": "https://github.com/Tobion"
                 },
                 {
@@ -4551,9 +4617,23 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.0.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.1.0"
             },
-            "time": "2021-06-30T20:03:07+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-06T17:43:30+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4844,16 +4924,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.2",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
+                "reference": "622548b623e81ca6d78b721c5e029f4ce664f170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/069a785b2141f5bcf49f3e353548dc1cce6df556",
-                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/622548b623e81ca6d78b721c5e029f4ce664f170",
+                "reference": "622548b623e81ca6d78b721c5e029f4ce664f170",
                 "shasum": ""
             },
             "require": {
@@ -4864,7 +4944,8 @@
                 "webmozart/assert": "^1.9.1"
             },
             "require-dev": {
-                "mockery/mockery": "~1.3.2"
+                "mockery/mockery": "~1.3.2",
+                "psalm/phar": "^4.8"
             },
             "type": "library",
             "extra": {
@@ -4894,22 +4975,22 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/master"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.3.0"
             },
-            "time": "2020-09-03T19:13:55+00:00"
+            "time": "2021-10-19T17:43:47+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "30f38bffc6f24293dadd1823936372dfa9e86e2f"
+                "reference": "a12f7e301eb7258bb68acd89d4aefa05c2906cae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/30f38bffc6f24293dadd1823936372dfa9e86e2f",
-                "reference": "30f38bffc6f24293dadd1823936372dfa9e86e2f",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/a12f7e301eb7258bb68acd89d4aefa05c2906cae",
+                "reference": "a12f7e301eb7258bb68acd89d4aefa05c2906cae",
                 "shasum": ""
             },
             "require": {
@@ -4944,9 +5025,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.5.0"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.5.1"
             },
-            "time": "2021-09-17T15:28:14+00:00"
+            "time": "2021-10-02T14:08:47+00:00"
         },
         {
             "name": "phpspec/php-diff",
@@ -6329,6 +6410,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-11-30T07:30:19+00:00"
         },
         {
@@ -7760,7 +7842,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-select2": 20,
-        "kl83/yii2-ymaps": 20
+        "kl83/yii2-ymaps": 20,
+        "tugmaks/yii2-jivosite": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
