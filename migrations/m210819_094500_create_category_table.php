@@ -19,7 +19,7 @@ class m210819_094500_create_category_table extends Migration
             'picture' => $this->string(),
             'is_popular' => $this->integer()->defaultValue(0),
             'in_menu' => $this->integer()->defaultValue(0),
-            'parent_id' => $this->integer()->defaultValue(0),
+            'parent_id' => $this->integer(),
         ]);
 
         $this->addForeignKey(

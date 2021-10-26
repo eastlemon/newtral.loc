@@ -22,8 +22,9 @@ class Part extends ActiveRecord
         return [
             [['name', 'articul', 'producer_id'], 'required'],
             [['name', 'description', 'created_at', 'updated_at'], 'string'],
-            [['producer_id'], 'integer'],
+            [['producer_id', 'original_id'], 'integer'],
             [['slug', 'articul'], 'string', 'max' => 255],
+            [['original_id'], 'exist', 'skipOnError' => true, 'targetClass' => Part::className(), 'targetAttribute' => ['original_id' => 'id']],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
             [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
             [['offer'], 'number'],
@@ -68,6 +69,7 @@ class Part extends ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'file' => Yii::t('app', 'File'),
             'producer_id' => Yii::t('app', 'Producer ID'),
+            'original_id' => Yii::t('app', 'Original ID'),
             'certificate_ids' => Yii::t('app', 'Certificate IDs'),
             'offer' => Yii::t('app', 'Offer'),
             'created_at' => Yii::t('app', 'Created at'),
@@ -75,19 +77,59 @@ class Part extends ActiveRecord
         ];
     }
 
-    public function getNodeParts()
+    /**
+     * Gets query for [[Favorites]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavorites()
     {
-        return $this->hasMany(NodePart::className(), ['part_id' => 'id']);
+        return $this->hasMany(Favorites::className(), ['part_id' => 'id']);
     }
 
+    /**
+     * Gets query for [[Offers]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
     public function getOffers()
     {
         return $this->hasMany(Offer::className(), ['part_id' => 'id']);
     }
 
+    /**
+     * Gets query for [[Original]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOriginal()
+    {
+        return $this->hasOne(Part::className(), ['id' => 'original_id']);
+    }
+
+    /**
+     * Gets query for [[Parts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParts()
+    {
+        return $this->hasMany(Part::className(), ['original_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Producer]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
     public function getProducer()
     {
         return $this->hasOne(Producer::className(), ['id' => 'producer_id']);
+    }
+
+    public function getNodeParts()
+    {
+        return $this->hasMany(NodePart::className(), ['part_id' => 'id']);
     }
 
     public function getPartCertificates()
@@ -115,12 +157,16 @@ class Part extends ActiveRecord
         return self::find()->andFilterWhere(['=', 'articul', $this->articul]);
     }
 
-    public function getAnalogues()
+    /*public function getAnalogues()
     {
         return self::find()
         ->orFilterWhere(['like', 'articul', $this->articul])
         ->orFilterWhere(['like', 'name', $this->name])
         ->andFilterWhere(['<>', 'id', $this->id]);
+    }*/
+    public function getAnalogues()
+    {
+        return self::find()->andFilterWhere(['=', 'original_id', $this->id]);
     }
 
     public static function getProfit()

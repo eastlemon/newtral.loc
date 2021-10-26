@@ -77,7 +77,7 @@ class PartController extends Controller
             $modelPartPicture->save();
 
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['part/create']) . '">' . Yii::t('app', 'Create') . '</a>');
-            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -85,6 +85,7 @@ class PartController extends Controller
             'modelOffer' => $modelOffer,
             'modelPartPicture' => $modelPartPicture,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
+            'dataParts' => ArrayHelper::map(Part::find()->asArray()->all(), 'id', 'articul'),
             'dataStores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
             'dataCertificates' => ArrayHelper::map(Certificate::find()->asArray()->all(), 'id', 'name'),
         ]);
@@ -117,6 +118,7 @@ class PartController extends Controller
             'model' => $model,
             'modelOffer' => $modelOffer,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
+            'dataParts' => ArrayHelper::map(Part::find()->asArray()->all(), 'id', 'articul'),
             'dataStores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
             'dataCertificates' => ArrayHelper::map(Certificate::find()->asArray()->all(), 'id', 'name'),
             'selectedCertificates' => ArrayHelper::getColumn(PartCertificate::find()->where(['part_id' => $model->id])->asArray()->all(), 'certificate_id'),

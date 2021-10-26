@@ -9,6 +9,7 @@
         'model' => $model,
         'modelOffer' => $modelOffer,
         'data' => $data,
+        'dataParts' => $dataParts,
         'dataStores' => $dataStores,
         'dataCertificates' => $dataCertificates,
     ]) ?>

@@ -19,6 +19,7 @@ class m210824_125336_create_part_table extends Migration
             'articul' => $this->string()->notNull(),
             'description' => $this->text(),
             'producer_id' => $this->integer()->notNull(),
+            'original_id' => $this->integer(),
             'created_at' => $this->string()->notNull(),
             'updated_at' => $this->string()->notNull(),
         ]);
@@ -31,6 +32,15 @@ class m210824_125336_create_part_table extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->addForeignKey(
+            'fk-part-original_id',
+            'part',
+            'original_id',
+            'part',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
@@ -38,6 +48,11 @@ class m210824_125336_create_part_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey(
+            'fk-part-original_id',
+            'part'
+        );
+
         $this->dropForeignKey(
             'fk-part-producer_id',
             'part'

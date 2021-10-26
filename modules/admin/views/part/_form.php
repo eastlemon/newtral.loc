@@ -6,7 +6,20 @@
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-6"><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'original_id')->widget(Select2::classname(), [
+                'data' => $dataParts,
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Select...'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]) ?>
+        </div>
+    </div>
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'articul')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'description')->widget(CKEditor::className(), [

@@ -1,5 +1,10 @@
 <?php
 return [
+    'No Certificates' => 'Сертификаты отсутствуют',
+    'Offers' => 'Предложения',
+    'Pictures' => 'Картинки',
+    'Original' => 'Оригинал',
+    'Original ID' => 'ИД оригинала',
     'Image' => 'Картинка',
     'Diagram' => 'Схема',
     'Trailers' => 'Трейлеры',

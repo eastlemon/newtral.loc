@@ -28,6 +28,13 @@
             'name',
             'articul',
             [
+                'attribute' => 'original_id',
+                'format' => 'html',
+                'value' => function ($model) {
+                    return $model->original_id ? '<a href="/admin/part/view?id=' . $model->original->id . '">' . $model->original->name . '</a>' : Yii::t('app', 'Original');
+                },
+            ],
+            [
                 'attribute' => 'producer_id',
                 'label' => Yii::t('app', 'Producer'),
                 'format' => 'html',
@@ -37,6 +44,7 @@
             ],
             [
                 'attribute' => 'pictures',
+                'label' => Yii::t('app', 'Pictures'),
                 'format' => 'html',
                 'value' => function ($model) {
                     if (!empty($pictures = $model->partPictures)) {
@@ -49,6 +57,7 @@
             ],
             [
                 'attribute' => 'offers',
+                'label' => Yii::t('app', 'Offers'),
                 'format' => 'html',
                 'value' => function ($model) {
                     if (!empty($offers = $model->offers)) {
@@ -61,6 +70,7 @@
             ],
             [
                 'attribute' => 'certificates',
+                'label' => Yii::t('app', 'Certificates'),
                 'format' => 'html',
                 'value' => function ($model) {
                     if (!empty($certificates = $model->certificates)) {
