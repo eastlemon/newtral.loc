@@ -1,5 +1,15 @@
 <?php
 return [
+    'Original Articul'=> 'Оригинальный артикул',
+    'Favorites' => 'Избранное',
+    'Append' => 'Добавить',
+    'Social Login' => 'Войти через соцсети',
+    'Continue' => 'Продолжить',
+    'By creating an account you will be able to shop faster, be up to date on an order\'s status, and keep track of the orders you have previously made.' => 'Создав учетную запись, вы сможете делать покупки быстрее, быть в курсе статуса заказа и отслеживать заказы, которые вы сделали ранее.',
+    'Register Account' => 'Регистрация Аккаунта',
+    'New Customer' => 'Новый покупатель',
+    'I have an account' => 'У меня есть учетная запись',
+    'I am a returning customer' => 'Я постоянный покупатель',
     'No Certificates' => 'Сертификаты отсутствуют',
     'Offers' => 'Предложения',
     'Pictures' => 'Картинки',

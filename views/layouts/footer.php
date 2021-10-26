@@ -21,4 +21,4 @@
 	</div>
 </footer>
 
-<?= \tugmaks\Jivosite\Chat::widget(['widgetId' => '9SJaYil6S1']) ?>
+<?//= \tugmaks\Jivosite\Chat::widget(['widgetId' => '9SJaYil6S1']) ?>

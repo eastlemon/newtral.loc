@@ -12,8 +12,6 @@
             <?= \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     ['label' => Yii::t('app', 'Parts'), 'icon' => 'ring', 'url' => ['/admin/part'], 'active' => $this->context->id == 'part'],
-                    ['label' => Yii::t('app', 'Nodes'), 'icon' => 'cube', 'url' => ['/admin/node'], 'active' => $this->context->id == 'node'],
-                    ['label' => Yii::t('app', 'Units'), 'icon' => 'cubes', 'url' => ['/admin/unit'], 'active' => $this->context->id == 'unit'],
 
                     ['label' => Yii::t('app', 'Administration'), 'header' => true],
                     ['label' => Yii::t('app', 'Offices'), 'icon' => 'building', 'url' => ['/admin/office'], 'active' => $this->context->id == 'office'],
@@ -24,7 +22,6 @@
                     ['label' => Yii::t('app', 'Producers'), 'icon' => 'industry', 'url' => ['/admin/producer'], 'active' => $this->context->id == 'producer'],
                     
                     ['label' => Yii::t('app', 'Other'), 'header' => true],
-                    ['label' => Yii::t('app', 'Trailers'), 'icon' => 'trailer', 'url' => ['/admin/trailer'], 'active' => $this->context->id == 'trailer'],
                     ['label' => Yii::t('app', 'Slides'), 'icon' => 'image', 'url' => ['/admin/slide'], 'active' => $this->context->id == 'slide'],
                     ['label' => Yii::t('app', 'Certificates'), 'icon' => 'certificate', 'url' => ['/admin/certificate'], 'active' => $this->context->id == 'certificate'],
                     [

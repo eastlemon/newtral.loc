@@ -17,7 +17,7 @@
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ]) ?>
+            ])->label(Yii::t('app', 'Original Articul')) ?>
         </div>
     </div>
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
