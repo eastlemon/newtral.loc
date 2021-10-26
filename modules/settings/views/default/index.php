@@ -7,10 +7,10 @@
 
     $this->title = Yii::t('yii2mod.settings', 'Settings');
     $this->params['breadcrumbs'][] = $this->title;
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('yii2mod.settings', 'Create'), 'url' => ['create']];
 ?>
 
 <div class="container-fluid">
-    <p><?= Html::a(Yii::t('yii2mod.settings', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

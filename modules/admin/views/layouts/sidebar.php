@@ -24,14 +24,7 @@
                     ['label' => Yii::t('app', 'Other'), 'header' => true],
                     ['label' => Yii::t('app', 'Slides'), 'icon' => 'image', 'url' => ['/admin/slide'], 'active' => $this->context->id == 'slide'],
                     ['label' => Yii::t('app', 'Certificates'), 'icon' => 'certificate', 'url' => ['/admin/certificate'], 'active' => $this->context->id == 'certificate'],
-                    [
-                        'label' => Yii::t('app', 'Settings'),
-                        'icon' => 'cogs',
-                        'items' => [
-                            ['label' => Yii::t('app', 'List'), 'url' => ['/admin/settings-storage'], 'iconStyle' => 'far'],
-                            ['label' => Yii::t('app', 'Main Page'), 'url' => ['/admin/main-page'], 'iconStyle' => 'far'],
-                        ]
-                    ],
+                    ['label' => Yii::t('app', 'Settings'), 'icon' => 'cogs', 'url' => ['/admin/settings-storage'], 'active' => $this->context->id == 'default'],
                 ],
             ]) ?>
         </nav>

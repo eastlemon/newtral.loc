@@ -1,4 +1,5 @@
 <?php
+
 namespace app\commands;
 
 use Yii;
@@ -31,13 +32,6 @@ class SettingsController extends Controller
         $this->settings->set('ftp', 'password', 'V9Bmby63kG');
         $this->settings->set('ftp', 'host_folder', '/');
         $this->settings->set('ftp', 'local_folder', 'web/uploads/1c');
-        
-        $this->settings->set('django', 'url', 'http://80.87.198.171:8000/api/v0/');
-        $this->settings->set('django', 'password', 'Gu6nohlo');
-        $this->settings->set('django', 'username', 'dev1');
-
-        $this->settings->set('qwep', 'url', 'https://userapi.qwep.ru/');
-        $this->settings->set('qwep', 'authorizationCode', '7E4985DBA76C9127E39D');
 
         return ExitCode::OK;
     }

@@ -56,17 +56,11 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-                'node/<slug:[\w-]+>' => 'node/index',
                 'producer/<slug:[\w-]+>' => 'producer/index',
                 'category/<slug:[\w-]+>' => 'category/index',
                 'part/<name:[\w-]+>' => 'part/index',
-                'product/<name:\w+>' => 'product/index',
                 '<controller:(page)>/<action:\w+>' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                
-                //'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                //'<controller:(product|category)>/<id:\d+>' => '<controller>/view',
-                //'<controller:(test)>/<product:\d{4}>' => 'test/product',
             ],
         ],
         'settings' => [
