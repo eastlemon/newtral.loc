@@ -14,7 +14,7 @@ class m210824_132033_create_part_picture_table extends Migration
     {
         $this->createTable('{{%part_picture}}', [
             'id' => $this->primaryKey(),
-            'picture' => $this->text()->notNull(),
+            'picture' => $this->text(),
             'part_id' => $this->integer()->notNull(),
         ]);
 

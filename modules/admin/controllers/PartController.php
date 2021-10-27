@@ -54,9 +54,8 @@ class PartController extends Controller
 
     public function actionCreate()
     {
-        $model = new Part();
+        $model = new Part(['scenario' => 'create']);
         $modelOffer = new Offer(['scenario' => 'create']);
-        $modelPartPicture = new PartPicture(['scenario' => 'create']);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($certificates = $model->certificate_ids) {
@@ -73,6 +72,8 @@ class PartController extends Controller
                 $modelOffer->save();
             }
 
+            $modelPartPicture = new PartPicture();
+            $modelPartPicture->picture = $model->picture;
             $modelPartPicture->part_id = $model->id;
             $modelPartPicture->save();
 
@@ -83,7 +84,6 @@ class PartController extends Controller
         return $this->render('create', [
             'model' => $model,
             'modelOffer' => $modelOffer,
-            'modelPartPicture' => $modelPartPicture,
             'data' => ArrayHelper::map(Producer::find()->asArray()->all(), 'id', 'name'),
             'dataParts' => ArrayHelper::map(Part::find()->asArray()->all(), 'id', 'articul'),
             'dataStores' => ArrayHelper::map(Store::find()->asArray()->all(), 'id', 'name'),
@@ -111,6 +111,13 @@ class PartController extends Controller
                 $modelOffer->part_id = $model->id;
                 if ($modelOffer->price && $modelOffer->store_id) $modelOffer->save();
             }
+
+            $modelPartPicture = new PartPicture();
+            $modelPartPicture->picture = $model->picture;
+            $modelPartPicture->part_id = $model->id;
+            $modelPartPicture->save();
+
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record updated!'));
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

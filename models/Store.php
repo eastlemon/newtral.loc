@@ -28,6 +28,8 @@ class Store extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'address' => Yii::t('app', 'Address'),
+            'delivery' => Yii::t('app', 'Delivery'),
+            'office' => Yii::t('app', 'Office'),
         ];
     }
 

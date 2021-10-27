@@ -4,7 +4,7 @@
 
     $this->title = Yii::t('app', 'Stores');
     $this->params['breadcrumbs'][] = $this->title;
-    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Create'), 'url' => ['/admin/unit/create']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Create'), 'url' => ['/admin/store/create']];
 ?>
 
 <div class="container-fluid">

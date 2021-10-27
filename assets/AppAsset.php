@@ -6,7 +6,6 @@ class AppAsset extends \yii\web\AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/trailer-scheme.css',
         'css/carousel.css',
         'css/site.css',
     ];

@@ -50,6 +50,7 @@ class CategoryController extends Controller
     {
         $model = new Category(['scenario' => 'create']);
         $model->is_popular = 0;
+        $model->in_menu = 0;
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record created!') . ' <a href="' . Url::toRoute(['category/create']) . '">' . Yii::t('app', 'Create') . '</a>');

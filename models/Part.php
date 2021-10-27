@@ -7,10 +7,11 @@ use yii\db\ActiveRecord;
 use skeeks\yii2\slug\SlugBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use app\models\UploadForm;
 
 class Part extends ActiveRecord
 {
-    public $partFirstImage, $file, $offer, $certificate_ids;
+    public $partFirstImage, $file, $picture, $offer, $certificate_ids;
 
     public static function tableName()
     {
@@ -27,8 +28,9 @@ class Part extends ActiveRecord
             [['original_id'], 'exist', 'skipOnError' => true, 'targetClass' => Part::className(), 'targetAttribute' => ['original_id' => 'id']],
             [['producer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producer::className(), 'targetAttribute' => ['producer_id' => 'id']],
             [['file'], 'file', 'extensions' => 'jpg, jpeg, png, bmp, webp'],
+            [['file'], 'required', 'on' => 'create'],
             [['offer'], 'number'],
-            [['certificate_ids'], 'safe'],
+            [['certificate_ids', 'picture'], 'safe'],
             [['slug'], 'unique'],
         ];
     }
@@ -76,52 +78,27 @@ class Part extends ActiveRecord
             'updated_at' => Yii::t('app', 'Updated at'),
         ];
     }
-
-    /**
-     * Gets query for [[Favorites]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getFavorites()
     {
         return $this->hasMany(Favorites::className(), ['part_id' => 'id']);
     }
-
-    /**
-     * Gets query for [[Offers]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getOffers()
     {
         return $this->hasMany(Offer::className(), ['part_id' => 'id']);
     }
-
-    /**
-     * Gets query for [[Original]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getOriginal()
     {
         return $this->hasOne(Part::className(), ['id' => 'original_id']);
     }
 
-    /**
-     * Gets query for [[Parts]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getParts()
     {
         return $this->hasMany(Part::className(), ['original_id' => 'id']);
     }
-
-    /**
-     * Gets query for [[Producer]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getProducer()
     {
         return $this->hasOne(Producer::className(), ['id' => 'producer_id']);
@@ -156,14 +133,7 @@ class Part extends ActiveRecord
     {
         return self::find()->andFilterWhere(['=', 'articul', $this->articul]);
     }
-
-    /*public function getAnalogues()
-    {
-        return self::find()
-        ->orFilterWhere(['like', 'articul', $this->articul])
-        ->orFilterWhere(['like', 'name', $this->name])
-        ->andFilterWhere(['<>', 'id', $this->id]);
-    }*/
+    
     public function getAnalogues()
     {
         return self::find()->andFilterWhere(['=', 'original_id', $this->id]);
@@ -177,6 +147,12 @@ class Part extends ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        $this->partPictures[0]->picture ? $this->partFirstImage = '@web/uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = '/images/noImage100x100.png';
+        return $this->partPictures[0]->picture ? $this->partFirstImage = '@web/uploads/' . $this->partPictures[0]->picture : $this->partFirstImage = '/images/noImage100x100.png';
+    }
+
+    public function beforeValidate()
+    {
+        $this->picture = (new UploadForm($this))->upload() ?: $this->picture = $this->getOldAttribute('picture');
+        return parent::beforeValidate();
     }
 }

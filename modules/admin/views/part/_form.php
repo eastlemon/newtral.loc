@@ -48,7 +48,7 @@
             'allowClear' => true
         ],
     ]) ?>
-    <?= $form->field($model, 'file')->fileInput(['class' => 'form-control-file']) ?>
+    <?= $form->field($model, 'file')->fileInput(['class' => 'form-control-file'])->label(Yii::t('app', 'Picture')) ?>
     <div class="row">
         <div class="col-md-6"><?= $form->field($modelOffer, 'amount')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($modelOffer, 'price')->textInput() ?></div>

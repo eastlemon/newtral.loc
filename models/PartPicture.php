@@ -18,7 +18,7 @@ class PartPicture extends \yii\db\ActiveRecord
             [['part_id'], 'integer'],
             [['part_id'], 'required'],
             [['part_id'], 'exist', 'skipOnError' => true, 'targetClass' => Part::className(), 'targetAttribute' => ['part_id' => 'id']],
-            [['picture'], 'required', 'on' => 'create'],
+            [['picture'], 'safe'],
         ];
     }
     
@@ -34,11 +34,5 @@ class PartPicture extends \yii\db\ActiveRecord
     public function getPart()
     {
         return $this->hasOne(Part::className(), ['id' => 'part_id']);
-    }
-
-    public function beforeValidate()
-    {
-        $this->picture = (new UploadForm($this->part))->upload() ?: $this->picture = $this->getOldAttribute('picture');
-        return parent::beforeValidate();
     }
 }
