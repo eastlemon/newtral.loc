@@ -59,10 +59,8 @@
    </div>
 </div>
 
-<?php if (!Yii::$app->user->isGuest): ?>
-   <?php foreach (\app\models\Category::getMenuItems() as $item) $categories .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/category/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
-   <?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/producer/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
-<?php endif; ?>
+<?php foreach (\app\models\Category::getMenuItems() as $item) $categories .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/category/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
+<?php foreach (\app\models\Producer::getMenuItems() as $item) $producers .= '<div class="col-lg-3 col-md-4 col-sm-6"><a href="/producer/' . $item->slug . '"><img class="img-thumbnail" src="/' . $item->picture . '" height="25">' . $item->name . '</a></div>'; ?>
 
 <?php NavBar::begin(['options' => [
    'id' => 'mainNav',
