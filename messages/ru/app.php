@@ -1,6 +1,8 @@
 <?php
 return [
-    'Original Articul'=> 'Оригинальный артикул',
+    'No slide yet' => 'Слайдов ещё нет',
+    'Create a new slide in the control panel' => 'Создайте новый слайд в панели управления',
+    'Original Articul' => 'Оригинальный артикул',
     'Favorites' => 'Избранное',
     'Append' => 'Добавить',
     'Social Login' => 'Войти через соцсети',

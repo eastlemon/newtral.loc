@@ -68,11 +68,6 @@ class Producer extends ActiveRecord
     {
         return $this->hasMany(Part::className(), ['producer_id' => 'id']);
     }
-    
-    public function getUnits()
-    {
-        return $this->hasMany(Unit::className(), ['producer_id' => 'id']);
-    }
 
     public static function getMenuItems()
     {

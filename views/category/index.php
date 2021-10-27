@@ -23,18 +23,3 @@
     ]) ?>
 </div>
 
-<div class="container">
-    <?= GridView::widget([
-        'dataProvider' => $nodeProvider,
-        'columns' => [
-            [
-                'attribute' => 'name',
-                'label' => Yii::t('app', 'Name'),
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return Html::a($model->name, ['/node/' . $model->slug]);
-                }
-            ],
-        ],
-    ]) ?>
-</div>

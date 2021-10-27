@@ -19,14 +19,9 @@ class CategoryController extends Controller
             'query' => $model->getCategories(),
         ]);
 
-        $nodeProvider = new ActiveDataProvider([
-            'query' => $model->getNodes(),
-        ]);
-
         return $this->render('index', [
             'model' => $model,
             'categoryProvider' => $categoryProvider,
-            'nodeProvider' => $nodeProvider,
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
     use yii\bootstrap4\Html;
+    use yii\helpers\Url;
     use yii\helpers\StringHelper;
 
     $this->title = Yii::t('app', 'Main Page');
@@ -32,7 +33,7 @@
                 <div class="container">
                     <div class="carousel-caption text-center">
                         <h1><?= Yii::t('app', 'No slide yet') ?></h1>
-                        <p><?= Yii::t('app', 'Content of a slide, maybe') ?></p>
+                        <p><?= Yii::t('app', 'Create a new slide in the control panel') ?></p>
                         <p><a class="btn btn-lg btn-primary" href="/admin/slide" role="button"><?= Yii::t('app', 'Control') ?></a></p>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
                             <h5 class="card-title"><?= StringHelper::truncate($part->name, 40, '...') ?></h5>
                             <p class="card-text"><?//= StringHelper::truncate($part->description, 20, '...') ?></p>
                             <div class="btn-group mt-auto" role="group">
-                                <button type="button" class="btn btn-success"><i class="fas fa-eye"></i>&nbsp;<?= Yii::t('app', 'See') ?></button>
+                                <?= Html::a('<i class="fas fa-eye"></i>&nbsp;' . Yii::t('app', 'See'), Url::to(['/part']) . '/' . $part->slug, ['class' => 'btn btn-success']) ?>
                                 <button type="button" class="btn btn-primary"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>

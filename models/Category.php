@@ -83,16 +83,6 @@ class Category extends ActiveRecord
     {
         return $this->hasMany(Category::className(), ['parent_id' => 'id']);
     }
-    
-    public function getNodes()
-    {
-        return $this->hasMany(Node::className(), ['category_id' => 'id']);
-    }
-    
-    public function getUnits()
-    {
-        return $this->hasMany(Unit::className(), ['category_id' => 'id']);
-    }
 
     public static function getRoots()
     {

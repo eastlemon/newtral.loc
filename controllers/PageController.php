@@ -16,14 +16,6 @@ class PageController extends \yii\web\Controller
     public function actions(): array
     {
         return [
-            /*'parts-catalog' => [
-                'class' => 'app\modules\cms\actions\PageAction',
-                'pageId' => 7,
-            ],*/
-            /*'about' => [
-                'class' => 'app\modules\cms\actions\PageAction',
-                'pageId' => 6,
-            ],*/
             'news' => [
                 'class' => 'app\modules\cms\actions\PageAction',
                 'pageId' => 5,
@@ -32,10 +24,6 @@ class PageController extends \yii\web\Controller
                 'class' => 'app\modules\cms\actions\PageAction',
                 'pageId' => 4,
             ],
-            /*'contact' => [
-                'class' => 'app\modules\cms\actions\PageAction',
-                'pageId' => 3,
-            ],*/
         ];
     }
 
